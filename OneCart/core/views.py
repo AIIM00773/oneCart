@@ -12,6 +12,8 @@ from rest_framework.response import Response
 
 from  .search_engine.parser import parse_query 
 from .search_engine.utils import fetch_items
+#from .search_engine.main import MAIN
+
 
 
 class ActionOnQuery(APIView):
@@ -22,10 +24,18 @@ class ActionOnQuery(APIView):
         data = request.data
         
         #parser1(data)
-        dataFetched=parse_query(data)
+        SteP1Returns = list(parse_query(data))
+        
+        Qobject = SteP1Returns[0]
+        tokens = SteP1Returns[-1]
+        
+        print(f"\n\n{Qobject}\n\n")
        
-        if dataFetched:
-            mchs= fetch_items(dataFetched)
+        print(tokens)
+        
+        print("\n\n")
+        if tokens:
+            mchs= fetch_items(tokens)
             #print(mchs)
             
             return Response({"aa":mchs})

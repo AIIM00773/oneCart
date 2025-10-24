@@ -4,6 +4,7 @@
 
 
 
+
 /* ==========================================================================
    PAGE SESSION MANAGEMENT
    ========================================================================== */
@@ -36,41 +37,6 @@ function manageSession() {
 
 
 
-
-
-
-/* ==========================================================================
-   MENU INTERACTIONS
-   ========================================================================== */
-
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const selectionNav = document.getElementById("SelectionsNav"); 
-const closeMenuBtns = document.querySelectorAll(".closeMenu");
-const DisplaysSection = document.getElementById("DisplayAndAlerts");
-const DisplaysSection2 = document.getElementById("DisplayAndAlerts2");
-
-
-// Open mobile menu with animation
-menuBtn.addEventListener("click", () => {
-  mobileMenu.classList.remove("translate-x-full");
-  mobileMenu.classList.add("opacity-100");
-
-  // Animate menu links sequentially
-  mobileMenu.querySelectorAll(".closeMenu").forEach((link, i) => {
-    link.classList.add(
-      "opacity-0", "translate-x-1", "transition-all", "duration-500",
-      "ease-out", "bg-gray-600", "p-3", "rounded-xl"
-    );
-
-    setTimeout(() => link.classList.remove("opacity-0", "translate-x-5"), i * 100);
-  });
-});
-
-// Close menu
-closeMenuBtns.forEach(btn =>
-  btn.addEventListener("click", () => mobileMenu.classList.add("translate-x-full"))
-);
 
 
 
@@ -302,6 +268,7 @@ function navigateTo(pageId) {
     freshPage.classList.add("hidden");
     DisplaysSection.classList.remove("hidden");
     DisplaysSection2.classList.remove("hidden");
+    selectionNav.classList.remove("hidden")
   }
 }
 
