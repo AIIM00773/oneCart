@@ -1,0 +1,191 @@
+
+
+
+[
+  {
+    "country_name": "Kenya",
+    "country_code": "254",
+    "country_short": "KEN"
+  },
+  {
+    "country_name": "Uganda",
+    "country_code": "256",
+    "country_short": "UGA"
+  },
+  {
+    "country_name": "Tanzania",
+    "country_code": "255",
+    "country_short": "TAN"
+  },
+  {
+    "country_name": "Rwanda",
+    "country_code": "250",
+    "country_short": "RWA"
+  },
+  {
+    "country_name": "Burundi",
+    "country_code": "257",
+    "country_short": "BDI"
+  },
+  {
+    "country_name": "South Sudan",
+    "country_code": "211",
+    "country_short": "SSD"
+  },
+  {
+    "country_name": "Ethiopia",
+    "country_code": "251",
+    "country_short": "ETH"
+  },
+  {
+    "country_name": "Somalia",
+    "country_code": "252",
+    "country_short": "SOM"
+  },
+  {
+    "country_name": "Sudan",
+    "country_code": "249",
+    "country_short": "SDN"
+  },
+  {
+    "country_name": "Egypt",
+    "country_code": "20",
+    "country_short": "EGY"
+  },
+  {
+    "country_name": "United States",
+    "country_code": "1",
+    "country_short": "USA"
+  },
+  {
+    "country_name": "India",
+    "country_code": "91",
+    "country_short": "IND"
+  },
+  {
+    "country_name": "China",
+    "country_code": "86",
+    "country_short": "CHN"
+  },
+  {
+    "country_name": "United Kingdom",
+    "country_code": "44",
+    "country_short": "GBR"
+  },
+  {
+    "country_name": "Germany",
+    "country_code": "49",
+    "country_short": "DEU"
+  },
+  {
+    "country_name": "France",
+    "country_code": "33",
+    "country_short": "FRA"
+  },
+  {
+    "country_name": "Brazil",
+    "country_code": "55",
+    "country_short": "BRA"
+  },
+  {
+    "country_name": "Canada",
+    "country_code": "1",
+    "country_short": "CAN"
+  },
+  {
+    "country_name": "Australia",
+    "country_code": "61",
+    "country_short": "AUS"
+  },
+  {
+    "country_name": "Russia",
+    "country_code": "7",
+    "country_short": "RUS"
+  },
+  {
+    "country_name": "South Africa",
+    "country_code": "27",
+    "country_short": "ZAF"
+  },
+  {
+    "country_name": "Mexico",
+    "country_code": "52",
+    "country_short": "MEX"
+  },
+  {
+    "country_name": "Japan",
+    "country_code": "81",
+    "country_short": "JPN"
+  },
+  {
+    "country_name": "South Korea",
+    "country_code": "82",
+    "country_short": "KOR"
+  },
+  {
+    "country_name": "Italy",
+    "country_code": "39",
+    "country_short": "ITA"
+  },
+  {
+    "country_name": "Spain",
+    "country_code": "34",
+    "country_short": "ESP"
+  },
+  {
+    "country_name": "Argentina",
+    "country_code": "54",
+    "country_short": "ARG"
+  },
+  {
+    "country_name": "Turkey",
+    "country_code": "90",
+    "country_short": "TUR"
+  },
+  {
+    "country_name": "Nigeria",
+    "country_code": "234",
+    "country_short": "NGA"
+  },
+  {
+    "country_name": "Indonesia",
+    "country_code": "62",
+    "country_short": "IDN"
+  },
+  {
+    "country_name": "Thailand",
+    "country_code": "66",
+    "country_short": "THA"
+  },
+  {
+    "country_name": "Vietnam",
+    "country_code": "84",
+    "country_short": "VNM"
+  },
+  {
+    "country_name": "Philippines",
+    "country_code": "63",
+    "country_short": "PHL"
+  },
+  {
+    "country_name": "Pakistan",
+    "country_code": "92",
+    "country_short": "PAK"
+  },
+  {
+    "country_name": "Bangladesh",
+    "country_code": "880",
+    "country_short": "BGD"
+  },
+  {
+    "country_name": "Malaysia",
+    "country_code": "60",
+    "country_short": "MYS"
+  },
+  {
+    "country_name": "Egypt",
+    "country_code": "20",
+    "country_short": "EGY"
+  }
+]
+

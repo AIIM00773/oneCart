@@ -1,0 +1,133 @@
+
+
+
+[
+  {
+    "Name": "Jumia",
+    "Description": "Jumia is one of the largest online marketplaces in Africa, offering a variety of products including electronics, fashion, and groceries.",
+    "Country": "Kenya",
+    "Link": "https://www.jumia.co.ke/"
+  },
+  {
+    "Name": "Kilimall",
+    "Description": "Kilimall is a popular Kenyan e-commerce site, offering electronics, fashion, beauty, and home appliances.",
+    "Country": "Kenya",
+    "Link": "https://www.kilimall.co.ke/"
+  },
+  {
+    "Name": "Masoko",
+    "Description": "Masoko is an online marketplace owned by Safaricom, offering products ranging from electronics, fashion, to groceries.",
+    "Country": "Kenya",
+    "Link": "https://www.masoko.com/"
+  },
+  {
+    "Name": "OLX Kenya",
+    "Description": "OLX is a classifieds platform that allows users to buy and sell a wide range of products such as electronics, vehicles, and furniture.",
+    "Country": "Kenya",
+    "Link": "https://www.olx.co.ke/"
+  },
+  {
+    "Name": "MyDawa",
+    "Description": "MyDawa is Kenya's leading online pharmacy, providing healthcare products, prescription medicine, and wellness products.",
+    "Country": "Kenya",
+    "Link": "https://www.mydawa.com/"
+  },
+  {
+    "Name": "Carrefour Kenya",
+    "Description": "Carrefour is a multinational supermarket chain that also offers online shopping for groceries, electronics, and more.",
+    "Country": "Kenya",
+    "Link": "https://www.carrefourkenya.com/"
+  },
+  {
+    "Name": "Shopify",
+    "Description": "Shopify is a global e-commerce platform that allows businesses to create online stores to sell products worldwide.",
+    "Country": "Global",
+    "Link": "https://www.shopify.com/"
+  },
+  {
+    "Name": "Amazon",
+    "Description": "Amazon is one of the largest global online retailers, offering a vast selection of products across many categories.",
+    "Country": "USA",
+    "Link": "https://www.amazon.com/"
+  },
+  {
+    "Name": "eBay",
+    "Description": "eBay is a multinational e-commerce corporation that facilitates consumer-to-consumer and business-to-consumer sales through its website.",
+    "Country": "USA",
+    "Link": "https://www.ebay.com/"
+  },
+  {
+    "Name": "AliExpress",
+    "Description": "AliExpress is a Chinese e-commerce platform that connects international buyers with Chinese sellers, offering a variety of products.",
+    "Country": "China",
+    "Link": "https://www.aliexpress.com/"
+  },
+  {
+    "Name": "Daraz",
+    "Description": "Daraz is an online shopping platform in South Asia that offers products across various categories like electronics, fashion, and home goods.",
+    "Country": "Pakistan",
+    "Link": "https://www.daraz.pk/"
+  },
+  {
+    "Name": "Tokopedia",
+    "Description": "Tokopedia is an Indonesian e-commerce platform, which allows users to buy and sell a wide range of products from local businesses.",
+    "Country": "Indonesia",
+    "Link": "https://www.tokopedia.com/"
+  },
+  {
+    "Name": "Lazada",
+    "Description": "Lazada is a Southeast Asian online shopping platform offering products across categories like electronics, fashion, and home goods.",
+    "Country": "Singapore",
+    "Link": "https://www.lazada.com/"
+  },
+  {
+    "Name": "Flipkart",
+    "Description": "Flipkart is an Indian e-commerce company, offering a range of products including electronics, fashion, and lifestyle goods.",
+    "Country": "India",
+    "Link": "https://www.flipkart.com/"
+  },
+  {
+    "Name": "Mercado Libre",
+    "Description": "Mercado Libre is the largest e-commerce platform in Latin America, providing a marketplace for products like electronics, fashion, and home goods.",
+    "Country": "Argentina",
+    "Link": "https://www.mercadolibre.com/"
+  },
+  {
+    "Name": "Shopee",
+    "Description": "Shopee is an e-commerce platform operating in Southeast Asia and Taiwan, offering a wide variety of products from sellers across the region.",
+    "Country": "Singapore",
+    "Link": "https://shopee.sg/"
+  },
+  {
+    "Name": "Etsy",
+    "Description": "Etsy is a global marketplace focused on handmade, vintage, and unique products, allowing artists and makers to sell their creations.",
+    "Country": "USA",
+    "Link": "https://www.etsy.com/"
+  },
+  {
+    "Name": "Alibaba",
+    "Description": "Alibaba is a Chinese multinational conglomerate that provides a platform for global wholesale trade and e-commerce solutions.",
+    "Country": "China",
+    "Link": "https://www.alibaba.com/"
+  },
+  {
+    "Name": "Best Buy",
+    "Description": "Best Buy is a multinational electronics retailer with a strong online presence, selling electronics, appliances, and tech accessories.",
+    "Country": "USA",
+    "Link": "https://www.bestbuy.com/"
+  },
+  {
+    "Name": "Walmart",
+    "Description": "Walmart is a multinational retail corporation with an extensive e-commerce platform, offering products from groceries to electronics.",
+    "Country": "USA",
+    "Link": "https://www.walmart.com/"
+  },
+  {
+    "Name": "Lulu Hypermarket",
+    "Description": "Lulu Hypermarket is a retail chain in the Middle East, offering groceries, electronics, fashion, and more.",
+    "Country": "UAE",
+    "Link": "https://www.luluhypermarket.com/"
+  }
+]
+
+

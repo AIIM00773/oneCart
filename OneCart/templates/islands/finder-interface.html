@@ -1,0 +1,1073 @@
+
+
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OneCart - Easy Shopping </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+    :root{
+      --bg-900: #05060a;
+      --bg-800: #0b1220;
+      --glass-1: rgba(255,255,255,0.04);
+      --accent-cyan: #38bdf8;
+      --accent-indigo: #7c3aed;
+    }
+
+    html,body { height:100%; overflow-x:hidden; }
+
+    body{
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(56,189,248,0.04), transparent 10%),
+                  radial-gradient(900px 500px at 90% 85%, rgba(124,58,237,0.04), transparent 8%),
+                  linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x: hidden; 
+      
+    }
+
+    /*  scrollbar hiding rules */
+    *::-webkit-scrollbar { width:0; height:0; background:transparent }
+    * { -ms-overflow-style:none; scrollbar-width:none; }
+
+    /* Header glass */
+    header { backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.03); z-index:60; }
+
+
+
+
+    /* Layout wrappers */
+    .page-container {padding: 1rem; }
+
+
+    /* Responsive: collapse to single column for smaller screens */
+    @media (max-width: 1024px) {
+      .split { grid-template-columns: 1fr 320px; }
+    }
+    @media (max-width: 880px) {
+      .split { grid-template-columns: 1fr; }
+    }
+
+
+
+    /* glass card styles (kept subtle) */
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(10px) saturate(120%);
+      
+    }
+
+    /* floating subtle animation */
+    .float-subtle { animation: floatSub 6s ease-in-out infinite; transform-origin:center; }
+    @keyframes floatSub { 0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)} }
+
+
+    /* results area */
+    #MainResultsPage { 
+        transition: all .22s ease;
+         }
+    
+
+    /* card hover */
+    .ITEMCARD{padding:4px; }
+    
+    .ITEMCARD { transition: transform .26s ease, box-shadow .26s ease; }
+    .ITEMCARD:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(2,6,23,0.6); }
+
+    /* right panel - summary */
+    .summary-panel { position: relative;  overflow-y:auto; padding: 1rem; border-radius: 12px; }
+    
+    @media (max-width: 880px) {
+      .summary-panel { position: fixed; right: 0; top: 88px; bottom: 0; width: min(92vw, 360px); transform: translateX(110%); transition: transform 300ms cubic-bezier(.2,.9,.3,1); z-index:70; }
+      .summary-panel.open { transform: translateX(0); }
+    }
+
+
+    /* mobile toggle FAB */
+    .fab-filter { position: relative;  right: 18px;  z-index:80; box-shadow: 0 14px 40px rgba(2,6,23,0.6); }
+
+
+    /* subtle separators and typographic scale */
+    .muted { color: rgba(226,232,240,0.55); }
+    .tiny { font-size: 12px; color: rgba(226,232,240,0.45); }
+
+
+    /* no-results placeholder */
+    #noResultsMessage { display:none; padding: 2rem; text-align:center; border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent); border:1px dashed rgba(255,255,255,0.03); }
+
+    /* ensure hero area never causes x-overflow */
+    #MainPageHeroPage .max-width-fix { width: 100%; box-sizing: border-box; }
+
+    /* chips scroll */
+    .chips-scroll { overflow-x:auto; -webkit-overflow-scrolling: touch; white-space:nowrap; padding-bottom:6px; }
+    .chips-scroll::-webkit-scrollbar { display:none; }
+    
+    
+    
+    
+  </style>
+</head>
+
+<body class="bg-gray-900 font-sans leading-relaxed lg:grid lg:grid-cols1s">
+    <!-- Header (IDs/classes preserved) -->
+        <header class="w-full py-3 fixed top-0 left-0 right-0 min-h-[70px] flex justify-between items-center px-4 md:px-8">
+        
+        
+        
+            <div class="flex items-center gap-4">
+                <img src="{% static 'resources/logos/logo.png'%}" class="w-14 h-14 rounded-full ring-1 ring-white/6 shadow-sm" alt="OneCart Logo" />
+                <div class="flex flex-col">
+                    <span class="text-white font-semibold text-lg leading-none hidden md:flex">One<b class="text-[dodgerblue]">Cart</b></span>
+                </div>
+                <button id="LoadMainPageFresh" class="hidden   ml-3 px-4 text-[white] py-2 rounded-full text-sm font-medium bg-[dodgerblue] hover:scale-105 transform transition" onclick="navigateTo('MainPageHeroPage')">
+                    <i class="text-xs"> Search</i> <i class="fa fa-refresh text-[white] ml-[2px]" aria-hidden="true"></i>
+                </button>  
+            </div>
+    
+   
+           
+
+            <div class="flex items-center gap-6">
+            
+             <nav class="hidden md:flex gap-6 text-slate-200 font-medium">
+                <a href="/cart-interface/" class="hover:text-white transition text-sm border-[0.1px] border-gray-300 rounded-3xl py-2 px-4 hover:bg-gray-100/30 ">Your Cart</a>
+                <a href="/about-interface/" class="hover:text-white transition text-sm border-[0.1px] border-gray-300 rounded-3xl py-2 px-4 hover:bg-gray-100/30 ">About OneCart</a>
+                <a href="/support-interface/" class="hover:text-white transition text-sm border-[0.1px] border-gray-300 rounded-3xl py-2 px-4 hover:bg-gray-100/30 ">Contact</a>
+                <a href="/profile-interface/" class="hover:text-white transition text-sm border-[0.1px] border-gray-300 rounded-3xl py-2 px-4 hover:bg-gray-100/30 ">Profile</a>
+             </nav>
+             
+             
+             <!-- Floating mobile FAB to open summary (filter/cart) -->
+             <button id="openSummaryFab" class="fab-filter md:hidden p-3 rounded-full bg-gradient-to-tr from-indigo-600 to-cyan-400 text-black shadow-xl ml-6 md:ml-1 " aria-label="Open filters">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 14.414V20a1 1 0 01-1.447.894L9 18v-3.586L3.293 6.707A1 1 0 013 6V4z"/>
+                </svg>
+             </button>
+  
+  
+  
+            <button id="menuBtn" class="md:hidden text-white p-2 rounded-md bg-white/4 hover:bg-white/6 transition" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+          </div>
+     </header>
+
+
+
+
+
+
+  <!-- Mobile Menu kept -->
+  <div id="mobileMenu" class="closeMenu fixed top-0 right-0 w-full h-full bg-[rgba(2,6,23,0.7)] backdrop-blur-sm transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex justify-end" aria-hidden="true">
+    <div class="flex flex-col p-6 space-y-6 bg-gray-800/70 rborder-[0.1px] border-[orange] w-72 h-full shadow-xl m-0.5 mt-20 ">
+      <button id="closeMenu" class="text-xl self-end text-red-600  py-2 px-8 border-1 border-[orange] rounded-3xl  text-xl font-bold hover:text-red-700 flex items-center gap-2">✕ 
+         <span class="text-xs font-normal">Close menu </span>
+     </button>
+
+      <button onclick="navigateTo('MainPageHeroPage')" class="closeMenu text-gray-800 font-medium hover:text-indigo-600 transition bg-gray-100 p-3 px-4 rounded-full">Find Products</button>
+      <button onclick="window.location.href='/profile-interface/'" class="closeMenu text-gray-800 font-medium hover:text-indigo-600 transition bg-gray-100 p-3 px-4 rounded-full">Home</button>
+      <button onclick="window.location.href='/about-interface/'" class="closeMenu text-gray-800 font-medium hover:text-indigo-600 transition bg-gray-100 p-3 px-4 rounded-full">About OneCart</button>
+      <button onclick="window.location.href='/contact-interface/'" class="closeMenu text-gray-800 font-medium hover:text-indigo-600 transition bg-gray-100 p-3 px-4 rounded-full">Contact</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Hero + Split Layout -->
+  <main class="page-container mt-[70px] md:mt-[96px] bg-[aliceblue] md:bg-gray-100/90 px-2 lg:px-10  max-w-8xl min-w-8xl  md:min-w-6xl mx-[1px] md:mx-1 min-h-[90vh] max-h-[92vh] overflow-y-scroll ">
+ 
+
+<div id="SelectionsNav" class=" w-full px-1 py-1 mt-0 bg-gradient-to-r from-orange-400 via-orange-400/70 to-orange-400  flex flex-row items-center gap-3 overflow-x-auto scrollbar-hide  shadow-md rounded-t-xl md:rounded-t-[0px]">
+</div>
+    <section id="MainPageHeroPage" class="max-width-fix relative mt-[0.1px] md:mt-1 ">
+    
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-2  md:gap-y-8 md:gap-x-8 items-center justify-center  ">
+      
+            <!-- Right:  -->
+
+       <div class="z-10  flex flex-col gap-y-6 p-2 md:pl-8 lg:pl-10 rounded-b-xl md:rounded-xl  border-[0.1px]  border-gray-700/60  bg-gray-900/90  " >
+          <h1 class="text-2xl text-center   md:text-4xl font-extrabold leading-tight  md:block">
+            <span class="text-indigo-300 ">One<b class="text-[dodgerblue] ">Cart</b></span>
+            <span class="text-slate-200"> <b class="text-[dodgerblue]  "> : </b> <span id="messageBox" class="text-slate-300"></span></span>
+          </h1>
+
+          <!-- Inquiry box (IDs preserved) -->
+  
+  
+         <div class="mt-0 relative w-full max-w-6xl mx-auto">
+         
+         
+  <div class="grid grid-cols-1 gap-x-3 items-center py-2 mt-4 rounded-3xl my-4 bg-transparent shadow-sm">
+  
+  <!-- Section Header -->
+  <div class="flex items-center justify-center w-full flex-row gap-3 mt-0">
+    <h1 class="text-xl font-semibold text-[limegreen]">Ask OneCart AI</h1>
+  </div> 
+  
+  <!-- Example Query Container -->
+  <div id="exampleContainer" class="text-[13px] text-center flex flex-row overflow-x-auto cursor-pointer py-3 transition-all duration-500 ease-in-out justify-center">  
+    <!-- Single visible prompt (alternates dynamically) -->
+    <b id="currentPrompt" class="bg-gray-100 py-2 px-3 rounded-3xl text-gray-700 flex items-center min-w-fit mx-6 hover:border hover:border-orange-400 hover:bg-orange-50 transition rounded-3xl">Find me The best deals On Elecetonics in Kenya </b>
+  </div>
+</div>
+
+
+
+              
+            <div class="glass-card flex items-center gap-2 p-1.5 rounded-full shadow-sm">
+    
+
+              <input type="search" id="searchInput" placeholder="Type what you are looking for...  " class="search-focus w-full bg-gray-500/60  pr-28  text-slate-100 placeholder:text-slate-400 placeholder:italic 
+                  placeholder:text-[13px] placeholder:ml-3   py-4 pl-2 rounded-full border-0 focus:ring-0" aria-label="Search input"/>
+
+              <button id="searchBtn"
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-600 to-cyan-500 text-black px-5 py-2 rounded-full font-semibold shadow-lg hover:brightness-105 transition"
+                aria-label="Search">
+              <svg class="ml-3 h-6 w-6 text-slate-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z"/>
+              </svg>
+             </button>
+            </div>
+
+              
+                   
+          </div>
+        </div>
+
+
+
+      </div>
+    </section>
+    
+    
+    
+    
+    
+   
+   
+    
+   <!----------------------FEATURED PRODUTS SECTION-------------------------> 
+    
+<section class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue] rounded-t-2xl mb-6 shadow-md overflow-hidden rounded-b-2xl  " id="DisplayAndAlerts" >
+  <!-- Title -->
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-2xl md:text-4xl font-extrabold text-white md:text-gray-800 text-center md:text-left mt-4 mb-4" >
+     Most bought and  Featured Products 
+    </p>
+  </div>
+
+
+  <!-- Products  Recomendations  container -->
+  <div
+    class="flex flex-row flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-6 md:gap-10 overflow-x-auto md:overflow-visible no-scrollbar px-6 py-8 bg-white/80 rounded-b-2xl border border-white/10 
+       shadow-[inset_0_0_25px_rgba(56,189,248,0.15)] backdrop-blur-xl transition-all duration-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)]" id="featuredProductsContainer"  >
+    <!-- Dynamic cards here -->
+  </div>
+</section>
+
+
+
+    
+
+
+
+
+    
+<section class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue] rounded-t-2xl mb-6 shadow-md overflow-hidden rounded-b-2xl  " id="DisplayAndAlerts2">
+  <!-- Title -->
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-2xl md:text-4xl font-extrabold text-white md:text-gray-800 text-center md:text-left mt-4 mb-4">
+      Top Rated and Featured Markets This week 
+    </p>
+  </div>
+
+  <!-- Products container -->
+  <div
+    class="flex flex-row flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-6 md:gap-10 overflow-x-auto md:overflow-visible no-scrollbar px-6 py-8 bg-white/80 rounded-b-2xl border border-white/10
+          shadow-[inset_0_0_25px_rgba(56,189,248,0.15)] backdrop-blur-xl transition-all duration-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)]" id="featuredMarketsContainer" >
+          <!-- Dynamic cards here -->
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Split: results + summary -->
+        <section id="MainResultsPage" class="page w-8xl  pt-0 rounded-t-xl pb-6  px-0 block    max-h-[90vh] overflow-y-auto overflow-x-hidden place-items-start rounded-b-xl rounded-t-0  mt-1  mb-[30px] 
+         shadow-inner" aria-live="polite"   aria-label="Search results">
+                     
+        </section>
+        
+    
+    
+    
+  </main>
+
+
+
+
+
+
+
+
+  <!-- Keep your external nav script; path unchanged -->
+  <script src="{% static 'main/ai-interface/navigation.js' %}"></script>
+
+
+
+
+
+
+<!-- AI Prompt Suggestion -->
+<style>
+  /* Smooth animation styles */
+  #currentPrompt {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  #currentPrompt.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  #currentPrompt.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Optional hover effect */
+  #currentPrompt:hover {
+    text-decoration: underline;
+    color: #1E90FF;
+  }
+</style>
+
+<script>
+  const promptSuggestions = [
+    // 🛍️ Shopping Deals
+    "Find me the best deals on sports shoes in Kenya",
+    "Show me affordable smartphones available in Nairobi",
+    "Find trending grocery discounts in Kenya",
+    "Locate top-rated laptops under 100k in Kenya",
+    "Get me offers on kitchen appliances this week",
+    "Find discounted gaming consoles in Kenya",
+    "Show me where to buy original perfumes online in Kenya",
+    "Find the best prices for smart TVs above 50 inches",
+    "Get me the latest deals on fashion sneakers for men",
+    "Find me women's handbags under 5,000 KES",
+
+    // 💡 Comparisons
+    "Compare prices of iPhone 14 and Samsung S23 in Kenya",
+    "Which store sells PS5 at the lowest price right now?",
+    "Compare washing machines from LG and Samsung in Nairobi",
+    "Which online marketplace has better delivery ratings?",
+    "Find me the best-rated earphones under 3,000 KES",
+
+    // 🏠 Home & Lifestyle
+    "Show me affordable sofa sets for small apartments",
+    "Find energy-efficient refrigerators in Kenya",
+    "Get me the best deals on kitchen blenders this month",
+    "Locate trending home decor items in Nairobi",
+    "Show me bed frames available with free delivery",
+
+    // 🧑‍💻 Tech & Gadgets
+    "Find me powerful laptops for programming under 120k",
+    "Show me gaming PCs on discount in Kenya",
+    "Locate budget-friendly tablets for students",
+    "Find me a smartwatch compatible with Android phones",
+    "Show me wireless earbuds with long battery life",
+
+    // 🛒 Groceries & Essentials
+    "Find supermarkets offering discounts on rice and sugar",
+    "Show me where to buy baby diapers in bulk at low prices",
+    "Locate stores with offers on cooking oil this week",
+    "Find me organic skincare products on sale in Kenya",
+    "Get me fresh fruit delivery services in Nairobi",
+
+    // 🎁 Seasonal / Event-Based
+    "Find Black Friday deals near me",
+    "Show me Christmas offers on electronics",
+    "Find Valentine's Day gift bundles for her",
+    "Locate back-to-school deals on stationery and uniforms",
+    "Get me Easter weekend travel deals from Nairobi"
+  ];
+
+  const promptDisplay = document.getElementById("currentPrompt");
+  let currentIndex = 0;
+
+  function switchPrompt() {
+    // Fade out
+    promptDisplay.classList.remove("fade-in");
+    promptDisplay.classList.add("fade-out");
+
+    setTimeout(() => {
+      // Change text mid-transition
+      currentIndex = (currentIndex + 1) % promptSuggestions.length;
+      promptDisplay.textContent = promptSuggestions[currentIndex];
+
+      // Fade back in
+      promptDisplay.classList.remove("fade-out");
+      promptDisplay.classList.add("fade-in");
+    }, 500); // match this to CSS transition time
+  }
+
+  // Run every 4 seconds
+  setInterval(switchPrompt, 4000);
+
+  // Click to populate input
+  promptDisplay.addEventListener("click", () => {
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+      searchInput.value = promptDisplay.textContent.trim().toLowerCase();
+      searchInput.focus();
+    } else {
+      alert("searchInput field not found!");
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Existing typing animation (preserved, unchanged except kept consistent) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const message = "- Online Shopping Made Easy ";
+      const messageBox = document.getElementById("messageBox");
+      let index = 0;
+
+      // Clear and add cursor that the CSS styles
+      messageBox.textContent = '';
+      const cursor = document.createElement("span");
+      cursor.className = "cursor";
+      messageBox.appendChild(cursor);
+
+      function typeWriter() {
+        if (index < message.length) {
+          const span = document.createElement("span");
+          span.textContent = message.charAt(index);
+          span.style.opacity = 0;
+          span.style.transition = "opacity 0.24s ease";
+          messageBox.insertBefore(span, cursor);
+
+          setTimeout(() => { span.style.opacity = 1; }, 10);
+          index++;
+          setTimeout(typeWriter, 70);
+        }
+      }
+
+      setTimeout(() => {
+        typeWriter();
+      }, 420);
+    });
+  </script>
+
+
+
+
+
+
+
+  
+
+  <!--------FETURED PRODUCTS HANDLING ---------------------------------------------------------------------------------->  
+
+
+<script>
+
+
+function InitiateProductsHandling(){
+  const placeholderFeaturedProductsList = [
+    {
+      ProductName: "Samsung Galaxy A14",
+      ImageUrl: "https://t3.ftcdn.net/jpg/06/00/84/37/240_F_600843706_i1dh4LyAz1hQb5yyxfCr2go2sf0EIbz6.jpg",
+      ProductUrl: "https://example.com/products/galaxy-a14"
+    },
+    {
+      ProductName: "HP Pavilion Laptop",
+      ImageUrl: "https://t4.ftcdn.net/jpg/06/06/40/35/240_F_606403541_gctiFQ9ErxvRmcrsKf5u8zslmqlkjuh7.jpg",
+      ProductUrl: "https://example.com/products/hp-pavilion"
+    },
+    {
+      ProductName: "Nike Air Max",
+      ImageUrl: "https://t4.ftcdn.net/jpg/03/07/14/94/240_F_307149460_tRu5lGtxXYqjExMRTGLYwJDbQ1XtR8fQ.jpg",
+      ProductUrl: "https://example.com/products/nike-air-max"
+    },
+    {
+      ProductName: "Apple Watch SE",
+      ImageUrl: "https://t4.ftcdn.net/jpg/03/01/26/94/240_F_301269434_kxH6nptznbwzPyoZRW3DlF5SoKY8fSKL.jpg",
+      ProductUrl: "https://example.com/products/apple-watch"
+    },
+    {
+      ProductName: "Kindle Paperwhite",
+      ImageUrl: "https://t3.ftcdn.net/jpg/05/02/99/19/240_F_502991977_C9BaIYr1hCkUwTG4QRSW16ufyEkHU7hC.jpg",
+      ProductUrl: "https://example.com/products/kindle"
+    },
+    {
+      ProductName: "HP Pavilion Laptop",
+      ImageUrl: "https://t4.ftcdn.net/jpg/06/06/40/35/240_F_606403541_gctiFQ9ErxvRmcrsKf5u8zslmqlkjuh7.jpg",
+      ProductUrl: "https://example.com/products/hp-pavilion"
+    },
+        {
+      ProductName: "Apple Watch SE",
+      ImageUrl: "https://t4.ftcdn.net/jpg/03/01/26/94/240_F_301269434_kxH6nptznbwzPyoZRW3DlF5SoKY8fSKL.jpg",
+      ProductUrl: "https://example.com/products/apple-watch"
+    },
+    
+        {
+      ProductName: "Samsung Galaxy A14",
+      ImageUrl: "https://t3.ftcdn.net/jpg/06/00/84/37/240_F_600843706_i1dh4LyAz1hQb5yyxfCr2go2sf0EIbz6.jpg",
+      ProductUrl: "https://example.com/products/galaxy-a14"
+    }
+  ];
+
+  let FeaturedProductsHolder = document.getElementById("featuredProductsContainer");
+
+  if (!FeaturedProductsHolder) {
+    console.error("Container element not found!");
+    return;
+  }
+
+  FeaturedProductsHolder.innerHTML = ``;
+
+  async function PopulateFeaturedProducts(productsList) {
+    if (productsList) {
+      for (let product of productsList) {
+        let FeaturedProductCard = document.createElement("div");
+
+        FeaturedProductCard.className = `
+          min-w-[60%] max-w-[60%] md:min-w-[20%] md:max-w-[25%] h-[220px] rounded-2xl overflow-hidden relative group 
+          bg-white/5 border border-white/10 hover:border-cyan-400/40 shadow-lg 
+          hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-all duration-500`;
+
+        FeaturedProductCard.innerHTML = `
+          <img src="${product.ImageUrl}" class="w-full h-full object-cover 
+            opacity-80 group-hover:opacity-100 group-hover:scale-105 
+            transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]" />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" onclick="window.location.href='${product.ProductUrl}'"></div>
+
+          <div class="absolute bottom-4 left-6 text-white">
+            <h3 class="text-lg font-semibold tracking-wide drop-shadow-md">${product.ProductName}</h3>
+            <p class="text-sm text-cyan-300/90">Handpicked by OneCart AI</p>
+          </div>
+        `;
+
+        // Optional: allow clicking on image to navigate too
+        FeaturedProductCard.querySelector("img").addEventListener("click", () => {
+          window.location.replace(product.ProductUrl);
+        });
+
+        FeaturedProductsHolder.appendChild(FeaturedProductCard);
+      }
+    }
+  }
+
+function startFeaturedProductsSlideshow(container, interval = 4500) {
+  let scrollAmount = 0;
+  let card = container.children[0];
+
+  if (!card) return; // Safety check
+
+  let cardWidth = card.offsetWidth;
+  let gap = 16; // Tailwind gap-x-4 = 16px if used
+
+  let totalCards = container.children.length;
+  let maxScroll = (cardWidth + gap) * totalCards;
+
+  setInterval(() => {
+    scrollAmount += cardWidth + gap;
+
+    if (scrollAmount >= maxScroll - container.offsetWidth) {
+      scrollAmount = 0;
+    }
+
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth"
+    });
+  }, interval);
+}
+
+
+
+
+  async function GetFeaturedProducts() {
+    const url = "YOUR_API_ENDPOINT_HERE";
+    try {
+      let response = await fetch(url, { method: "GET" });
+      if (response.ok) {
+        let data = await response.json();
+        localStorage.setItem("FeaturedProductsList", JSON.stringify(data));
+        
+        PopulateFeaturedProducts(data);
+        setTimeout(() => startFeaturedProductsSlideshow(FeaturedProductsHolder), 3000);
+      } else {
+        console.error("Failed to fetch products");
+        PopulateFeaturedProducts(placeholderFeaturedProductsList);
+        setTimeout(() => startFeaturedProductsSlideshow(FeaturedProductsHolder), 3000);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      PopulateFeaturedProducts(placeholderFeaturedProductsList);
+        setTimeout(() => startFeaturedProductsSlideshow(FeaturedProductsHolder), 3000);
+    }
+  }
+  
+  
+  
+
+  let existing_list = localStorage.getItem("FeaturedProductsList");
+  
+  if (!existing_list) {
+    GetFeaturedProducts();
+  } else {
+    try {
+      existing_list = JSON.parse(existing_list);
+      PopulateFeaturedProducts(existing_list);
+        setTimeout(() => startFeaturedProductsSlideshow(FeaturedProductsHolder), 3000);
+    } catch {
+      GetFeaturedProducts();
+    }
+  }
+  
+  };
+  
+  
+document.addEventListener("DOMContentLoaded", () => {InitiateProductsHandling();  });
+</script>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--------FETURED MARKETS HANDLING ---------------------------------------------------------------------------------->
+      
+      
+  
+<script>
+  
+
+function InitiateMarketsHandling(){
+
+
+const placeholderMarketsObjectsList = [
+
+
+
+  {
+    MarketName: "OneCart",
+    ImageUrl: "https://t3.ftcdn.net/jpg/17/29/32/90/240_F_1729329063_O1ckxG5Odz4P8bOxWU0rlvIdlteXjpOf.jpg",
+    MarketUrl: ""
+  },
+  
+  
+  {
+    MarketName: "Phone Place Kenya ",
+    ImageUrl: "https://t3.ftcdn.net/jpg/03/67/42/72/240_F_367427224_PaF49H83VmoIs47Fz1YU1n31PHiipg35.jpg",
+    MarketUrl: "https://www.phoneplacekenya.com/shop/"
+  },
+  {
+    MarketName: "Jumia ",
+    ImageUrl: "https://t3.ftcdn.net/jpg/16/30/60/64/240_F_1630606464_kcU1KNc1jBX7eg9ANqbM3MTYqysgTyXS.jpg",
+    MarketUrl: "https://www.jumia.co.ke/"
+  },
+  {
+    MarketName: "VouGe",
+    ImageUrl:" https://t4.ftcdn.net/jpg/02/62/24/31/240_F_262243135_q7xBjfg02gaeD1NVfIqHBLz3qrOMFYcw.jpg",
+    MarketUrl: "https://www.vogue.com/shopping/womens/clothing"
+  },
+  {
+    MarketName: "Fitness & Sports",
+    ImageUrl: "https://t4.ftcdn.net/jpg/14/64/22/35/240_F_1464223544_8ZTKvmzQLImqD8d1p1Nng6y9LCsBIHRm.jpg",
+    MarketUrl: "https://www.decathlon.co.ke/"
+  },
+  {
+    MarketName: "Books & Media",
+    ImageUrl: "https://t3.ftcdn.net/jpg/15/62/84/82/240_F_1562848239_AXK68hYry6PTFC4Vqz6fMx1vQjpHuE9V.jpg",
+    MarketUrl: "https://bookstop.co.ke/"
+  },
+  {
+    MarketName: "OneCart",
+    ImageUrl: "https://t3.ftcdn.net/jpg/17/29/32/90/240_F_1729329063_O1ckxG5Odz4P8bOxWU0rlvIdlteXjpOf.jpg",
+    MarketUrl: ""
+  },
+  
+  
+  {
+    MarketName: "Phone Place Kenya ",
+    ImageUrl: "https://t3.ftcdn.net/jpg/03/67/42/72/240_F_367427224_PaF49H83VmoIs47Fz1YU1n31PHiipg35.jpg",
+    MarketUrl: "https://www.phoneplacekenya.com/shop/"
+  }
+  
+];
+
+
+
+    let FeaturedMarketsHolder = document.getElementById("featuredMarketsContainer");
+    
+    if (!FeaturedMarketsHolder) {
+        console.error("Container element not found!");
+        return;
+    }
+
+
+
+
+    FeaturedMarketsHolder.innerHTML = ``;
+
+    async function PopulateFeaturedMarkets(MarketsObjectsList) {
+        if (MarketsObjectsList) {
+        
+            for (let x = 0; x < MarketsObjectsList.length; x++) {
+                let Market = MarketsObjectsList[x];
+                
+                let FeaturedMarketCard = document.createElement("div");
+                
+                FeaturedMarketCard.className = `
+                   min-w-[60%] max-w-[60%] md:min-w-[20%] md:max-w-[25%] h-[220px] rounded-2xl overflow-hidden relative group 
+          bg-white/5 border border-white/10 hover:border-cyan-400/40 shadow-lg 
+          hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-all duration-500`;
+
+                FeaturedMarketCard.innerHTML = `<img   src="${Market.ImageUrl}"    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]" />
+
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" onclick="window.location.href='${Market.MarketUrl }' "></div>
+                    
+                    <div class="absolute bottom-4 left-6 text-white">
+                        <h3 class="text-lg font-semibold tracking-wide drop-shadow-md">Explore The Best Deals on ${Market.MarketName}</h3>
+                        <p class="text-sm text-cyan-300/90">Curated by OneCart </p>
+                    </div>
+                `;
+
+                FeaturedMarketCard.querySelector("img").addEventListener("click", () => {
+                    window.location.replace(Market.MarketUrl);
+                });
+
+                FeaturedMarketsHolder.appendChild(FeaturedMarketCard);
+            }
+        }
+    }
+
+
+
+
+function startSlideshow(container, interval = 4000) {
+  let scrollAmount = 0;
+  let cardWidth = container.children[0].offsetWidth + 16; // 16 = gap between cards
+  let totalCards = container.children.length;
+
+  setInterval(() => {
+    scrollAmount += cardWidth;
+    
+    // Reset scroll if end is reached
+    if (scrollAmount >= cardWidth * totalCards) {
+      scrollAmount = 0;
+    }
+
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth"
+    });
+  }, interval);
+}
+
+
+
+
+
+    async function GetFeaturedMarkets() {
+        const url = "YOUR_API_ENDPOINT_HERE";
+        try {
+            let response = await fetch(url, { method: "GET" });
+            if (response.ok) {
+                let data = await response.json();
+                localStorage.setItem("FeaturedMarketsObjetsArray", JSON.stringify(data));
+                PopulateFeaturedMarkets(data);
+            } else {
+                console.error("Failed to fetch markets");
+               PopulateFeaturedMarkets( placeholderMarketsObjectsList) 
+              startSlideshow(FeaturedMarketsHolder);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
+    }
+
+
+    let existing_list = localStorage.getItem("FeaturedMarketsObjetsArray");
+    if (!existing_list) {
+        GetFeaturedMarkets();
+    } else {
+        try {
+            existing_list = JSON.parse(existing_list);
+            PopulateFeaturedMarkets(existing_list);
+
+        } catch {
+            GetFeaturedMarkets();
+        }
+    }
+
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {InitiateMarketsHandling();  });
+  </script>
+  
+  
+  
+<script>
+function LoadSelectionOption() {
+  const mainSelectionsNav = document.getElementById("SelectionsNav");
+  if (!mainSelectionsNav) return;
+
+  const containerMainSelections = document.createElement("div");
+  containerMainSelections.className = `
+    py-2 px-3 bg-[transparent] gap-x-6 
+    flex flex-row items-center justify-start overflow-x-auto scrollbar-hide
+  `;
+
+const selections = [
+  {
+    title: "Featured Products",
+    selection_categorization: "featured",
+    selection_id: "featured-products",
+    description: "Top recommended products",
+    icon: "🔥",
+    market_url: null,
+    scroll_or_load_url: null,
+    action_type: "scroll",
+    style: "highlighted",
+    enabled: true
+  },
+  {
+    title: "Top Deals",
+    selection_categorization: "deals",
+    selection_id: "top-deals",
+    description: "Current sales and limited-time offers",
+    icon: "💰",
+    market_url: null,
+    scroll_or_load_url: "/api/deals",
+    action_type: "load",
+    style: "sale",
+    enabled: true
+  },
+  {
+    title: "Local Markets",
+    selection_categorization: "markets",
+    selection_id: "local-markets",
+    description: "Browse trusted local sellers",
+    icon: "🛒",
+    market_url: "https://example.com/markets",
+    scroll_or_load_url: null,
+    action_type: "link",
+    style: "default",
+    enabled: true
+  },
+  {
+    title: "Fashion & Style",
+    selection_categorization: "fashion",
+    selection_id: "fashion-style",
+    description: "Latest in fashion trends",
+    icon: "👗",
+    market_url: null,
+    scroll_or_load_url: "/api/fashion",
+    action_type: "load",
+    style: "fashion",
+    enabled: true
+  },
+  {
+    title: "Electronics",
+    selection_categorization: "electronics",
+    selection_id: "electronics-section",
+    description: "Smartphones, laptops, and gadgets",
+    icon: "🔌",
+    market_url: null,
+    scroll_or_load_url: "/api/electronics",
+    action_type: "load",
+    style: "tech",
+    enabled: true
+  },
+  {
+    title: "Books & Media",
+    selection_categorization: "books",
+    selection_id: "books-media",
+    description: "Books, audiobooks, and movies",
+    icon: "📚",
+    market_url: null,
+    scroll_or_load_url: "/api/books",
+    action_type: "load",
+    style: "media",
+    enabled: false
+  },
+  // New categories added below
+  {
+    title: "Home & Garden",
+    selection_categorization: "home-garden",
+    selection_id: "home-garden",
+    description: "Furniture, decor, and outdoor essentials",
+    icon: "🏡",
+    market_url: null,
+    scroll_or_load_url: "/api/home-garden",
+    action_type: "load",
+    style: "home",
+    enabled: true
+  },
+  {
+    title: "Health & Wellness",
+    selection_categorization: "health-wellness",
+    selection_id: "health-wellness",
+    description: "Fitness, supplements, and personal care",
+    icon: "💪",
+    market_url: null,
+    scroll_or_load_url: "/api/health-wellness",
+    action_type: "load",
+    style: "health",
+    enabled: true
+  },
+  {
+    title: "Sports & Outdoors",
+    selection_categorization: "sports-outdoors",
+    selection_id: "sports-outdoors",
+    description: "Gear and apparel for active lifestyles",
+    icon: "⚽",
+    market_url: null,
+    scroll_or_load_url: "/api/sports-outdoors",
+    action_type: "load",
+    style: "sports",
+    enabled: true
+  },
+  {
+    title: "Toys & Games",
+    selection_categorization: "toys-games",
+    selection_id: "toys-games",
+    description: "Fun and games for all ages",
+    icon: "🧸",
+    market_url: null,
+    scroll_or_load_url: "/api/toys-games",
+    action_type: "load",
+    style: "fun",
+    enabled: true
+  }
+];
+
+
+
+  for (let selection of selections) {
+    if (!selection.enabled) continue;
+
+    const selectionButton = document.createElement("button");
+    selectionButton.className = `
+      text-white px-4 py-2 rounded-full bg-orange-500 italic hover:bg-orange-600 
+      transition-all duration-300 text-sm whitespace-nowrap
+    `;
+    selectionButton.innerText = `${selection.icon ?? ""} ${selection.title}`;
+    selectionButton.title = selection.description ?? "";
+
+    // You can add a click handler here based on action_type if needed
+    containerMainSelections.appendChild(selectionButton);
+  }
+
+  mainSelectionsNav.appendChild(containerMainSelections);
+
+  // ✅ Now containerMainSelections is defined, so we can run the slideshow here
+  setTimeout(() => {
+    startSlideshow2(containerMainSelections);
+  }, 2000);
+}
+
+function startSlideshow2(container, interval = 6000) {
+  if (!container || container.children.length === 0) return;
+
+  let scrollAmount = 0;
+  let cardWidth = container.children[0].offsetWidth + 16;
+  let totalCards = container.children.length;
+  let maxScroll = (cardWidth * totalCards) - container.offsetWidth;
+
+  setInterval(() => {
+    scrollAmount += cardWidth;
+
+    if (scrollAmount > maxScroll) {
+      scrollAmount = 0;
+    }
+
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth"
+    });
+  }, interval);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  LoadSelectionOption();
+});
+</script>
+
+
+  
+  
+
+
+
+   
+</body>
+</html>
