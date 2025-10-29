@@ -171,7 +171,7 @@ const promptSuggestions = [
  // <!-- Existing typing animation (preserved, unchanged except kept consistent) -->
 
     document.addEventListener("DOMContentLoaded", () => {
-      const message = "Market";
+      const message = "Market Place";
       const messageBox = document.getElementById("messageBox");
       let index = 0;
 
