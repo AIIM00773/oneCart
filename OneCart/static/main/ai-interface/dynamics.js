@@ -127,6 +127,7 @@ const promptSuggestions = [
 
 
 
+
   const promptDisplay = document.getElementById("currentPrompt");
   let currentIndex = 0;
 
@@ -170,7 +171,7 @@ const promptSuggestions = [
  // <!-- Existing typing animation (preserved, unchanged except kept consistent) -->
 
     document.addEventListener("DOMContentLoaded", () => {
-      const message = "- Online Shopping Made Easy ";
+      const message = "Market";
       const messageBox = document.getElementById("messageBox");
       let index = 0;
 
@@ -277,38 +278,57 @@ function InitiateProductsHandling(){
 
   FeaturedProductsHolder.innerHTML = ``;
 
-  async function PopulateFeaturedProducts(productsList) {
-    if (productsList) {
-      for (let product of productsList) {
-        let FeaturedProductCard = document.createElement("div");
+async function PopulateFeaturedProducts(productsList) {
+  if (!productsList || !productsList.length) return;
 
-        FeaturedProductCard.className = `
-          min-w-[60%] max-w-[60%] md:min-w-[20%] md:max-w-[25%] h-[220px] rounded-2xl overflow-hidden relative group 
-          bg-white/5 border border-white/10 hover:border-cyan-400/40 shadow-lg 
-          hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-all duration-500`;
+  for (let product of productsList) {
+    const FeaturedProductCard = document.createElement("div");
 
-        FeaturedProductCard.innerHTML = `
-          <img src="${product.ImageUrl}" class="w-full h-full object-cover 
-            opacity-80 group-hover:opacity-100 group-hover:scale-105 
-            transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]" />
+    FeaturedProductCard.className = `
+      min-w-[60%] max-w-[60%] md:min-w-[20%] md:max-w-[20%] h-[220px]
+      rounded-2xl overflow-hidden relative group cursor-pointer
+      bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900
+      border border-white/10
+      shadow-[0_4px_15px_rgba(0,0,0,0.4)]
+      hover:border-cyan-400/60
+      hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
+      hover:from-gray-800 hover:via-gray-900 hover:to-gray-800
+      transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+      backdrop-blur-xl
+    `;
 
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" onclick="window.location.href='${product.ProductUrl}'"></div>
+    FeaturedProductCard.innerHTML = `
+      <!-- Glow background -->
+      <span class="absolute inset-0 rounded-2xl bg-cyan-400/10 opacity-0 
+                   group-hover:opacity-100 blur-2xl transition-opacity duration-700"></span>
 
-          <div class="absolute bottom-4 left-6 text-white">
-            <h3 class="text-lg font-semibold tracking-wide drop-shadow-md">${product.ProductName}</h3>
-            <p class="text-sm text-cyan-300/90">Handpicked by OneCart AI</p>
-          </div>
-        `;
+      <!-- Product image -->
+      <img src="${product.ImageUrl}" alt="${product.ProductName}"
+           class="w-full h-full object-cover rounded-2xl
+           opacity-80 group-hover:opacity-100 group-hover:scale-105
+           transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]" />
 
-        // Optional: allow clicking on image to navigate too
-        FeaturedProductCard.querySelector("img").addEventListener("click", () => {
-          window.location.replace(product.ProductUrl);
-        });
+      <!-- Overlay gradient -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
 
-        FeaturedProductsHolder.appendChild(FeaturedProductCard);
-      }
-    }
+      <!-- Text content -->
+      <div class="absolute bottom-4 left-6 text-white z-10">
+        <h3 class="text-lg font-semibold tracking-wide drop-shadow-md group-hover:text-cyan-300 transition-colors duration-500">
+          ${product.ProductName}
+        </h3>
+        <p class="text-sm text-cyan-400/90">Handpicked by OneCart AI</p>
+      </div>
+    `;
+
+    // Click behavior (anywhere on card)
+    FeaturedProductCard.addEventListener("click", () => {
+      window.location.href = product.ProductUrl;
+    });
+
+    FeaturedProductsHolder.appendChild(FeaturedProductCard);
   }
+}
+
 
 function startFeaturedProductsSlideshow(container, interval = 4500) {
   let scrollAmount = 0;
@@ -468,39 +488,56 @@ const placeholderMarketsObjectsList = [
 
 
     FeaturedMarketsHolder.innerHTML = ``;
+async function PopulateFeaturedMarkets(MarketsObjectsList) {
+  if (!MarketsObjectsList || !MarketsObjectsList.length) return;
 
-    async function PopulateFeaturedMarkets(MarketsObjectsList) {
-        if (MarketsObjectsList) {
-        
-            for (let x = 0; x < MarketsObjectsList.length; x++) {
-                let Market = MarketsObjectsList[x];
-                
-                let FeaturedMarketCard = document.createElement("div");
-                
-                FeaturedMarketCard.className = `
-                   min-w-[60%] max-w-[60%] md:min-w-[20%] md:max-w-[25%] h-[220px] rounded-2xl overflow-hidden relative group 
-          bg-white/5 border border-white/10 hover:border-cyan-400/40 shadow-lg 
-          hover:shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-all duration-500`;
+  for (let Market of MarketsObjectsList) {
+    const FeaturedMarketCard = document.createElement("div");
 
-                FeaturedMarketCard.innerHTML = `<img   src="${Market.ImageUrl}"    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]" />
+    FeaturedMarketCard.className = `
+      min-w-[60%] max-w-[60%] md:min-w-[20%] md:max-w-[20%] h-[220px]
+      rounded-2xl overflow-hidden relative group cursor-pointer
+      bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900
+      border border-white/10
+      shadow-[0_4px_15px_rgba(0,0,0,0.4)]
+      hover:border-cyan-400/60
+      hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
+      hover:from-gray-800 hover:via-gray-900 hover:to-gray-800
+      transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+      backdrop-blur-xl
+    `;
 
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" onclick="window.location.href='${Market.MarketUrl }' "></div>
-                    
-                    <div class="absolute bottom-4 left-6 text-white">
-                        <h3 class="text-lg font-semibold tracking-wide drop-shadow-md">Explore The Best Deals on ${Market.MarketName}</h3>
-                        <p class="text-sm text-cyan-300/90">Curated by OneCart </p>
-                    </div>
-                `;
+    FeaturedMarketCard.innerHTML = `
+      <!-- Glow background -->
+      <span class="absolute inset-0 rounded-2xl bg-cyan-400/10 opacity-0 
+                   group-hover:opacity-100 blur-2xl transition-opacity duration-700"></span>
 
-                FeaturedMarketCard.querySelector("img").addEventListener("click", () => {
-                    window.location.replace(Market.MarketUrl);
-                });
+      <!-- Market image -->
+      <img src="${Market.ImageUrl}" alt="${Market.MarketName}"
+           class="w-full h-full object-cover rounded-2xl
+           opacity-80 group-hover:opacity-100 group-hover:scale-105
+           transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]" />
 
-                FeaturedMarketsHolder.appendChild(FeaturedMarketCard);
-            }
-        }
-    }
+      <!-- Overlay gradient -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+
+      <!-- Text content -->
+      <div class="absolute bottom-4 left-6 text-white z-10">
+        <h3 class="text-lg font-semibold tracking-wide drop-shadow-md group-hover:text-cyan-300 transition-colors duration-500">
+          Explore The Best Deals on ${Market.MarketName}
+        </h3>
+        <p class="text-sm text-cyan-400/90">Curated by OneCart</p>
+      </div>
+    `;
+
+    // Make whole card clickable
+    FeaturedMarketCard.addEventListener("click", () => {
+      window.location.href = Market.MarketUrl;
+    });
+
+    FeaturedMarketsHolder.appendChild(FeaturedMarketCard);
+  }
+}
 
 
 

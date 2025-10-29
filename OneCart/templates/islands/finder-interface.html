@@ -171,13 +171,31 @@
       text-decoration: underline;
       color: #1E90FF;
     }
+
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,255,255,0.2); }
+  50% { box-shadow: 0 0 35px rgba(0,255,255,0.4); }
+}
+
+#searchBtn:hover {
+  animation: pulseGlow 1.5s infinite;
+}
+
+#currentPrompt:hover {
+  background: rgba(0, 255, 255, 0.05);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+
   </style>
 </head>
 
-<body class="bg-gray-900 font-sans leading-relaxed lg:grid lg:grid-cols-1">
+<body class="bg-gray-900 font-sans leading-relaxed ">
 
   <!-- Header -->
-  <header class="w-full py-3 fixed top-0 left-0 right-0 flex justify-between items-center px-4 md:px-8 min-h-[70px]">
+  <header class="w-full py-3 md:py-1  fixed top-0 left-0 right-0 flex justify-between items-center px-4 md:px-8 min-h-[70px]">
     <div class="flex items-center gap-4">
       <img src="{% static 'resources/logos/logo.png' %}" class="w-14 h-14 rounded-full ring-1 ring-white/6 shadow-sm" alt="OneCart Logo" />
       <span class="hidden md:flex text-white font-semibold text-lg leading-none">
@@ -229,6 +247,7 @@
     </div>
   </div>
 
+
   <!-- Main Content -->
   <main class="page-container mt-[70px] md:mt-[96px] bg-[aliceblue] md:bg-gray-100/90 px-2 lg:px-10 max-w-8xl mx-auto min-h-[90vh] max-h-[92vh] overflow-y-scroll">
 
@@ -236,63 +255,147 @@
     <div id="SelectionsNav" class="w-full px-1 py-1 bg-gradient-to-r from-orange-400 via-orange-400/70 to-orange-400 flex gap-3 overflow-x-auto shadow-md rounded-t-xl"></div>
 
     <!-- Hero Section -->
-    <section id="MainPageHeroPage" class="relative mt-1">
+    <section id="MainPageHeroPage" class="relative mt-1 md:mt-0 ">
       <div class="grid grid-cols-1 gap-2 items-center">
-        <div class="z-10 flex flex-col gap-y-6 p-2 md:pl-8 lg:pl-10 rounded-xl border border-gray-700/60 bg-gray-900/90">
-          <h1 class="text-2xl md:text-4xl font-extrabold text-center leading-tight">
-            <span class="text-indigo-300">One<b class="text-[dodgerblue]">Cart</b></span>
-            <span class="text-slate-200"> <b class="text-[dodgerblue]">:</b> <span id="messageBox" class="text-slate-300"></span></span>
-          </h1>
 
-          <div class="mt-0 w-full max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 gap-x-3 items-center py-2 mt-4">
-              <div class="flex justify-center items-center gap-3">
-                <h1 class="text-xl font-semibold text-[limegreen]">Ask OneCart AI</h1>
-              </div>
 
-              <div id="exampleContainer" class="text-[13px] text-center flex overflow-x-auto cursor-pointer py-3 justify-center">
-                <b id="currentPrompt" class="bg-gray-100 py-2 px-3 rounded-3xl text-gray-700 min-w-fit mx-6 hover:border hover:border-orange-400 hover:bg-orange-50 transition">
-                  Find me The best deals On Electronics in Kenya
-                </b>
-              </div>
+        <div class="relative z-10 flex flex-col gap-y-6 p-6 md:pl-10 rounded-2xl border border-white/20 bg-gradient-to-br from-[#0a0a0f]/70 via-[#0f172a]/60 to-[#1e293b]/70 
+                           backdrop-blur-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)] transition-all duration-500  hover:shadow-[0_0_45px_rgba(0,200,255,0.2)] hover:scale-[1.01]">
+        
+                           <!-- Header -->
+          <h1 class="text-3xl md:text-4xl font-extrabold text-center leading-tight tracking-wide">
+            <span class="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">One<b class="text-sky-400">Cart</b>, </span>
+            <span class="text-slate-200 ml-2"> <span id="messageBox" class="text-slate-300"></span></span>
+         </h1>
+         
+         <!-- AI Prompt Section -->
+        <div class="mt-0 w-full max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 items-center py-2 mt-4">
+            <div class="flex justify-center items-center gap-3">
+              <h1 class="text-xl font-semibold text-cyan-400 tracking-widest uppercase">Ask OneCart AI</h1>
             </div>
 
-            <div class="glass-card flex items-center gap-2 p-1.5 rounded-full shadow-sm relative">
-              <input type="search" id="searchInput"
-                placeholder="Type what you are looking for..."
-                class="w-full bg-gray-500/60 text-slate-100 placeholder:text-slate-400 placeholder:italic py-4 pl-2 pr-28 rounded-full border-0 focus:ring-0" />
-
-              <button id="searchBtn"
-                class="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-600 to-cyan-500 text-black px-5 py-2 rounded-full font-semibold shadow-lg hover:brightness-105 transition">
-                <svg class="ml-3 h-6 w-6 text-slate-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z"/>
+            <div id="exampleContainer" class="text-[13px] text-center flex overflow-x-auto cursor-pointer py-3 justify-center">
+              <b id="currentPrompt" class="bg-gradient-to-r from-slate-900/80 via-gray-800/60 to-slate-900/80 py-2 px-4 rounded-3xl text-gray-300 min-w-fit mx-6 border border-cyan-500/20 hover:border-cyan-400/60 hover:text-cyan-300 
+                 transition-all duration-400 shadow-[inset_0_0_12px_rgba(0,255,255,0.2)] backdrop-blur-md">
+                 Find me the best deals on electronics in Kenya
+              </b>
+            </div>
+          </div>
+          
+          <!-- Search Input -->
+           
+          <div class="relative flex items-center gap-2 p-2 rounded-full border border-white/20  bg-gradient-to-r from-gray-800/60 to-gray-900/70 backdrop-blur-2xl shadow-[0_0_20px_rgba(0,0,0,0.4)] transition-all duration-500 
+              hover:shadow-[0_0_30px_rgba(0,255,255,0.2)]">
+            <input type="search" id="searchInput" placeholder="What are you looking for?" class="w-full bg-transparent text-slate-200 placeholder:text-slate-500  placeholder:italic py-4 pl-5 pr-28 rounded-full border-0 focus:ring-0 
+               focus:outline-none text-[15px]" />
+            <button id="searchBtn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-2 rounded-full font-semibold shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] hover:brightness-110 
+               transition-all duration-300 flex items-center gap-2">
+                <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z"/>
                 </svg>
-              </button>
-            </div>
+            </button>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Featured Products -->
-    <section id="DisplayAndAlerts" class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue] rounded-2xl mb-6 shadow-md overflow-hidden">
+
+  <!-- Featured Products -->
+  <section id="DisplayAndAlerts" class="mt-10 pt-1 bg-orange-500 md:bg-[aliceblue] rounded-2xl mb-6 shadow-md overflow-hidden">
       <div class="max-w-7xl mx-auto md:mx-1  px-6">
-        <p class="text-2xl md:text-2xl font-extrabold text-white md:text-gray-800 text-center md:text-start mt-4 mb-4">
-          Most Bought and Featured Products <button class="text-sm py-3 px-3 ml-4 border-[0.1px] border-[orange] rounded-3xl cursor-pointer bg-[aliceblue] md:bg-orange-600 mt-3 md:mt-0 text-orange-600 md:text-white hover:bg-700   ">See The whole List</button> 
-        </p>
+
+<div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
+  <h2 class="text-2xl md:text-3xl font-extrabold text-white md:text-orange-600 text-center md:text-left leading-tight">
+    Top and Featured Products
+  </h2>
+  <button class="
+      mt-4 md:mt-0
+      ml-0 md:ml-6
+      px-5 py-2
+      text-sm font-semibold
+      rounded-full
+      border border-orange-400
+      bg-white dark:bg-orange-600
+      text-orange-600 dark:text-white
+      shadow-sm
+      hover:bg-orange-500 dark:hover:bg-orange-700
+      hover:text-white
+      transition-all duration-300 ease-in-out
+      focus:outline-none focus:ring-2 focus:ring-orange-400
+      "
+      onclick="window.location.href='#'">
+    See The Whole List
+  </button>
+</div>
+
+
       </div>
-      <div id="featuredProductsContainer" class="flex flex-row flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-6 md:gap-10 overflow-x-auto md:overflow-visible px-6 py-8 bg-white/80 rounded-b-2xl border border-white/10 shadow-inner backdrop-blur-xl"></div>
-    </section>
+
+    <div id="featuredProductsContainer"
+     class="
+       flex flex-row flex-nowrap md:flex-wrap
+       items-start md:items-stretch justify-start md:justify-between
+       gap-6 md:gap-6 lg:gap-8
+       overflow-x-auto md:overflow-visible
+       px-6 md:px-4 lg:px-6 py-8
+       bg-white/90
+
+       rounded-b-2xl border border-white/10 dark:border-gray-700/30
+       shadow-inner shadow-black/20
+       backdrop-blur-xl
+       scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent
+       transition-all duration-500
+     ">
+</div>
+
+
+</section>
 
     <!-- Featured Markets -->
     <section id="DisplayAndAlerts2" class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue] rounded-2xl mb-6 shadow-md overflow-hidden">
-      <div class="max-w-7xl mx-auto md:mx-1  px-6">
-        <p class="text-2xl md:text-2xl font-extrabold text-white md:text-gray-800 text-center md:text-start mt-4 mb-4">
-          Top Rated and Featured Markets  <button class="text-sm py-3 px-3 ml-4 border-[0.1px] border-[orange] rounded-3xl cursor-pointer bg-[aliceblue] md:bg-orange-600 mt-3 md:mt-0 text-orange-600 md:text-white hover:bg-700   ">See The whole List</button> 
-        </p>
-      </div>
-      <div id="featuredMarketsContainer" class="flex flex-row flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-6 md:gap-10 overflow-x-auto md:overflow-visible px-6 py-8 bg-white/80 rounded-b-2xl border border-white/10 shadow-inner backdrop-blur-xl"></div>
+<div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
+  <h2 class="text-2xl md:text-3xl font-extrabold text-white md:text-orange-600  text-center md:text-left leading-tight">
+    Top rated and Featured Markets
+  </h2>
+  <button class="
+      mt-4 md:mt-0
+      ml-0 md:ml-6
+      px-5 py-2
+      text-sm font-semibold
+      rounded-full
+      border border-orange-400
+      bg-white dark:bg-orange-600
+      text-orange-600 dark:text-white
+      shadow-sm
+      hover:bg-orange-500 dark:hover:bg-orange-700
+      hover:text-white
+      transition-all duration-300 ease-in-out
+      focus:outline-none focus:ring-2 focus:ring-orange-400
+      "
+      onclick="window.location.href='#'">
+    See The Whole List
+  </button>
+</div>
+
+     <div id="featuredMarketsContainer"
+     class="
+       flex flex-row flex-nowrap md:flex-wrap
+       items-start md:items-stretch justify-start md:justify-between
+       gap-6 md:gap-6 lg:gap-8
+       overflow-x-auto md:overflow-visible
+       px-6 md:px-4 lg:px-6 py-8
+       bg-white/90
+
+       rounded-b-2xl border border-white/10 dark:border-gray-700/30
+       shadow-inner shadow-black/20
+       backdrop-blur-xl
+       scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent
+       transition-all duration-500
+     ">
+</div>
     </section>
 
     <!-- Results -->

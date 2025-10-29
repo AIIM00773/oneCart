@@ -14,7 +14,10 @@ from  .search_engine.parser import parse_query
 from .search_engine.utils import fetch_items
 #from .search_engine.main import MAIN
 
-
+class LndingPage(APIView):
+    def get(self,request):
+        return render(request, "index.html")
+        
 
 class ActionOnQuery(APIView):
     def get(self, request):
