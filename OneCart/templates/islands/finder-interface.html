@@ -192,7 +192,7 @@
   </style>
 </head>
 
-<body class="bg-gray-900 font-sans leading-relaxed ">
+<body class="bg-gray-900 font-sans leading-relaxed p-0 m-0  ">
 
   <!-- Header -->
   <header class="w-full py-3 md:py-1  fixed top-0 left-0 right-0 flex justify-between items-center px-4 md:px-8 min-h-[70px]">
@@ -249,62 +249,259 @@
 
 
   <!-- Main Content -->
-  <main class="page-container mt-[70px] md:mt-[76px] bg-[aliceblue] md:bg-gray-100/90 px-2 lg:px-10 max-w-8xl mx-auto min-h-[90vh] max-h-[92vh] overflow-y-scroll">
+  <main class="page-container mt-[66px] md:mt-[55px] bg-[aliceblue] md:bg-gray-100/90 px-0 lg:px-0 max-w-8xl mx-0 min-h-[90vh] max-h-[92vh] overflow-y-scroll">
+     <!-- Category Nav -->
+    <div id="SelectionsNav" class="w-full px-1 py-1 bg-gradient-to-r from-orange-400 via-orange-400/70 to-orange-400 flex gap-3 gap-x-0  overflow-x-auto shadow-md "></div>
 
-    <!-- Category Nav -->
-    <div id="SelectionsNav" class="w-full px-1 py-1 bg-gradient-to-r from-orange-400 via-orange-400/70 to-orange-400 flex gap-3 overflow-x-auto shadow-md rounded-t-xl"></div>
+        <!-- AI SHOPPING EXPERIENCE -->
+        <section id="OneCartExperience" class="relative overflow-hidden min-h-screen py-16 md:py-[130px]  bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#1e293b] text-white">
 
-    <!-- Hero Section -->
-    <section id="MainPageHeroPage" class="relative mt-0 ">
-      <div class="grid grid-cols-1 gap-2 items-center">
+  <!-- Floating Glow Effects -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.15),transparent_60%)] hidden "></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,165,0,0.1),transparent_60%)] hidden "></div>
 
-
-        <div class="relative z-10 flex flex-col gap-y-6 p-6 md:pl-10 rounded-b-2xl border border-white/20 bg-gradient-to-br from-[#0a0a0f]/70 via-[#0f172a]/60 to-[#1e293b]/70 
-                           backdrop-blur-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)] transition-all duration-500  hover:shadow-[0_0_45px_rgba(0,200,255,0.2)] ">
-        
-                           <!-- Header -->
-          <h1 class="text-3xl md:text-4xl font-extrabold text-center leading-tight tracking-wide">
-            <span class="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">One<b class="text-sky-400">Cart</b> </span>
-            <span class="text-slate-200 ml-2"> <span id="messageBox" class="text-slate-300"></span></span>
-         </h1>
-         
-         <!-- AI Prompt Section -->
-        <div class="mt-0 w-full max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 items-center py-2 mt-4">
-            <div class="flex justify-center items-center gap-3">
-              <h1 class="text-xl font-semibold text-cyan-400 tracking-widest uppercase">Ask OneCart AI</h1>
-            </div>
-
-            <div id="exampleContainer" class="text-[13px] text-center flex overflow-x-auto cursor-pointer py-3 justify-center">
-              <b id="currentPrompt" class="bg-gradient-to-r from-slate-900/80 via-gray-800/60 to-slate-900/80 py-2 px-4 rounded-3xl text-gray-300 min-w-fit mx-6 border border-cyan-500/20 hover:border-cyan-400/60 hover:text-cyan-300 
-                 transition-all duration-400 shadow-[inset_0_0_12px_rgba(0,255,255,0.2)] backdrop-blur-md">
-                 Find me the best deals on electronics in Kenya
-              </b>
-            </div>
-          </div>
-          
-          <!-- Search Input -->
-           
-          <div class="relative flex items-center gap-2 p-2 rounded-full border border-white/20  bg-gradient-to-r from-gray-800/60 to-gray-900/70 backdrop-blur-2xl shadow-[0_0_20px_rgba(0,0,0,0.4)] transition-all duration-500 
-              hover:shadow-[0_0_30px_rgba(0,255,255,0.2)]">
-            <input type="search" id="searchInput" placeholder="What are you looking for?" class="w-full bg-transparent text-slate-200 placeholder:text-slate-500  placeholder:italic py-4 pl-5 pr-28 rounded-full border-0 focus:ring-0 
-               focus:outline-none text-[15px]" />
-            <button id="searchBtn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-2 rounded-full font-semibold shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] hover:brightness-110 
-               transition-all duration-300 flex items-center gap-2">
-                <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                   viewBox="0 0 24 24" stroke="currentColor">
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z"/>
-                </svg>
-            </button>
-          </div>
-        </div>
+  <!-- HERO SECTION -->
+  <div class="relative z-10 max-w-8xl mx-auto px-0 py-16 md:py-6   text-center ">
+    <!-- AI Prompt Section -->
+    <div class="mt-4 min-w-8xl px-0 ">
+      <h2 class="text-sm md:text-base font-semibold text-cyan-400 uppercase tracking-widest  md:block ">What Ever You're Looking for : Ask OneCart AI</h2>
+      
+      <div id="exampleContainer" class="flex overflow-x-auto justify-center py-4 space-x-6">
+        <b id="currentPrompt" class="bg-gradient-to-r from-slate-900/80 via-gray-800/70 to-slate-900/80 
+          py-2 px-6 rounded-3xl text-gray-300 border border-cyan-500/20 
+          hover:border-cyan-400/60 hover:text-cyan-300  text-xs 
+          transition-all duration-400 shadow-[inset_0_0_12px_rgba(0,255,255,0.25)] backdrop-blur-md cursor-pointer">
+          Find me the best deals on electronics in Kenya
+        </b>
       </div>
     </div>
-  </section>
+
+    <!-- SEARCH INPUT -->
+    <div class="relative flex items-center justify-center mt-6  max-w-3xl mx-auto">
+
+      <input type="search" id="searchInput" placeholder="What are you looking for?"
+        class="w-full bg-gradient-to-r from-gray-800/60 to-gray-900/70 backdrop-blur-2xl 
+        text-slate-200 placeholder:text-gray-100 placeholder:italic py-4 pl-6 pr-28 rounded-full 
+        border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.4)] focus:outline-none focus:ring-0 
+        focus:border-cyan-400 transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] mx-auto px-2 " />
+      <button id="searchBtn" 
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 
+        text-white px-6 py-2 rounded-full font-semibold shadow-[0_0_20px_rgba(6,182,212,0.4)] 
+        hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:brightness-110 
+        transition-all duration-300 flex items-center gap-2">
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
+        </svg>
+        Search
+      </button>
+
+    </div>
+
+<div class="flex flex-row items-center   overflow-x-auto py-4 px-2 md:px-6 mt-3  md:max-w-3xl mx-auto">
+
+  <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+
+
+  <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+  <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+
+    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+
+
+
+    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+
+
+
+    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+
+
+
+
+    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+
+
+
+
+    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
+                 text-cyan-300 font-medium tracking-wide
+                 border border-cyan-400/30 rounded-2xl 
+                 bg-white/5 backdrop-blur-md 
+                 transition-all duration-300 ease-in-out
+                 hover:scale-105 hover:text-white
+                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
+                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+    Market Name
+  </button>
+
+</div>
+
+
+
+  </div>
+
+  <!-- FEATURED SHOPS -->
+  <div class="relative z-10 mt-16 px-6">
+
+    <div class="text-center mb-10  hidden md:block">    
+      <p class="text-orange-100/80 mt-2 text-sm md:text-xs ms:text-gray-300  ">
+        Buy any item from any anywhere in one interface 
+      </p>
+    </div>
+
+
+    <div id="weldesignedFeaturdShopslistingsList" 
+      class="gap-8 flex flex-row items-center justify-between overflow-x-auto  mx-auto transition-all duration-300">
+
+      <!-- Example Card -->
+      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+        <div class="flex flex-col items-center text-center space-y-4">
+          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
+                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+            Visit Shop
+          </button>
+        </div>
+        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
+                    bg-white transition-opacity duration-500"></div>
+      </div>
+
+
+
+
+      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+        <div class="flex flex-col items-center text-center space-y-4">
+          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
+                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+            Visit Shop
+          </button>
+        </div>
+        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
+                    bg-white transition-opacity duration-500"></div>
+      </div>
+
+
+
+      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+        <div class="flex flex-col items-center text-center space-y-4">
+          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
+                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+            Visit Shop
+          </button>
+        </div>
+        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
+                    bg-white transition-opacity duration-500"></div>
+      </div>
+
+
+
+      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+        <div class="flex flex-col items-center text-center space-y-4">
+          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
+                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+            Visit Shop
+          </button>
+        </div>
+        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
+                    bg-white transition-opacity duration-500"></div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+
+
+
 
 
   <!-- Featured Products -->
-  <section id="DisplayAndAlerts" class="mt-10 pt-1 bg-orange-500 md:bg-[aliceblue] rounded-2xl mb-6 shadow-md overflow-hidden">
+  <section id="DisplayAndAlerts" class="mt-10 pt-1 bg-orange-500 md:bg-[aliceblue]  mb-6 shadow-md overflow-hidden">
       <div class="max-w-7xl mx-auto md:mx-1  px-6">
 
 <div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
@@ -343,7 +540,7 @@
        px-6 md:px-4 lg:px-6 py-8
        bg-white/90
 
-       rounded-b-2xl border border-white/10 dark:border-gray-700/30
+      border border-white/10 dark:border-gray-700/30
        shadow-inner shadow-black/20
        backdrop-blur-xl
        scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent
@@ -354,8 +551,12 @@
 
 </section>
 
+
+
+
+
     <!-- Featured Markets -->
-    <section id="DisplayAndAlerts2" class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue] rounded-2xl mb-6 shadow-md overflow-hidden">
+    <section id="DisplayAndAlerts2" class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue]  mb-6 shadow-md overflow-hidden">
 <div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
   <h2 class="text-2xl md:text-3xl font-extrabold text-white md:text-orange-600  text-center md:text-left leading-tight">
     Top rated and Featured Markets
@@ -389,7 +590,7 @@
        px-6 md:px-4 lg:px-6 py-8
        bg-white/90
 
-       rounded-b-2xl border border-white/10 dark:border-gray-700/30
+       border border-white/10 dark:border-gray-700/30
        shadow-inner shadow-black/20
        backdrop-blur-xl
        scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent

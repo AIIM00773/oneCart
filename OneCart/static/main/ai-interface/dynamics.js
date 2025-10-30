@@ -164,6 +164,9 @@ const promptSuggestions = [
 
 
 
+
+
+
 //--------------------------------------------------------------------------------------------
 
 
@@ -411,7 +414,9 @@ document.addEventListener("DOMContentLoaded", () => {InitiateProductsHandling();
 
 
   
-  
+ 
+
+
 
   
  // <!--------FETURED MARKETS HANDLING ---------------------------------------------------------------------------------->
@@ -763,7 +768,7 @@ const selections = [
     const selectionButton = document.createElement("button");
     selectionButton.className = `
       text-white px-4 py-2 rounded-full bg-orange-500 italic hover:bg-orange-600 
-      transition-all duration-300 text-sm whitespace-nowrap
+      transition-all duration-300 text-xs  whitespace-nowrap
     `;
     selectionButton.innerText = `${selection.icon ?? ""} ${selection.title}`;
     selectionButton.title = selection.description ?? "";
