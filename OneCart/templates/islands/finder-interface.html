@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +9,11 @@
   <!-- Tailwind & Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link 
-    rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer" 
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
   />
 
   <!-- Base Styles -->
@@ -37,87 +36,73 @@
     body {
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(56,189,248,0.04), transparent 10%),
-        radial-gradient(900px 500px at 90% 85%, rgba(124,58,237,0.04), transparent 8%),
+        radial-gradient(1200px 600px at 10% 10%, rgba(56,189,248,0.05), transparent 10%),
+        radial-gradient(900px 500px at 90% 85%, rgba(124,58,237,0.05), transparent 8%),
         linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%);
       color: #e6eef8;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Scrollbar Hidden */
+    /* Hide Scrollbar */
     *::-webkit-scrollbar { width: 0; height: 0; background: transparent; }
     * { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Header */
+    /* ===== Header ===== */
     header {
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px) saturate(150%);
+      background-color: rgba(8, 13, 27, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.05);
       z-index: 60;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
     }
 
-    /* Layout */
-    .page-container { padding: 1rem; }
-
-    @media (max-width: 1024px) {
-      .split { grid-template-columns: 1fr 320px; }
-    }
-    @media (max-width: 880px) {
-      .split { grid-template-columns: 1fr; }
+    header:hover {
+      background-color: rgba(8, 13, 27, 0.7);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
     }
 
-    /* Glass Cards */
+    /* ===== Page Layout ===== */
+    .page-container {
+      padding: 1rem;
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 1024px) { .split { grid-template-columns: 1fr 320px; } }
+    @media (max-width: 880px)  { .split { grid-template-columns: 1fr; } }
+
+    /* ===== Glass Cards ===== */
     .glass-card {
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.05);
       box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-      backdrop-filter: blur(10px) saturate(120%);
+      backdrop-filter: blur(12px) saturate(120%);
     }
 
-    /* Float Animation */
+    /* ===== Float Animation ===== */
     .float-subtle {
       animation: floatSub 6s ease-in-out infinite;
       transform-origin: center;
     }
+
     @keyframes floatSub {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
 
-    /* Results Section */
-    #MainResultsPage { transition: all .22s ease; }
-
-    /* Product Cards */
+    /* ===== Product Cards ===== */
     .ITEMCARD {
       padding: 4px;
-      transition: transform .26s ease, box-shadow .26s ease;
+      transition: transform 0.26s ease, box-shadow 0.26s ease;
     }
+
     .ITEMCARD:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 60px rgba(2,6,23,0.6);
     }
 
-    /* Summary Panel */
-    .summary-panel {
-      position: relative;
-      overflow-y: auto;
-      padding: 1rem;
-      border-radius: 12px;
-    }
-
-    @media (max-width: 880px) {
-      .summary-panel {
-        position: fixed;
-        right: 0; top: 88px; bottom: 0;
-        width: min(92vw, 360px);
-        transform: translateX(110%);
-        transition: transform 300ms cubic-bezier(.2,.9,.3,1);
-        z-index: 70;
-      }
-      .summary-panel.open { transform: translateX(0); }
-    }
-
-    /* Floating Button */
+    /* ===== Floating Button ===== */
     .fab-filter {
       position: relative;
       right: 18px;
@@ -125,32 +110,7 @@
       box-shadow: 0 14px 40px rgba(2,6,23,0.6);
     }
 
-    /* Text Styling */
-    .muted { color: rgba(226,232,240,0.55); }
-    .tiny { font-size: 12px; color: rgba(226,232,240,0.45); }
-
-    /* No Results */
-    #noResultsMessage {
-      display: none;
-      padding: 2rem;
-      text-align: center;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
-      border: 1px dashed rgba(255,255,255,0.03);
-    }
-
-    /* Chips Scroll */
-    .chips-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      white-space: nowrap;
-      padding-bottom: 6px;
-    }
-    .chips-scroll::-webkit-scrollbar { display: none; }
-  </style>
-
-  <!-- AI Prompt Animation -->
-  <style>
+    /* ===== AI Prompt Animation ===== */
     #currentPrompt {
       display: inline-block;
       opacity: 1;
@@ -159,48 +119,49 @@
       cursor: pointer;
       white-space: nowrap;
     }
+
     #currentPrompt.fade-out {
       opacity: 0;
       transform: translateY(-10px);
     }
+
     #currentPrompt.fade-in {
       opacity: 1;
       transform: translateY(0);
     }
+
     #currentPrompt:hover {
       text-decoration: underline;
-      color: #1E90FF;
+      color: #38bdf8;
+      background: rgba(0, 255, 255, 0.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
 
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0,255,255,0.2); }
+      50% { box-shadow: 0 0 35px rgba(0,255,255,0.4); }
+    }
 
-@keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0,255,255,0.2); }
-  50% { box-shadow: 0 0 35px rgba(0,255,255,0.4); }
-}
-
-#searchBtn:hover {
-  animation: pulseGlow 1.5s infinite;
-}
-
-#currentPrompt:hover {
-  background: rgba(0, 255, 255, 0.05);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-
+    #searchBtn:hover {
+      animation: pulseGlow 1.5s infinite;
+    }
   </style>
 </head>
 
-<body class="bg-gray-900 font-sans leading-relaxed p-0 m-0  ">
+<body class="bg-gray-900 font-sans leading-relaxed m-0">
 
-  <!-- Header -->
-  <header class="w-full py-3 md:py-1  fixed top-0 left-0 right-0 flex justify-between items-center px-4 md:px-8 min-h-[70px]">
+  <!-- ===== Header ===== -->
+  <header class="fixed top-0 left-0 right-0 w-full flex justify-between items-center px-4 md:px-8 py-3 md:py-1 min-h-[70px]">
     <div class="flex items-center gap-4">
-      <img src="{% static 'resources/logos/logo.png' %}" class="w-14 h-14 rounded-full ring-1 ring-white/6 shadow-sm" alt="OneCart Logo" />
-      <span class="hidden md:flex text-white font-semibold text-lg leading-none">
+      <img src="{% static 'resources/logos/logo.png' %}" 
+           class="w-14 h-14 rounded-full ring-1 ring-white/10 shadow-md" 
+           alt="OneCart Logo" />
+
+      <span class="hidden md:flex text-white font-semibold text-lg">
         One<b class="text-[dodgerblue]">Cart</b>
       </span>
+
       <button id="LoadMainPageFresh"
         class="hidden ml-3 px-4 py-2 rounded-full text-sm font-medium bg-[dodgerblue] text-white hover:scale-105 transition"
         onclick="navigateTo('MainPageHeroPage')">
@@ -209,6 +170,7 @@
     </div>
 
     <div class="flex items-center gap-6">
+      <!-- Desktop Navigation -->
       <nav class="hidden md:flex gap-6 text-slate-200 font-medium">
         <a href="/cart-interface/" class="nav-btn">Your Cart</a>
         <a href="/about-interface/" class="nav-btn">About OneCart</a>
@@ -216,393 +178,267 @@
         <a href="/profile-interface/" class="nav-btn">Profile</a>
       </nav>
 
+      <!-- Filter Button -->
       <button id="openSummaryFab"
         class="fab-filter md:hidden p-3 rounded-full bg-gradient-to-tr from-indigo-600 to-cyan-400 text-black shadow-xl"
         aria-label="Open filters">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 14.414V20a1 1 0 01-1.447.894L9 18v-3.586L3.293 6.707A1 1 0 013 6V4z" />
+                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 14.414V20a1 1 0 01-1.447.894L9 18v-3.586L3.293 6.707A1 1 0 013 6V4z" />
         </svg>
       </button>
 
+      <!-- Mobile Menu Button -->
       <button id="menuBtn"
-        class="md:hidden text-white p-2 rounded-md bg-white/4 hover:bg-white/6 transition"
+        class="md:hidden text-white p-2 rounded-md bg-white/5 hover:bg-white/10 transition"
         aria-label="Open menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
+                d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="closeMenu fixed top-0 right-0 w-full h-full bg-[rgba(2,6,23,0.7)] backdrop-blur-sm transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex justify-end" aria-hidden="true">
-    <div class="flex flex-col p-6 space-y-6 bg-gray-800/70 border-[0.1px] border-[orange] w-72 h-full shadow-xl mt-20">
-      <button id="closeMenu" class="self-end text-red-600 py-2 px-8 border rounded-3xl font-bold flex items-center gap-2">
+  <!-- ===== Mobile Menu ===== -->
+  <div id="mobileMenu"
+       class="closeMenu fixed top-0 right-0 w-full h-full bg-[rgba(2,6,23,0.7)] 
+              backdrop-blur-md transform translate-x-full transition-transform 
+              duration-300 ease-in-out z-50 flex justify-end"
+       aria-hidden="true">
+    <div class="flex flex-col p-6 space-y-6 bg-gray-800/70 border border-cyan-500/20 
+                w-72 h-full shadow-xl mt-20 rounded-l-2xl backdrop-blur-xl">
+      
+      <button id="closeMenu"
+              class="self-end py-2 px-6 text-red-500 border border-red-500/30 
+                     rounded-3xl font-semibold flex items-center gap-2 hover:text-red-400 
+                     hover:border-red-400/50 transition">
         ✕ <span class="text-xs font-normal">Close menu</span>
       </button>
-      
-      
     </div>
   </div>
 
+</body>
+</html>
 
-  <!-- Main Content -->
-  <main class="page-container mt-[66px] md:mt-[55px] bg-[aliceblue] md:bg-gray-100/90 px-0 lg:px-0 max-w-8xl mx-0 min-h-[90vh] max-h-[92vh] overflow-y-scroll">
-     <!-- Category Nav -->
-    <div id="SelectionsNav" class="w-full px-1 py-1 bg-gradient-to-r from-orange-400 via-orange-400/70 to-orange-400 flex gap-3 gap-x-0  overflow-x-auto shadow-md "></div>
+  <!-- ========================= MAIN CONTENT ========================= -->
+<main class="page-container mt-[66px] md:mt-[55px] bg-[aliceblue] md:bg-gray-100/90 px-0 lg:px-0 max-w-8xl mx-0 min-h-[90vh] max-h-[92vh] overflow-y-scroll">
 
-        <!-- AI SHOPPING EXPERIENCE -->
-        <section id="OneCartExperience" class="relative overflow-hidden min-h-screen py-16 md:py-[130px]  bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#1e293b] text-white">
+  <!-- ========================= CATEGORY NAV ========================= -->
+  <div
+    id="SelectionsNav"
+    class="w-full px-1 py-1 bg-gradient-to-r from-orange-400 via-orange-400/70 to-orange-400 flex gap-3 gap-x-0 overflow-x-auto shadow-md">
+  </div>
 
-  <!-- Floating Glow Effects -->
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.15),transparent_60%)] hidden "></div>
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,165,0,0.1),transparent_60%)] hidden "></div>
+  <!-- ========================= AI SHOPPING EXPERIENCE ========================= -->
+  <section
+    id="OneCartExperience"
+    class="relative overflow-hidden min-h-screen py-16 px-0 pb-[0px] md:py-[130px] md:pb-[30px] bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#1e293b] text-white">
 
-  <!-- HERO SECTION -->
-  <div class="relative z-10 max-w-8xl mx-auto px-0 py-16 md:py-6   text-center ">
-    <!-- AI Prompt Section -->
-    <div class="mt-4 min-w-8xl px-0 ">
-      <h2 class="text-sm md:text-base font-semibold text-cyan-400 uppercase tracking-widest  md:block ">What Ever You're Looking for : Ask OneCart AI</h2>
-      
-      <div id="exampleContainer" class="flex overflow-x-auto justify-center py-4 space-x-6">
-        <b id="currentPrompt" class="bg-gradient-to-r from-slate-900/80 via-gray-800/70 to-slate-900/80 
-          py-2 px-6 rounded-3xl text-gray-300 border border-cyan-500/20 
-          hover:border-cyan-400/60 hover:text-cyan-300  text-xs 
-          transition-all duration-400 shadow-[inset_0_0_12px_rgba(0,255,255,0.25)] backdrop-blur-md cursor-pointer">
-          Find me the best deals on electronics in Kenya
-        </b>
+    <!-- ---------- HERO SECTION ---------- -->
+    <div class="relative  max-w-8xl mx-auto px-0 py-10  md:py-0 text-center">
+
+      <div class="p-2 bg-gray-800/90 py-4 px-2 m-2 md:bg-transparent md:m-0 md:p-0  rounded-2xl ">
+      <!-- AI PROMPT SECTION -->
+      <div class="mt-4 min-w-8xl px-0">
+        <h2 class="text-sm md:text-base font-semibold text-cyan-400 uppercase tracking-widest md:block">
+          Whatever You're Looking for: Ask OneCart AI
+        </h2>
+
+        <div id="exampleContainer" class="flex overflow-x-auto justify-center py-4 space-x-6">
+          <b
+            id="currentPrompt"
+            class="bg-gradient-to-r from-slate-900/80 via-gray-800/70 to-slate-900/80 py-2 px-6 rounded-3xl text-gray-300 border border-cyan-500/20 hover:border-cyan-400/60 hover:text-cyan-300 text-xs transition-all duration-400 shadow-[inset_0_0_12px_rgba(0,255,255,0.25)] backdrop-blur-md cursor-pointer">
+            Find me the best deals on electronics in Kenya
+          </b>
+        </div>
+      </div>
+
+      <!-- SEARCH INPUT -->
+      <div class="relative flex items-center justify-center mt-6 max-w-3xl mx-auto">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="What are you looking for?"
+          class="w-full bg-gradient-to-r from-gray-800/60 to-gray-900/70 backdrop-blur-2xl text-slate-200 placeholder:text-gray-100 placeholder:italic py-4 pl-6 pr-28 rounded-full border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.4)] focus:outline-none focus:ring-0 focus:border-cyan-400 transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] mx-auto px-2"
+        />
+        <button
+          id="searchBtn"
+          class="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-2 rounded-full font-semibold shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:brightness-110 transition-all duration-300 flex items-center gap-2">
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- AI BUTTON BAR -->
+      <div class="flex flex-row items-center overflow-x-auto py-4  mt-6  max-w-[100%] bg-gray-800/40 rounded-2xl  md:px-6  md:max-w-3xl mx-auto">
+        <button
+          class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs min-w-fit text-cyan-300 font-medium tracking-wide border border-cyan-400/30 rounded-2xl bg-white/5 backdrop-blur-md transition-all duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+          Market Name
+        </button>
+
+        <button
+          class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs min-w-fit text-cyan-300 font-medium tracking-wide border border-cyan-400/30 rounded-2xl bg-white/5 backdrop-blur-md transition-all duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+          Market Name
+        </button>
+
+        <button
+          class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs min-w-fit text-cyan-300 font-medium tracking-wide border border-cyan-400/30 rounded-2xl bg-white/5 backdrop-blur-md transition-all duration-300 ease-in-out hover:scale-105 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
+          Market Name
+        </button>
+
+
+      </div>
+    </div>
+    </div>
+
+    <!-- ---------- FEATURED SHOPS ---------- -->
+    <div class=" mt-6 md:mt-16 px-0 min-w-8xl ">
+
+      <!-- Section Header -->
+      <div class="text-center mb-10 hidden md:block">
+        <p class="text-orange-100/80 mt-2 text-sm md:text-xs ms:text-gray-300">
+          Buy any item from anywhere in one interface
+        </p>
+      </div>
+
+      <!-- SHOP CARDS -->
+       
+      <div class="text-center py-6 text-[clamp(1rem,1.5vw,1.4rem)] tracking-wide font-semibold text-gray-900 bg-[aliceblue]   drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]   backdrop-blur-sm ">
+        Highly Recommended Online Shops, Businesses & Marketplaces You Can Shop From
+      </div>
+
+
+      <div
+        id="weldesignedFeaturdShopslistingsList"
+        class="gap-8 flex flex-row items-center bg-[aliceblue]  overflow-x-auto mx-auto transition-all duration-300 max-h-[270px] py-4 px-4 ">
+
+ 
+        <!-- CARD TEMPLATE -->
+        <div
+          class="group relative bg-gray-800 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+          <div class="flex flex-col items-center text-center space-y-4">
+            <div class="max-h-[500px] w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+            <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+            <button
+              class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+              Visit Shop
+            </button>
+          </div>
+          <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 bg-white transition-opacity duration-500"></div>
+        </div>
+
+
+        <div
+          class="group relative bg-gray-800 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+          <div class="flex flex-col items-center text-center space-y-4">
+            <div class="max-h-[500px] w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+            <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+            <button
+              class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+              Visit Shop
+            </button>
+          </div>
+          <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 bg-white transition-opacity duration-500"></div>
+        </div>
+        
+        <div
+          class="group relative bg-gray-800 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+          <div class="flex flex-col items-center text-center space-y-4">
+            <div class="max-h-[500px] w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+            <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+            <button
+              class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+              Visit Shop
+            </button>
+          </div>
+          <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 bg-white transition-opacity duration-500"></div>
+        </div>
+
+
+        <div
+          class="group relative bg-gray-800 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
+          <div class="flex flex-col items-center text-center space-y-4">
+            <div class="max-h-[500px] w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
+            <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
+            <button
+              class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+              Visit Shop
+            </button>
+          </div>
+          <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 bg-white transition-opacity duration-500"></div>
+        </div>
+
+
+
+        <!-- (Duplicate the card block as needed for more shops) -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FEATURED PRODUCTS ========================= -->
+  <section
+    id="DisplayAndAlerts"
+    class="mt-0 pt-1 bg-orange-500 md:bg-[aliceblue] mb-6 shadow-md overflow-hidden">
+
+    <div class="max-w-7xl mx-auto md:mx-1 px-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white md:text-orange-600 text-center md:text-left leading-tight">
+          Top and Featured Products
+        </h2>
+        <button
+          class="mt-4 md:mt-0 ml-0 md:ml-6 px-5 py-2 text-sm font-semibold rounded-full border border-orange-400 bg-white dark:bg-orange-600 text-orange-600 dark:text-white shadow-sm hover:bg-orange-500 dark:hover:bg-orange-700 hover:text-white transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange-400"
+          onclick="window.location.href='#'">
+          See The Whole List
+        </button>
       </div>
     </div>
 
-    <!-- SEARCH INPUT -->
-    <div class="relative flex items-center justify-center mt-6  max-w-3xl mx-auto">
+    <!-- Featured Product Cards Container -->
+    <div
+      id="featuredProductsContainer"
+      class="flex flex-row flex-nowrap md:flex-wrap items-start md:items-stretch justify-start md:justify-between gap-6 md:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible px-6 md:px-4 lg:px-6 py-8 bg-white/90 border border-white/10 dark:border-gray-700/30 shadow-inner shadow-black/20 backdrop-blur-xl scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent transition-all duration-500">
+    </div>
+  </section>
 
-      <input type="search" id="searchInput" placeholder="What are you looking for?"
-        class="w-full bg-gradient-to-r from-gray-800/60 to-gray-900/70 backdrop-blur-2xl 
-        text-slate-200 placeholder:text-gray-100 placeholder:italic py-4 pl-6 pr-28 rounded-full 
-        border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.4)] focus:outline-none focus:ring-0 
-        focus:border-cyan-400 transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] mx-auto px-2 " />
-      <button id="searchBtn" 
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 
-        text-white px-6 py-2 rounded-full font-semibold shadow-[0_0_20px_rgba(6,182,212,0.4)] 
-        hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:brightness-110 
-        transition-all duration-300 flex items-center gap-2">
-        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-          viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-            d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
-        </svg>
-        Search
+  <!-- ========================= FEATURED MARKETS ========================= -->
+  <section
+    id="DisplayAndAlerts2"
+    class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue] mb-6 shadow-md overflow-hidden">
+
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-white md:text-orange-600 text-center md:text-left leading-tight">
+        Top Rated and Featured Markets
+      </h2>
+      <button
+        class="mt-4 md:mt-0 ml-0 md:ml-6 px-5 py-2 text-sm font-semibold rounded-full border border-orange-400 bg-white dark:bg-orange-600 text-orange-600 dark:text-white shadow-sm hover:bg-orange-500 dark:hover:bg-orange-700 hover:text-white transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange-400"
+        onclick="window.location.href='#'">
+        See The Whole List
       </button>
-
     </div>
 
-<div class="flex flex-row items-center   overflow-x-auto py-4 px-2 md:px-6 mt-3  md:max-w-3xl mx-auto">
-
-  <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-
-
-  <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-  <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-
-    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-
-
-
-    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-
-
-
-    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-
-
-
-
-    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-
-
-
-
-    <button class="px-5 py-2 md:py-1 mx-4 md:mx-3 text-xs   min-w-fit 
-                 text-cyan-300 font-medium tracking-wide
-                 border border-cyan-400/30 rounded-2xl 
-                 bg-white/5 backdrop-blur-md 
-                 transition-all duration-300 ease-in-out
-                 hover:scale-105 hover:text-white
-                 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.5)]
-                 hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-fuchsia-500/30">
-    Market Name
-  </button>
-
-</div>
-
-
-
-  </div>
-
-  <!-- FEATURED SHOPS -->
-  <div class="relative z-10 mt-16 px-6">
-
-    <div class="text-center mb-10  hidden md:block">    
-      <p class="text-orange-100/80 mt-2 text-sm md:text-xs ms:text-gray-300  ">
-        Buy any item from any anywhere in one interface 
-      </p>
+    <div
+      id="featuredMarketsContainer"
+      class="flex flex-row flex-nowrap md:flex-wrap items-start md:items-stretch justify-start md:justify-between gap-6 md:gap-6 lg:gap-8 overflow-x-auto md:overflow-visible px-6 md:px-4 lg:px-6 py-8 bg-white/90 border border-white/10 dark:border-gray-700/30 shadow-inner shadow-black/20 backdrop-blur-xl scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent transition-all duration-500">
     </div>
+  </section>
 
+  <!-- ========================= RESULTS PAGE ========================= -->
+  <section
+    id="MainResultsPage"
+    class="page w-8xl pt-0 rounded-t-xl pb-6 px-0 block max-h-[90vh] overflow-y-auto overflow-x-hidden mt-1 mb-[30px] shadow-inner">
+  </section>
+</main>
 
-    <div id="weldesignedFeaturdShopslistingsList" 
-      class="gap-8 flex flex-row items-center justify-between overflow-x-auto  mx-auto transition-all duration-300">
-
-      <!-- Example Card -->
-      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
-        <div class="flex flex-col items-center text-center space-y-4">
-          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
-          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
-          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
-                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
-            Visit Shop
-          </button>
-        </div>
-        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
-                    bg-white transition-opacity duration-500"></div>
-      </div>
-
-
-
-
-      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
-        <div class="flex flex-col items-center text-center space-y-4">
-          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
-          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
-          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
-                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
-            Visit Shop
-          </button>
-        </div>
-        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
-                    bg-white transition-opacity duration-500"></div>
-      </div>
-
-
-
-      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
-        <div class="flex flex-col items-center text-center space-y-4">
-          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
-          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
-          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
-                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
-            Visit Shop
-          </button>
-        </div>
-        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
-                    bg-white transition-opacity duration-500"></div>
-      </div>
-
-
-
-      <div class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-500 shadow-[0_4px_20px_rgba(255,255,255,0.05)] min-w-[300px]">
-        <div class="flex flex-col items-center text-center space-y-4">
-          <div class="h-24 w-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 shadow-lg"></div>
-          <h3 class="text-white font-semibold text-xl">Aurora Fashions</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Luxury wear for every occasion.</p>
-          <button class="mt-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-2 rounded-full 
-                         shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
-            Visit Shop
-          </button>
-        </div>
-        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 
-                    bg-white transition-opacity duration-500"></div>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-
-
-
-
-
-
-  <!-- Featured Products -->
-  <section id="DisplayAndAlerts" class="mt-10 pt-1 bg-orange-500 md:bg-[aliceblue]  mb-6 shadow-md overflow-hidden">
-      <div class="max-w-7xl mx-auto md:mx-1  px-6">
-
-<div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
-  <h2 class="text-2xl md:text-3xl font-extrabold text-white md:text-orange-600 text-center md:text-left leading-tight">
-    Top and Featured Products
-  </h2>
-  <button class="
-      mt-4 md:mt-0
-      ml-0 md:ml-6
-      px-5 py-2
-      text-sm font-semibold
-      rounded-full
-      border border-orange-400
-      bg-white dark:bg-orange-600
-      text-orange-600 dark:text-white
-      shadow-sm
-      hover:bg-orange-500 dark:hover:bg-orange-700
-      hover:text-white
-      transition-all duration-300 ease-in-out
-      focus:outline-none focus:ring-2 focus:ring-orange-400
-      "
-      onclick="window.location.href='#'">
-    See The Whole List
-  </button>
-</div>
-
-
-      </div>
-
-    <div id="featuredProductsContainer"
-     class="
-       flex flex-row flex-nowrap md:flex-wrap
-       items-start md:items-stretch justify-start md:justify-between
-       gap-6 md:gap-6 lg:gap-8
-       overflow-x-auto md:overflow-visible
-       px-6 md:px-4 lg:px-6 py-8
-       bg-white/90
-
-      border border-white/10 dark:border-gray-700/30
-       shadow-inner shadow-black/20
-       backdrop-blur-xl
-       scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent
-       transition-all duration-500
-     ">
-</div>
-
-
-</section>
-
-
-
-
-
-    <!-- Featured Markets -->
-    <section id="DisplayAndAlerts2" class="mt-10 pt-4 bg-orange-500 md:bg-[aliceblue]  mb-6 shadow-md overflow-hidden">
-<div class="flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-4 mt-8 mb-6">
-  <h2 class="text-2xl md:text-3xl font-extrabold text-white md:text-orange-600  text-center md:text-left leading-tight">
-    Top rated and Featured Markets
-  </h2>
-  <button class="
-      mt-4 md:mt-0
-      ml-0 md:ml-6
-      px-5 py-2
-      text-sm font-semibold
-      rounded-full
-      border border-orange-400
-      bg-white dark:bg-orange-600
-      text-orange-600 dark:text-white
-      shadow-sm
-      hover:bg-orange-500 dark:hover:bg-orange-700
-      hover:text-white
-      transition-all duration-300 ease-in-out
-      focus:outline-none focus:ring-2 focus:ring-orange-400
-      "
-      onclick="window.location.href='#'">
-    See The Whole List
-  </button>
-</div>
-
-     <div id="featuredMarketsContainer"
-     class="
-       flex flex-row flex-nowrap md:flex-wrap
-       items-start md:items-stretch justify-start md:justify-between
-       gap-6 md:gap-6 lg:gap-8
-       overflow-x-auto md:overflow-visible
-       px-6 md:px-4 lg:px-6 py-8
-       bg-white/90
-
-       border border-white/10 dark:border-gray-700/30
-       shadow-inner shadow-black/20
-       backdrop-blur-xl
-       scrollbar-thin scrollbar-thumb-cyan-400/50 scrollbar-track-transparent
-       transition-all duration-500
-     ">
-</div>
-    </section>
-
-    <!-- Results -->
-    <section id="MainResultsPage" class="page w-8xl pt-0 rounded-t-xl pb-6 px-0 block max-h-[90vh] overflow-y-auto overflow-x-hidden mt-1 mb-[30px] shadow-inner"></section>
-
-  </main>
 
   <!-- Scripts -->
   <script src="{% static 'main/ai-interface/navigation.js' %}"></script>
