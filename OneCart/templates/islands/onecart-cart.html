@@ -1,0 +1,126 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart – OneCart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0e6f55f.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-6 py-4 bg-white border-b shadow-sm sticky top-0 z-50">
+    <div class="flex items-center gap-2">
+      <img src="assets/logo.svg" alt="OneCart" class="w-8 h-8">
+      <span class="text-xl font-bold text-orange-600">OneCart</span>
+    </div>
+    <div class="hidden md:flex gap-6">
+      <a href="index.html" class="hover:text-orange-600">Home</a>
+      <a href="products.html" class="hover:text-orange-600">Shop</a>
+      <a href="cart.html" class="text-orange-600 font-semibold">Cart</a>
+      <a href="onecart-ai.html" class="hover:text-orange-600">OneCart AI</a>
+    </div>
+    <button class="md:hidden text-gray-600 hover:text-orange-600">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Cart Section -->
+  <section class="max-w-6xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold mb-8 text-gray-800">Your Cart</h1>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- Cart Items -->
+      <div class="flex-1 bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div class="space-y-6">
+          
+          <!-- Cart Item 1 -->
+          <div class="flex flex-col md:flex-row items-center justify-between border-b pb-4">
+            <div class="flex items-center gap-4">
+              <img src="assets/images/phone.jpg" class="w-24 h-24 rounded-lg object-cover border border-gray-200">
+              <div>
+                <h3 class="font-semibold text-gray-800">Smartphone X12</h3>
+                <p class="text-sm text-gray-500">Marketplace: Amazon</p>
+                <p class="text-orange-600 font-semibold mt-1">$499</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mt-3 md:mt-0">
+              <button class="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300">-</button>
+              <input type="number" value="1" class="w-12 text-center border border-gray-300 rounded-lg">
+              <button class="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300">+</button>
+              <button class="ml-4 text-gray-500 hover:text-red-500">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Cart Item 2 -->
+          <div class="flex flex-col md:flex-row items-center justify-between border-b pb-4">
+            <div class="flex items-center gap-4">
+              <img src="assets/images/shoes.jpg" class="w-24 h-24 rounded-lg object-cover border border-gray-200">
+              <div>
+                <h3 class="font-semibold text-gray-800">Nike Air Run</h3>
+                <p class="text-sm text-gray-500">Marketplace: Jumia</p>
+                <p class="text-orange-600 font-semibold mt-1">$129</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mt-3 md:mt-0">
+              <button class="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300">-</button>
+              <input type="number" value="2" class="w-12 text-center border border-gray-300 rounded-lg">
+              <button class="px-3 py-1 bg-gray-200 rounded-lg hover:bg-gray-300">+</button>
+              <button class="ml-4 text-gray-500 hover:text-red-500">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Continue Shopping -->
+          <div class="pt-4">
+            <a href="products.html" class="text-orange-600 hover:underline flex items-center gap-2">
+              <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Section -->
+      <div class="w-full lg:w-1/3 bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-fit">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Order Summary</h2>
+
+        <div class="flex justify-between text-gray-600 mb-2">
+          <span>Subtotal</span>
+          <span>$757</span>
+        </div>
+
+        <div class="flex justify-between text-gray-600 mb-2">
+          <span>Shipping</span>
+          <span>$15</span>
+        </div>
+
+        <div class="flex justify-between text-gray-800 font-semibold border-t border-gray-200 pt-3">
+          <span>Total</span>
+          <span>$772</span>
+        </div>
+
+        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-medium mt-6 text-lg">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500">
+    <p>© 2025 OneCart. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
+
+

@@ -1,0 +1,324 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OneCart AI — Personal Shopping Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f97316',
+                        accent: '#ffedd5'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* subtle scrollbar for chat pane */
+        .chat-scroll::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900 font-sans">
+    <nav class="flex items-center justify-between px-6 py-4 border-b sticky top-0 bg-white z-50">
+        <div class="flex items-center gap-3">
+            <img src="{% static 'resources/logos/logo.png' %}"
+                class="w-14 h-14 rounded-full ring-1 ring-white/10 shadow-md" alt="OneCart Logo" />
+            <div>
+                <div class="text-lg font-bold text-primary">OneCart</div>
+                <div class="text-xs text-gray-500">AI Shopping Assistant</div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <a href="cart.html" class="text-sm text-gray-700 hover:text-primary">Cart</a>
+            <button id="modeToggle" class="ml-3 bg-primary text-white px-3 py-2 rounded-full text-sm">Exit AI</button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+        <!-- Left: Saved Prompts / History -->
+        <aside class="hidden lg:block col-span-1 bg-gray-50 border rounded-xl p-4 h-[75vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-semibold text-gray-800">Saved & Recent</h3>
+                <button id="newSession" class="text-sm text-primary hover:underline">New</button>
+            </div>
+
+            <div class="space-y-3" id="savedPrompts">
+                <!-- Sample saved prompt -->
+                <button class="w-full text-left p-3 bg-white rounded-lg border hover:shadow-sm"
+                    data-prompt="Find best wireless headphones under $150">🎧 Best headphones under $150</button>
+                <button class="w-full text-left p-3 bg-white rounded-lg border hover:shadow-sm"
+                    data-prompt="Laptop for programming under $800, lightweight">💻 Lightweight laptop for
+                    programming</button>
+                <button class="w-full text-left p-3 bg-white rounded-lg border hover:shadow-sm"
+                    data-prompt="Fast shipping phone, Kenya available">📱 Fast shipping phones to Kenya</button>
+            </div>
+
+            <div class="mt-6">
+                <h4 class="text-sm text-gray-600 mb-2">Tip</h4>
+                <p class="text-xs text-gray-500">Use short, specific prompts. Eg: "Compare noise-cancelling headphones
+                    under $200"</p>
+            </div>
+        </aside>
+
+        <!-- Center: Chat + Product Cards -->
+        <section class="col-span-1 lg:col-span-2 bg-white border rounded-xl p-4 h-[75vh] flex flex-col">
+
+            <!-- Conversation area -->
+            <div id="chat" class="flex-1 overflow-y-auto chat-scroll space-y-4 p-3">
+                <!-- System intro -->
+                <div class="max-w-xl">
+                    <div class="bg-accent px-4 py-3 rounded-xl text-sm text-gray-800">Hi — I&apos;m <strong>OneCart
+                            AI</strong>. Tell me what you want to buy or type a saved prompt.</div>
+                </div>
+
+                <!-- Dynamic chat messages will appear here -->
+            </div>
+
+            <!-- Composer -->
+            <div class="mt-3 pt-3 border-t flex items-center gap-3">
+                <button id="voiceBtn" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200" title="Voice input">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path d="M9 2a1 1 0 012 0v6a1 1 0 11-2 0V2z" />
+                        <path fill-rule="evenodd" d="M5 8a5 5 0 0010 0h-1a4 4 0 11-8 0H5z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <input id="promptInput" type="text" placeholder="Try: 'Find best budget earbuds under $50'"
+                    class="flex-1 border border-gray-200 rounded-full px-4 py-2 outline-none"
+                    aria-label="Shopping prompt">
+
+                <button id="sendBtn" class="bg-primary text-white px-4 py-2 rounded-full">Ask</button>
+            </div>
+        </section>
+
+        <!-- Right: Quick Actions & Context -->
+        <aside class="col-span-1 bg-white border rounded-xl p-4 h-[75vh] overflow-y-auto">
+            <div class="mb-4">
+                <h3 class="font-semibold text-gray-800">Quick Actions</h3>
+                <div class="mt-3 flex flex-col gap-2">
+                    <button class="w-full text-left px-3 py-2 border rounded-lg hover:bg-orange-50"
+                        data-action="compare">Compare top picks</button>
+                    <button class="w-full text-left px-3 py-2 border rounded-lg hover:bg-orange-50"
+                        data-action="cheapest">Show cheapest</button>
+                    <button class="w-full text-left px-3 py-2 border rounded-lg hover:bg-orange-50"
+                        data-action="fastship">Fastest shipping</button>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <h4 class="font-semibold text-gray-800 mb-2">Filters Applied</h4>
+                <div id="appliedFilters" class="text-sm text-gray-600">None</div>
+            </div>
+
+            <div class="mt-6">
+                <h4 class="font-semibold text-gray-800 mb-2">Current Session</h4>
+                <div id="sessionMeta" class="text-sm text-gray-600">No actions yet</div>
+            </div>
+        </aside>
+
+    </main>
+
+    <template id="aiMessageTpl">
+        <div class="max-w-xl">
+            <div class="bg-accent px-4 py-3 rounded-xl text-gray-800 text-sm"></div>
+        </div>
+    </template>
+
+    <template id="userMessageTpl">
+        <div class="max-w-xl ml-auto text-right">
+            <div class="inline-block bg-primary text-white px-4 py-2 rounded-xl text-sm"></div>
+        </div>
+    </template>
+
+    <template id="productsSectionTpl">
+        <div class="mt-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- product card sample -->
+            </div>
+        </div>
+    </template>
+
+    <template id="productCardTpl">
+        <div class="bg-white border rounded-lg shadow-sm p-3 flex gap-3 items-start">
+            <img class="w-24 h-20 object-cover rounded-md" src="assets/images/product1.jpg" alt="product">
+            <div class="flex-1">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="text-sm font-semibold text-gray-800">Product Title</div>
+                        <div class="text-xs text-gray-500">Marketplace</div>
+                    </div>
+                    <div class="text-orange-600 font-semibold">$0.00</div>
+                </div>
+
+                <p class="text-xs text-gray-600 mt-2">Short product description. Quick features and shipping note.</p>
+
+                <div class="mt-3 flex gap-2">
+                    <button class="px-3 py-1 border rounded-lg text-sm hover:bg-orange-50" data-action="add">Add to
+                        cart</button>
+                    <button class="px-3 py-1 border rounded-lg text-sm hover:bg-orange-50"
+                        data-action="view">View</button>
+                    <button class="ml-auto text-xs text-gray-500">⭐ 4.5</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        // Minimal interactive mock for the AI page. Replace with real APIs / socket when ready.
+        const chat = document.getElementById('chat');
+        const sendBtn = document.getElementById('sendBtn');
+        const promptInput = document.getElementById('promptInput');
+        const savedPrompts = document.getElementById('savedPrompts');
+        const productsSectionTpl = document.getElementById('productsSectionTpl');
+        const productCardTpl = document.getElementById('productCardTpl');
+
+        function appendUserMessage(text) {
+            const tpl = document.getElementById('userMessageTpl').content.cloneNode(true);
+            tpl.querySelector('div > div').textContent = text;
+            chat.appendChild(tpl);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function appendAiMessage(text) {
+            const tpl = document.getElementById('aiMessageTpl').content.cloneNode(true);
+            tpl.querySelector('div > div').textContent = text;
+            chat.appendChild(tpl);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function appendProducts(products) {
+            const section = productsSectionTpl.content.cloneNode(true);
+            const grid = section.querySelector('div > div');
+            products.forEach(p => {
+                const card = productCardTpl.content.cloneNode(true);
+                card.querySelector('img').src = p.image;
+                card.querySelector('.text-sm.font-semibold').textContent = p.title;
+                card.querySelector('.text-xs.text-gray-500').textContent = p.market;
+                card.querySelector('.text-orange-600').textContent = '$' + p.price.toFixed(2);
+                card.querySelector('.text-xs.text-gray-600').textContent = p.desc;
+                const addBtn = card.querySelector('[data-action="add"]');
+                addBtn.addEventListener('click', () => alert('Added "' + p.title + '" to cart (mock)'));
+                const viewBtn = card.querySelector('[data-action="view"]');
+                viewBtn.addEventListener('click', () => alert('View product: ' + p.title));
+                grid.appendChild(card);
+            });
+
+            chat.appendChild(section);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        // Mock product search engine (replace with API integration)
+        function mockSearch(prompt) {
+            // crude detection of keywords to vary output
+            const lower = prompt.toLowerCase();
+            if (lower.includes('headphone') || lower.includes('earbud')) {
+                return [
+                    { title: 'Noise-Cancel Pro Earbuds', market: 'Amazon', price: 49.99, image: 'assets/images/headphones.jpg', desc: 'ANC, 30h battery' },
+                    { title: 'Budget Earbuds', market: 'AliExpress', price: 19.99, image: 'assets/images/product3.jpg', desc: 'Cheap and cheerful' },
+                ];
+            }
+            if (lower.includes('laptop')) {
+                return [
+                    { title: 'UltraBook Z', market: 'eBay', price: 799.00, image: 'assets/images/laptop.jpg', desc: 'Lightweight, 8GB RAM' },
+                    { title: 'ProNote 14', market: 'Amazon', price: 899.00, image: 'assets/images/product1.jpg', desc: '14", 16GB RAM' },
+                ];
+            }
+            // default
+            return [
+                { title: 'Wireless Earbuds', market: 'Amazon', price: 49.99, image: 'assets/images/product1.jpg', desc: 'Popular choice' },
+                { title: 'Smart Watch', market: 'eBay', price: 89.99, image: 'assets/images/product2.jpg', desc: 'Good for fitness' },
+            ];
+        }
+
+        async function handlePrompt(prompt) {
+            appendUserMessage(prompt);
+            appendAiMessage('Searching multiple marketplaces...');
+
+            // simulate latency
+            await new Promise(r => setTimeout(r, 800));
+
+            // mock results
+            const results = mockSearch(prompt);
+
+            // replace last AI message with a short summary + products
+            // simple approach: append products after AI message
+            appendAiMessage('Here are some options I found:');
+            appendProducts(results);
+        }
+
+        sendBtn.addEventListener('click', () => {
+            const text = promptInput.value.trim();
+            if (!text) return;
+            promptInput.value = '';
+            handlePrompt(text);
+        });
+
+        promptInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') sendBtn.click();
+        });
+
+        // saved prompt click handling
+        savedPrompts.addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const p = btn.dataset.prompt;
+            if (p) {
+                promptInput.value = p;
+                sendBtn.click();
+            }
+        });
+
+        // quick-action handlers
+        document.querySelectorAll('[data-action]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.dataset.action;
+                if (action === 'compare') {
+                    appendAiMessage('Comparing top picks...');
+                    setTimeout(() => appendAiMessage('Comparison ready. Use "Compare" on any product card.'), 600);
+                }
+                if (action === 'cheapest') {
+                    appendAiMessage('Showing cheapest options across marketplaces...');
+                    appendProducts(mockSearch('cheap'));
+                }
+                if (action === 'fastship') {
+                    appendAiMessage('Fetching fastest-shipping options...');
+                    appendProducts(mockSearch('fast'));
+                }
+            });
+        });
+
+        // new session
+        document.getElementById('newSession').addEventListener('click', () => {
+            chat.innerHTML = '';
+            appendAiMessage("Hi — I'm OneCart AI. Tell me what you want to buy.");
+        });
+
+        // voice (mock)
+        document.getElementById('voiceBtn').addEventListener('click', () => {
+            alert('Voice input is a placeholder in this prototype.');
+        });
+
+        // initial message
+        appendAiMessage("Hi — I'm OneCart AI. Tell me what you want to buy or click a saved prompt.");
+    </script>
+</body>
+
+</html>

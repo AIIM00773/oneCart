@@ -19,26 +19,19 @@ class LndingPage(APIView):
         return render(request, "index.html")
         
 
-class ActionOnQuery(APIView):
+
+class ListingsgPage(APIView):
+    def get(self,request):
+        return render(request, "islands/onecartlistings.html")
+
+
+class OnecartaiPage(APIView):
+    def get(self,request):
+        return render(request, "islands/onecartai.html")
+
+             
+class OnecartHome(APIView):
     def get(self, request):
-        return render(request, 'islands/finder-interface.html')
+        return render(request, 'islands/onecartnormal.html')
         
-    def post(self, request):
-        data = request.data
-        
-        #parser1(data)
-        SteP1Returns = list(parse_query(data))
-        
-        Qobject = SteP1Returns[0]
-        tokens = SteP1Returns[-1]
-        
-        print(f"\n\n{Qobject}\n\n")
-       
-        print(tokens)
-        
-        print("\n\n")
-        if tokens:
-            mchs= fetch_items(tokens)
-            #print(mchs)
-            
-            return Response({"aa":mchs})
+

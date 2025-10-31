@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – OneCart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0e6f55f.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-6 py-4 bg-white border-b shadow-sm sticky top-0 z-50">
+    <div class="flex items-center gap-2">
+      <img src="assets/logo.svg" alt="OneCart" class="w-8 h-8">
+      <span class="text-xl font-bold text-orange-600">OneCart</span>
+    </div>
+    <div class="hidden md:flex gap-6">
+      <a href="index.html" class="hover:text-orange-600">Home</a>
+      <a href="products.html" class="hover:text-orange-600">Shop</a>
+      <a href="cart.html" class="hover:text-orange-600">Cart</a>
+      <a href="onecart-ai.html" class="hover:text-orange-600">OneCart AI</a>
+    </div>
+    <button class="md:hidden text-gray-600 hover:text-orange-600">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Checkout Section -->
+  <section class="max-w-6xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold mb-8 text-gray-800">Checkout</h1>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- Left: Checkout Form -->
+      <div class="flex-1 bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        
+        <!-- Customer Info -->
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Customer Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <input type="text" placeholder="Full Name" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="email" placeholder="Email Address" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="tel" placeholder="Phone Number" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+        </div>
+
+        <!-- Shipping Info -->
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Shipping Address</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <input type="text" placeholder="Street Address" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="text" placeholder="City" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="text" placeholder="State / Region" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="text" placeholder="Postal Code" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+        </div>
+
+        <!-- Payment Info -->
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Payment Method</h2>
+        <div class="space-y-3">
+          <label class="flex items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:border-orange-500">
+            <input type="radio" name="payment" checked>
+            <span><i class="fa-solid fa-credit-card text-orange-500 mr-2"></i> Credit / Debit Card</span>
+          </label>
+          <label class="flex items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:border-orange-500">
+            <input type="radio" name="payment">
+            <span><i class="fa-brands fa-paypal text-orange-500 mr-2"></i> PayPal</span>
+          </label>
+          <label class="flex items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:border-orange-500">
+            <input type="radio" name="payment">
+            <span><i class="fa-solid fa-wallet text-orange-500 mr-2"></i> OneCart Wallet</span>
+          </label>
+        </div>
+
+        <!-- Card Details -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input type="text" placeholder="Card Number" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="text" placeholder="Cardholder Name" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="text" placeholder="Expiry Date (MM/YY)" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+          <input type="text" placeholder="CVV" class="border border-gray-300 rounded-lg px-4 py-2 outline-orange-500">
+        </div>
+
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div class="w-full lg:w-1/3 bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-fit">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Order Summary</h2>
+
+        <div class="divide-y divide-gray-200 mb-4">
+          <div class="py-3 flex justify-between">
+            <span class="text-gray-700">Smartphone X12 (Amazon)</span>
+            <span class="text-gray-800 font-medium">$499</span>
+          </div>
+          <div class="py-3 flex justify-between">
+            <span class="text-gray-700">Nike Air Run (Jumia)</span>
+            <span class="text-gray-800 font-medium">$129</span>
+          </div>
+        </div>
+
+        <div class="flex justify-between text-gray-600 mb-2">
+          <span>Subtotal</span>
+          <span>$628</span>
+        </div>
+
+        <div class="flex justify-between text-gray-600 mb-2">
+          <span>Shipping</span>
+          <span>$15</span>
+        </div>
+
+        <div class="flex justify-between text-gray-800 font-semibold border-t border-gray-200 pt-3">
+          <span>Total</span>
+          <span>$643</span>
+        </div>
+
+        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-medium mt-6 text-lg">
+          Place Order
+        </button>
+
+        <p class="text-xs text-gray-500 text-center mt-3">
+          By placing your order, you agree to OneCart’s <a href="#" class="text-orange-600 hover:underline">Terms of Service</a>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500">
+    <p>© 2025 OneCart. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
+

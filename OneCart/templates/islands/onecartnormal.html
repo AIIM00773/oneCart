@@ -1,0 +1,260 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OneCart – Shop from Anywhere</title>
+    <!-- Tailwind & Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f97316', // orange
+                        accent: '#ffedd5', // light orange background
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200 shadow-sm">
+        <div class="max-w-8xl mx-auto flex justify-between items-center px-2 md:px-6 py-4 md:py-2">
+            <div class="flex items-center gap-2">
+                <img src="{% static 'resources/logos/logo.png' %}"class="w-14 h-14 rounded-full ring-1 ring-white/10 shadow-md" alt="OneCart Logo" /> 
+                    <span class="text-xl font-semibold tracking-tight text-primary hidden md:inline">OneCart</span>
+            </div>
+
+            <div class="hidden md:flex gap-8 font-medium">
+                <a href="index.html" class="hover:text-primary">Home</a>
+                <a href="products.html" class="hover:text-primary">Explore</a>
+                <a href="#stores" class="hover:text-primary">Stores</a>
+                <a href="cart.html" class="hover:text-primary">Cart</a>
+            </div>
+
+
+            <button  onclick="window.location.href='/onecart-listings/' "
+                class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition font-medium">
+                  <span class="hidden md:inline">View </span> Listings 
+            </button>
+
+
+
+
+            <button
+                class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition font-medium">
+                 <span class="hidden md:inline">Menu</span>  <i class="fa fa-bars"></i>
+            </button>
+
+            <button
+                class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition font-medium">
+                  <span class="hidden md:inline">Profile</span> <i class="fa fa-user"></i>
+            </button>
+
+            <button  onclick="window.location.href='/onecart-ai/' "
+                class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition font-medium">
+                   <span class="hidden md:inline">OneCart</span> AI 
+            </button>
+
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="text-center py-16 bg-accent ">
+        <h1 class="text-4xl md:text-5xl font-bold mb-3 md:mt-6 ">Shop from <span class="text-primary">Anywhere</span></h1>
+        <p class="text-gray-600 text-lg md:text-sm  mb-8">Discover, compare, and buy across all online marketplaces — all in one
+            place.</p>
+
+        <div
+            class="max-w-2xl mx-auto flex items-center border border-gray-300 rounded-full overflow-hidden bg-white shadow-md">
+            <input type="text" placeholder="Search for anything — shoes, phones, laptops..."
+                class="flex-grow bg-transparent outline-none px-5 py-3 text-gray-700" />
+            <button class="bg-primary hover:bg-orange-600 text-white px-6 py-3 font-medium">Search</button>
+        </div>
+
+        <div class="mt-5 flex justify-center gap-4 text-sm text-gray-500">
+            <a href="#popular" class="hover:text-primary">Popular</a> |
+            <a href="#trending" class="hover:text-primary">Trending</a> |
+            <a href="#stores" class="hover:text-primary">Top Stores</a> |
+            <a href="products.html" class="hover:text-primary">All Products</a>
+        </div>
+    </section>
+
+    <!-- Marketplace Filter Section -->
+    <section id="stores" class="py-14 px-6 max-w-7xl mx-auto bg-accent ">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Shop from Top Marketplaces</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">Amazon</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">eBay</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">AliExpress</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">Jumia</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">Shopify</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">Shopify</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">Shopify</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">Shopify</button>
+            <button
+                class="border border-gray-300 px-5 py-2 rounded-full hover:bg-primary hover:text-white transition">Shopify</button>
+        </div>
+    </section>
+
+
+
+    <!-- Popular Categories -->
+    <section id="popular" class="bg-orange-500 px-2  md:px-8 min-h-[90vh] py-14 max-h-[95vh] overflow-y-auto mb-4  ">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl font-semibold mb-6 text-center">Popular Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/tech.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Electronics</p>
+                </div>
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/fashion.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Fashion</p>
+                </div>
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/home.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Home & Living</p>
+                </div>
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/sports.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Sports & Fitness</p>
+                </div>
+
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/tech.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Electronics</p>
+                </div>
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/fashion.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Fashion</p>
+                </div>
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/home.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Home & Living</p>
+                </div>
+                <div
+                    class="bg-white shadow-md p-6 rounded-xl text-center hover:shadow-lg hover:border-primary border transition cursor-pointer">
+                    <img src="assets/images/sports.png" class="mx-auto w-14 mb-3">
+                    <p class="font-medium">Sports & Fitness</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Trending Products Preview -->
+    <section id="trendig" class="bg-orange-500 px-2  md:px-8 min-h-[90vh] py-14 max-h-[95vh] overflow-y-auto ">
+         
+        <h2 class="text-2xl font-semibold mb-6 text-center">Trending Products</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product1.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Wireless Earbuds</p>
+                    <p class="text-primary font-bold mt-1">$49.99</p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product2.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Smart Watch</p>
+                    <p class="text-primary font-bold mt-1">$89.99</p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product3.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Bluetooth Speaker</p>
+                    <p class="text-primary font-bold mt-1">$39.99</p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product4.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Running Shoes</p>
+                    <p class="text-primary font-bold mt-1">$59.99</p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product3.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Bluetooth Speaker</p>
+                    <p class="text-primary font-bold mt-1">$39.99</p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product4.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Running Shoes</p>
+                    <p class="text-primary font-bold mt-1">$59.99</p>
+                </div>
+            </div>
+
+
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product3.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Bluetooth Speaker</p>
+                    <p class="text-primary font-bold mt-1">$39.99</p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="assets/images/product4.jpg" alt="product" class="w-full h-40 object-cover">
+                <div class="p-4">
+                    <p class="font-semibold">Running Shoes</p>
+                    <p class="text-primary font-bold mt-1">$59.99</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-accent py-8 text-center text-gray-600 text-sm flex flex-row items-center justify-between px-3  md:px-16 ">
+        <p>© 2025 OneCart<span class="hidden md:inline">.Shop from anywhere.</span> </p>
+        <div class="">
+            <a href="#" class="hover:text-primary mx-2">Privacy</a> |
+            <a href="#" class="hover:text-primary mx-2">Terms</a> |
+            <a href="#" class="hover:text-primary mx-2">Support</a>
+        </div>
+    </footer>
+</body>
+
+</html>

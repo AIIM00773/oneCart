@@ -22,14 +22,6 @@ function manageSession() {
     page.classList.remove("active");
   });
 
-  // Show active page
-  const activePage = document.getElementById(activeSession);
-  if (activePage) {
-    activePage.classList.remove("hidden");
-    activePage.classList.add("active");
-  } else {
-    alert("Page not found");
-  }
 }
 
 
