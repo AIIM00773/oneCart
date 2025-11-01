@@ -34,4 +34,11 @@ class OnecartHome(APIView):
     def get(self, request):
         return render(request, 'islands/onecartnormal.html')
         
+class OneCartcartPage(APIView):
+    def get(self,request):
+        return render(request, "islands/onecart-cart.html")
 
+
+class OneCartcheckout(APIView):
+    def get(self,request):
+        return render(request,"islands/onecartcheckout.html" )
