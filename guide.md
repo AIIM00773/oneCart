@@ -263,3 +263,52 @@ AIPrompt (optional, for future AI feature)
 - Notify user of updates
 
 
+
+
+
+                ┌─────────────────────┐
+                │      User           │
+                │────────────────────│
+                │ Search Products     │
+                │ Add to Cart         │
+                │ Checkout            │
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌─────────────────────┐
+                │     Frontend        │
+                │────────────────────│
+                │ Displays Search     │
+                │ Results (Price,    │
+                │ Rating, Marketplace│
+                │ Logo)               │
+                │ Unified Cart &      │
+                │ Checkout Button     │
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌─────────────────────┐
+                │     Backend         │
+                │────────────────────│
+                │ Aggregator: Fetch   │
+                │ Products via APIs   │
+                │ Normalize Data      │
+                │ Cart Manager        │
+                │ Order Manager       │
+                │ Payment Processor   │
+                │ Marketplace Adapter │
+                └─────────┬──────────┘
+                          │
+          ┌───────────────┴───────────────┐
+          ▼                               ▼
+ ┌─────────────────────┐          ┌─────────────────────┐
+ │  Marketplace APIs   │          │    Database         │
+ │────────────────────│          │────────────────────│
+ │ Amazon, Jumia, etc │          │ CartItem           │
+ │ Place Orders       │          │ Order              │
+ │ Track Orders       │          │ OrderItem          │
+ │ Confirm Payments   │          │ Payment            │
+ └────────────────────┘          │ User               │
+                                 │ Product            │
+                                 │ Marketplace        │
+                                 └────────────────────┘
