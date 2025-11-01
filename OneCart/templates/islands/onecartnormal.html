@@ -18,12 +18,16 @@
           colors: {
             primary: '#fb6a00',
             primaryDark: '#c44e00',
-            accent: '#fff8f0',
-            bgSoft: '#fdfaf6',
+            accent: '#fffaf5',
+            soft: '#fefefe',
           },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
+          boxShadow: {
+            smooth: '0 8px 24px rgba(0,0,0,0.08)',
+            card: '0 6px 18px rgba(0,0,0,0.06)',
+          }
         },
       },
     };
@@ -35,54 +39,66 @@
       height: 0;
       background: transparent;
     }
+    * { -ms-overflow-style: none; scrollbar-width: none; }
 
-    * {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
     }
-
-    #menu-overlay {
-      backdrop-filter: blur(5px);
-      background-color: rgba(0, 0, 0, 0.35);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .glass {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .float:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #fff5eb 0%, #ffffff 100%);
+    }
+
+    #menu-overlay {
+      backdrop-filter: blur(6px);
+      background-color: rgba(0, 0, 0, 0.35);
     }
   </style>
 </head>
 
-<body class="bg-bgSoft text-gray-800 relative font-sans">
+<body class="bg-soft text-gray-800 font-sans fade-in">
 
   <!-- Navbar -->
-  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm">
-    <div class="max-w-8xl mx-auto flex justify-between items-center px-4 md:px-8 py-4">
+  <nav class="sticky top-0 z-50 glass border-b border-gray-200">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3">
       <div class="flex items-center gap-3">
-        <img src="{% static 'resources/logos/logo.png' %}" class="w-11 h-11 rounded-full ring-1 ring-white/10 shadow-md" alt="OneCart Logo" />
-        <span class="text-2xl font-semibold tracking-tight text-primary ">OneCart</span>
+        <img src="{% static 'resources/logos/logo.png' %}" 
+             class="w-11 h-11 rounded-full ring-1 ring-amber-400/40 shadow-md" alt="OneCart Logo" />
+        <span class="text-2xl font-semibold tracking-tight bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
+          OneCart
+        </span>
       </div>
 
-      <div class="hidden md:flex gap-8 font-medium">
-        <a href="index.html" class="hover:text-primary transition">Home</a>
-        <a href="products.html" class="hover:text-primary transition">Explore</a>
-        <a href="#stores" class="hover:text-primary transition">Stores</a>
-        <a href="cart.html" class="hover:text-primary transition">Cart</a>
-      </div>
+ 
 
       <div class="flex items-center gap-2">
         <button onclick="window.location.href='/onecart-listings/'"
-          class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primaryDark transition font-medium shadow-md">
-          Listings
+          class="bg-gradient-to-r from-orange-600 to-amber-500 text-white px-4 py-2 rounded-full hover:scale-105 transition font-medium shadow-smooth">
+          Start Shopping 
         </button>
         <button id="menuBtn"
-          class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primaryDark transition font-medium flex items-center gap-2 md:hidden">
+          class="bg-gradient-to-r from-orange-600 to-amber-500 text-white px-4 py-2 rounded-full hover:scale-105 transition font-medium flex items-center gap-2 md:hidden">
           Menu <i class="fa fa-bars"></i>
         </button>
         <button onclick="window.location.href='/onecart-ai/'"
-          class="bg-primary text-white px-4 py-2 rounded-full hover:bg-primaryDark transition font-medium hidden md:inline">
-          OneCart AI
+          class="hidden md:inline bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2 rounded-full hover:scale-105 transition font-medium shadow-smooth">
+          <i class="fa fa-robot mr-1"></i> OneCart AI
         </button>
       </div>
     </div>
@@ -93,7 +109,7 @@
 
   <!-- Side Menu -->
   <aside id="side-menu"
-    class="fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+    class="fixed top-0 left-0 h-full w-72 bg-white/95 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between rounded-r-2xl">
     <div class="p-6">
       <div class="flex justify-between items-center mb-8">
         <h2 class="text-xl font-semibold text-primary">Menu</h2>
@@ -118,16 +134,20 @@
   </aside>
 
   <!-- Hero Section -->
-  <section class="text-center py-20 bg-gradient-to-b from-accent to-white px-6">
-    <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-800">
-      Shop from <span class="text-primary">Anywhere</span>
+  <section class="hero-gradient text-center py-20 px-6 ">
+    <h1 class="text-4xl md:text-5xl font-bold mb-10  text-gray-900 mt-20 ">
+      Shop from <span class="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">Anywhere</span>
     </h1>
-    <p class="text-gray-600 text-sm md:text-lg mb-8">Discover, compare, and buy across all online marketplaces — all in one place.</p>
+    <p class="text-gray-600 text-base md:text-lg mb-8 hidden ">
+      Discover, compare, and buy across all online marketplaces — all in one place.
+    </p>
 
-    <div class="max-w-2xl mx-auto flex items-center border border-gray-200 rounded-full overflow-hidden bg-white shadow-md hover:shadow-lg transition">
+    <div class="max-w-2xl mx-auto flex items-center border border-gray-200 rounded-full overflow-hidden bg-white/80 shadow-card hover:shadow-lg transition">
       <input type="text" placeholder="Search for anything — shoes, phones, laptops..."
-        class="flex-grow bg-transparent outline-none px-5 py-3 text-gray-700" />
-      <button class="bg-primary hover:bg-primaryDark text-white px-6 py-3 font-medium transition">Search</button>
+        class="flex-grow bg-transparent outline-none px-5 py-3 text-gray-700 placeholder-gray-400" />
+      <button class="bg-gradient-to-r from-orange-600 to-amber-500 text-white px-6 py-3 font-medium hover:scale-105 transition">
+        Search
+      </button>
     </div>
 
     <div class="mt-5 flex justify-center gap-4 text-sm text-gray-500 flex-wrap">
@@ -139,36 +159,35 @@
   </section>
 
   <!-- Marketplaces -->
-  <section id="stores" class="py-16 px-6 max-w-7xl mx-auto bg-bgSoft">
-    <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-center text-gray-800">Shop from Top Marketplaces</h2>
+  <section id="stores" class="py-16 pt-0  px-6 max-w-7xl mx-auto bg-soft">
+    <h2 class="text-3xl font-semibold mb-12 text-center text-gray-800">Shop from Top Marketplaces</h2>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 justify-items-center">
-      <!-- Marketplace Card -->
-      <div class="glass w-36 h-36 rounded-2xl flex flex-col items-center justify-center transition hover:-translate-y-2 hover:shadow-xl cursor-pointer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" class="h-8 mb-3 opacity-80 group-hover:opacity-100 transition">
-        <p class="font-medium text-gray-700 group-hover:text-primary transition">Amazon</p>
+      <div class="glass float w-36 h-36 rounded-2xl flex flex-col items-center justify-center cursor-pointer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" class="h-8 mb-3 opacity-80 transition" />
+        <p class="font-medium text-gray-700">Amazon</p>
       </div>
 
-      <div class="glass w-36 h-36 rounded-2xl flex flex-col items-center justify-center transition hover:-translate-y-2 hover:shadow-xl cursor-pointer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="h-8 mb-3 opacity-80 group-hover:opacity-100 transition">
-        <p class="font-medium text-gray-700 group-hover:text-primary transition">eBay</p>
+      <div class="glass float w-36 h-36 rounded-2xl flex flex-col items-center justify-center cursor-pointer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo" class="h-8 mb-3 opacity-80 transition" />
+        <p class="font-medium text-gray-700">eBay</p>
       </div>
 
-      <div class="glass w-36 h-36 rounded-2xl flex flex-col items-center justify-center transition hover:-translate-y-2 hover:shadow-xl cursor-pointer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg" alt="Shopify Logo" class="h-8 mb-3 opacity-80 group-hover:opacity-100 transition">
-        <p class="font-medium text-gray-700 group-hover:text-primary transition">Shopify</p>
+      <div class="glass float w-36 h-36 rounded-2xl flex flex-col items-center justify-center cursor-pointer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg" alt="Shopify Logo" class="h-8 mb-3 opacity-80 transition" />
+        <p class="font-medium text-gray-700">Shopify</p>
       </div>
 
-      <div class="glass w-36 h-36 rounded-2xl flex flex-col items-center justify-center transition hover:-translate-y-2 hover:shadow-xl cursor-pointer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/AliExpress_logo.svg" alt="AliExpress Logo" class="h-8 mb-3 opacity-80 group-hover:opacity-100 transition">
-        <p class="font-medium text-gray-700 group-hover:text-primary transition">AliExpress</p>
+      <div class="glass float w-36 h-36 rounded-2xl flex flex-col items-center justify-center cursor-pointer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/AliExpress_logo.svg" alt="AliExpress Logo" class="h-8 mb-3 opacity-80 transition" />
+        <p class="font-medium text-gray-700">AliExpress</p>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-accent py-8 text-center text-gray-600 text-sm flex flex-col md:flex-row items-center justify-between gap-3 px-6 md:px-16 border-t border-gray-200">
-    <p>© 2025 OneCart <span class="hidden md:inline">— Shop from anywhere.</span></p>
+  <footer class="glass border-t border-gray-200 py-8 text-center text-gray-600 text-sm flex flex-col md:flex-row items-center justify-between gap-3 px-6 md:px-16">
+    <p>© 2025 <span class="font-semibold text-primary">OneCart</span> — Shop from anywhere.</p>
     <div class="flex gap-2">
       <a href="#" class="hover:text-primary">Privacy</a> |
       <a href="#" class="hover:text-primary">Terms</a> |

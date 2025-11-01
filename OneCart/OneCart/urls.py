@@ -24,5 +24,4 @@ urlpatterns = [
     
     path('', include("core.urls")), 
     path('core/',include("core.urls")) ,
-    path("data/", include("data_pipeline.urls"))
 ]
