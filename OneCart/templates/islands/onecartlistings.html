@@ -143,9 +143,13 @@
             </div>
 
             <nav class="space-y-4 text-gray-700 font-medium">
+                <a href="/onecart-ai/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
+                        class="fa fa-robot mr-2"></i> OneCart AI</a>
+
                 <a href="/home/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
                         class="fa fa-house mr-2"></i> Home</a>
-                <a href="/cart/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
+
+                <a href="/onecart-cart/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
                         class="fa fa-shopping-cart mr-2"></i> My Cart</a>
                 <a href="/orders/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
                         class="fa fa-box mr-2"></i> Orders</a>
@@ -162,73 +166,6 @@
 
         <!-- MENU OVERLAY -->
         <div id="menuOverlay" class="fixed inset-0 bg-black/40 hidden z-40"></div>
-
-
-
-        <script>
-            // <!-- SIDEBAR TOGGLE  -->
-
-            const toggleBtn = document.getElementById('filterToggle');
-            const sidebar = document.getElementById('filterSidebar');
-            const overlay = document.getElementById('filterOverlay');
-            const closeBtn = document.getElementById('closeFilter');
-
-
-            // Menu Sidebar Controls
-            const menuToggle = document.getElementById('menuToggle');
-            const menuSidebar = document.getElementById('menuSidebar');
-            const menuOverlay = document.getElementById('menuOverlay');
-            const closeMenu = document.getElementById('closeMenu');
-
-
-
-            toggleBtn.addEventListener('click', () => {
-                sidebar.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-                menuSidebar.classList.add('translate-x-full');
-                menuOverlay.classList.add('hidden');
-            });
-
-
-
-
-
-
-
-            menuToggle.addEventListener('click', () => {
-                menuSidebar.classList.remove('translate-x-full');
-                menuOverlay.classList.remove('hidden');
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            });
-
-
-            //close menu 
-            closeMenu.addEventListener('click', () => {
-                menuSidebar.classList.add('translate-x-full');
-                menuOverlay.classList.add('hidden');
-            });
-
-            menuOverlay.addEventListener('click', () => {
-                menuSidebar.classList.add('translate-x-full');
-                menuOverlay.classList.add('hidden');
-            });
-
-
-            //close sidebar 
-            closeBtn.addEventListener('click', () => {
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            });
-
-            overlay.addEventListener('click', () => {
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            });
-
-        </script>
-
-
 
 
 
@@ -255,30 +192,88 @@
             </div>
 
             <!-- Product Cards -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 fade-in">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 gap-x-2  fade-in max-h-[90vh] md:max-h-[85vh] overflow-y-auto  ">
                 {% comment %} Example Product Card {% endcomment %}
-                {% for product in products %}
                 <div
                     class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
                     <img src="{{ product.image.url }}" alt="{{ product.name }}"
                         class="w-full h-44 object-cover rounded-lg mb-3" />
-                    <h3 class="font-semibold text-gray-800 truncate">{{ product.name }}</h3>
-                    <p class="text-sm text-gray-500 mb-2">{{ product.marketplace }}</p>
-                    <p class="text-orange-600 font-bold mb-3">${{ product.price }}</p>
+                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
+                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
+                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
                     <button
                         class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
                         Add to Cart
                     </button>
                 </div>
-                {% endfor %}
+
+                <div
+                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-lg mb-3" />
+                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
+                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
+                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
+                    <button
+                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
+                        Add to Cart
+                    </button>
+                </div>
+
+
+
+                <div
+                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-lg mb-3" />
+                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
+                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
+                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
+                    <button
+                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
+                        Add to Cart
+                    </button>
+                </div> 
+                
+
+                <div
+                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-lg mb-3" />
+                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
+                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
+                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
+                    <button
+                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
+                        Add to Cart
+                    </button>
+                </div>
+
+    
+
+                <div
+                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-lg mb-3" />
+                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
+                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
+                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
+                    <button
+                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
+                        Add to Cart
+                    </button>
+                </div>
+
             </div>
         </main>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm">
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm fixed bottom-[-69px] left-0 right-0">
         <p>© 2025 <span class="text-orange-500 font-semibold">OneCart</span>. All rights reserved.</p>
     </footer>
+
+    <script src="{% static 'main/onecartnormal.js' %}"></script>
 
 </body>
 
