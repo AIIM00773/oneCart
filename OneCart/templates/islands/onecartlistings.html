@@ -11,11 +11,9 @@
     <!-- Tailwind & Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        /* Hide Scrollbar */
         *::-webkit-scrollbar {
             width: 0;
             height: 0;
@@ -27,9 +25,8 @@
             scrollbar-width: none;
         }
 
-        /* Smooth animations */
         .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.6s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -43,48 +40,65 @@
                 transform: translateY(0);
             }
         }
+
+        .float {
+            transition: all 0.3s ease;
+        }
+
+        .float:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 160, 40, 0.25);
+        }
+
+        .glass {
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-900 font-sans">
+<body class="bg-gradient-to-br from-zinc-900 via-neutral-900 to-zinc-800 text-gray-100 font-sans">
 
     <!-- Navbar -->
     <nav
-        class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300">
+        class="sticky top-0 z-50 bg-[aliceblue] glass border-b border-zinc-800 shadow-lg transition-all duration-300 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-3">
             <!-- Left -->
             <div class="flex items-center gap-2">
                 <img src="{% static 'resources/logos/logo.png' %}"
-                    class="w-12 h-12 rounded-full ring-1 ring-white/20 shadow-sm hover:scale-105 transition"
+                    class="w-10 h-10 rounded-full ring-2 ring-amber-400/30 shadow-sm hover:scale-105 transition"
                     alt="OneCart Logo" />
-                <span class="text-xl font-semibold tracking-tight text-orange-500 hidden sm:inline">OneCart</span>
+                <span
+                    class="text-xl font-semibold tracking-tight bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent hidden sm:inline">
+                    OneCart
+                </span>
             </div>
 
             <!-- Center Nav Links -->
-            <div class="hidden md:flex gap-8 font-medium">
-                <a href="/home/" class="hover:text-orange-500 transition">Home</a>
-                <a href="cart.html" class="hover:text-orange-500 transition">Cart</a>
+            <div class="hidden md:flex gap-8 font-medium text-gray-300">
+                <a href="/home/" class="hover:text-amber-400 transition">Home</a>
+                <a href="cart.html" class="hover:text-amber-400 transition">Cart</a>
             </div>
 
             <!-- Right Controls -->
             <div class="flex items-center gap-2">
                 <button id="filterToggle"
-                    class="bg-orange-500 text-white px-3 py-2 rounded-full hover:bg-orange-600 transition font-medium text-sm">
+                    class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
                     <i class="fa fa-filter mr-1"></i> Filters
                 </button>
 
                 <button id="menuToggle"
-                    class="bg-orange-500 text-white px-3 py-2 rounded-full hover:bg-orange-600 transition font-medium text-sm">
+                    class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
                     <i class="fa fa-bars mr-1"></i> Menu
                 </button>
 
                 <button
-                    class="hidden md:inline bg-orange-500 text-white px-3 py-2 rounded-full hover:bg-orange-600 transition font-medium text-sm">
+                    class="hidden md:inline bg-gradient-to-r from-orange-600 to-amber-500 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
                     <i class="fa fa-user mr-1"></i> Profile
                 </button>
 
                 <button onclick="window.location.href='/onecart-ai/'"
-                    class="bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-2 rounded-full hover:scale-105 transition font-medium text-sm">
+                    class="bg-gradient-to-r from-orange-600 via-amber-500 to-yellow-400 text-white px-4 py-2 rounded-full hover:scale-105 transition font-medium text-sm shadow-lg">
                     <i class="fa fa-robot mr-1"></i> OneCart AI
                 </button>
             </div>
@@ -92,189 +106,192 @@
     </nav>
 
     <!-- Filters + Products Section -->
-    <section class="flex flex-col md:flex-row px-4 md:px-6 py-8 gap-6 max-w-7xl mx-auto fade-in">
+    <section
+        class="flex flex-col md:flex-row px-[1px]  md:px-2 py-[1px] md:pt-6  gap-1 bg-orange-400 min-h-[91vh] max-h-[91vh] overflow-y-auto  max-w-8xl mx-auto fade-in">
 
         <!-- Sidebar Filters -->
-        <aside id="filterSidebar" class="fixed md:static top-0 left-0 h-full md:h-auto w-72 md:w-1/4 bg-white p-6 mt-20 md:mt-0 rounded-xl shadow-lg md:shadow-sm border border-gray-200
-      transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 overflow-y-auto">
-
+        <aside id="filterSidebar"
+            class="fixed md:static top-0 left-0 h-full md:h-auto w-72 md:w-1/4 bg-zinc-900 p-6 mt-[65px] md:mt-0 rounded-l-0  md:rounded-xl shadow-2xl md:shadow-sm border border-zinc-800 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 overflow-y-auto">
             <div class="flex items-center justify-between md:hidden mb-4">
-                <h3 class="text-lg font-semibold text-gray-800">Filters</h3>
-                <button id="closeFilter" class="text-gray-500 text-2xl leading-none">&times;</button>
+                <h3 class="text-lg font-semibold text-gray-100">Filters</h3>
+                <button id="closeFilter" class="text-gray-400 text-2xl leading-none">&times;</button>
             </div>
 
-            <h3 class="hidden md:block text-lg font-semibold mb-4 text-gray-800">Filters</h3>
+            <h3 class="hidden md:block text-lg font-semibold mb-4 text-gray-100">Filters</h3>
 
-            <!-- Category -->
             <div class="mb-6">
-                <h4 class="font-medium text-gray-700 mb-2">Category</h4>
-                <ul class="space-y-2 text-gray-600 text-sm">
-                    <li><label><input type="checkbox" class="mr-2">Electronics</label></li>
-                    <li><label><input type="checkbox" class="mr-2">Fashion</label></li>
-                    <li><label><input type="checkbox" class="mr-2">Home</label></li>
-                    <li><label><input type="checkbox" class="mr-2">Sports</label></li>
-                    <li><label><input type="checkbox" class="mr-2">Beauty</label></li>
+                <h4 class="font-medium text-amber-400 mb-2">Category</h4>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">Electronics</label></li>
+                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">Home</label></li>
+                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">Fashion</label></li>
                 </ul>
             </div>
 
-            <!-- Marketplaces -->
             <div class="mb-6">
-                <h4 class="font-medium text-gray-700 mb-2">Marketplaces</h4>
-                <ul class="space-y-2 text-gray-600 text-sm">
-                    <li><label><input type="checkbox" class="mr-2">Amazon</label></li>
-                    <li><label><input type="checkbox" class="mr-2">eBay</label></li>
-                    <li><label><input type="checkbox" class="mr-2">Jumia</label></li>
-                    <li><label><input type="checkbox" class="mr-2">Alibaba</label></li>
-                    <li><label><input type="checkbox" class="mr-2">Etsy</label></li>
+                <h4 class="font-medium text-amber-400 mb-2">Marketplaces</h4>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">eBay</label></li>
+                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">Jumia</label></li>
+                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">Amazon</label></li>
                 </ul>
             </div>
         </aside>
 
-        <!-- Overlay (when filter is open) -->
         <div id="filterOverlay" class="fixed inset-0 bg-black/40 hidden z-30 md:hidden"></div>
-
 
         <!-- MENU SIDEBAR -->
         <aside id="menuSidebar"
-            class="fixed top-0 right-0 h-full w-72 bg-white p-6 shadow-xl border-l border-gray-200 transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto rounded-l-2xl">
+            class="fixed top-0 right-0 h-full w-72 bg-zinc-900 p-6 shadow-2xl border-l border-zinc-800 transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto rounded-l-2xl">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-lg font-semibold text-gray-800">Menu</h3>
-                <button id="closeMenu" class="text-gray-500 text-2xl leading-none">&times;</button>
+                <h3 class="text-lg font-semibold text-gray-100">Menu</h3>
+                <button id="closeMenu" class="text-gray-400 text-2xl leading-none">&times;</button>
             </div>
 
-            <nav class="space-y-4 text-gray-700 font-medium">
-                <a href="/onecart-ai/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
-                        class="fa fa-robot mr-2"></i> OneCart AI</a>
-
-                <a href="/home/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
-                        class="fa fa-house mr-2"></i> Home</a>
-
-                <a href="/onecart-cart/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
-                        class="fa fa-shopping-cart mr-2"></i> My Cart</a>
-                <a href="/orders/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
-                        class="fa fa-box mr-2"></i> Orders</a>
-                <a href="/settings/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
-                        class="fa fa-cog mr-2"></i> Settings</a>
-                <a href="/support/" class="block p-3 rounded-lg hover:bg-orange-100 transition"><i
-                        class="fa fa-headset mr-2"></i> Support</a>
-                <hr class="my-4 border-gray-300">
-                <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-medium transition">
+            <nav class="space-y-4 text-gray-300 font-medium">
+                <a href="/onecart-ai/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
+                        class="fa fa-robot mr-2 text-amber-400"></i> OneCart AI</a>
+                <a href="/home/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
+                        class="fa fa-house mr-2 text-amber-400"></i> Home</a>
+                <a href="/onecart-cart/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
+                        class="fa fa-shopping-cart mr-2 text-amber-400"></i> My Cart</a>
+                <a href="/orders/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
+                        class="fa fa-box mr-2 text-amber-400"></i> Orders</a>
+                <a href="/settings/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
+                        class="fa fa-cog mr-2 text-amber-400"></i> Settings</a>
+                <a href="/support/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
+                        class="fa fa-headset mr-2 text-amber-400"></i> Support</a>
+                <hr class="my-4 border-zinc-700">
+                <button
+                    class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-medium transition shadow-md hover:shadow-lg">
                     <i class="fa fa-sign-out-alt mr-2"></i> Logout
                 </button>
             </nav>
         </aside>
 
-        <!-- MENU OVERLAY -->
         <div id="menuOverlay" class="fixed inset-0 bg-black/40 hidden z-40"></div>
 
-
-
         <!-- Products Grid -->
-        <main class="flex-1">
-            <!-- Search and Sort -->
+        <main class="flex-1 bg-[aliceblue] px-2 py-2 md:rounded-lg  ">
             <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-3">
                 <div
-                    class="flex items-center w-full md:w-1/2 bg-white rounded-full overflow-hidden border border-gray-200 shadow-sm">
+                    class="flex items-center w-full md:w-1/2 bg-zinc-800 rounded-full overflow-hidden border border-zinc-700 shadow-md">
                     <input type="text" placeholder="Search products..."
-                        class="w-full px-4 py-2 outline-none text-gray-700" />
-                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2">
+                        class="w-full px-4 py-2 outline-none bg-transparent text-gray-200 placeholder-gray-500" />
+                    <button
+                        class="bg-gradient-to-r from-amber-500 to-orange-600 hover:brightness-110 text-white px-4 py-4 md:py-3">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
 
                 <select
-                    class="border border-gray-300 rounded-full px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition hidden md:inline">
+                    class="border border-zinc-700 text-sm  bg-zinc-800 rounded-full px-3 py-1  text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-500 transition hidden md:inline">
                     <option>Sort by: Popularity</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
                     <option>Newest Arrivals</option>
                 </select>
             </div>
 
             <!-- Product Cards -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 gap-x-2  fade-in max-h-[90vh] md:max-h-[85vh] overflow-y-auto  ">
-                {% comment %} Example Product Card {% endcomment %}
-                <div
-                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-lg mb-3" />
-                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
-                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
-                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
-                    <button
-                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
-                        Add to Cart
-                    </button>
-                </div>
-
-                <div
-                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-lg mb-3" />
-                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
-                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
-                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
-                    <button
-                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
-                        Add to Cart
-                    </button>
-                </div>
-
-
-
-                <div
-                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-lg mb-3" />
-                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
-                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
-                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
-                    <button
-                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
-                        Add to Cart
-                    </button>
-                </div> 
+            <div
+                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4  gap-x-2 fade-in max-h-[87vh] md:max-h-[85vh] overflow-y-auto">
                 
-
+                
                 <div
-                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
+                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
                     <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-lg mb-3" />
-                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
-                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
-                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
+                        class="w-full h-44 object-cover rounded-xl mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
+                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
+                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
                     <button
-                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
+                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
                         Add to Cart
                     </button>
                 </div>
 
-    
-
                 <div
-                    class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:scale-[1.02] transition duration-300 cursor-pointer">
+                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
                     <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-lg mb-3" />
-                    <h3 class="font-semibold text-gray-800 truncate">Product Name </h3>
-                    <p class="text-sm text-gray-500 mb-2">Product Marketplace</p>
-                    <p class="text-orange-600 font-bold mb-3">Product Price </p>
+                        class="w-full h-44 object-cover rounded-xl mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
+                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
+                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
                     <button
-                        class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white py-2 rounded-lg font-medium transition">
+                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
                         Add to Cart
                     </button>
                 </div>
 
+
+                                <div
+                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-xl mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
+                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
+                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
+                    <button
+                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div
+                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-xl mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
+                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
+                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
+                    <button
+                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
+                        Add to Cart
+                    </button>
+                </div>
+
+
+
+
+
+                <div
+                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-xl mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
+                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
+                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
+                    <button
+                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div
+                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                        class="w-full h-44 object-cover rounded-xl mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
+                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
+                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
+                    <button
+                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
+                        Add to Cart
+                    </button>
+                </div>
+
+
+                
+                
             </div>
         </main>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm fixed bottom-[-69px] left-0 right-0">
-        <p>© 2025 <span class="text-orange-500 font-semibold">OneCart</span>. All rights reserved.</p>
+    <footer class="glass border-t border-zinc-800 py-5 text-center text-gray-400 text-sm mt-1 backdrop-blur-xl">
+        <p>© 2025 <span class="text-amber-400 font-semibold">OneCart</span>. All rights reserved.</p>
     </footer>
 
     <script src="{% static 'main/onecartnormal.js' %}"></script>
-
 </body>
 
 </html>

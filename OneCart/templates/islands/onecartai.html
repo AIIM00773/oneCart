@@ -33,108 +33,159 @@
     </style>
 </head>
 
-<body class="bg-white text-gray-900 font-sans">
-    <nav class="flex items-center justify-between px-6 py-4 border-b sticky top-0 bg-white z-50">
+<body class="bg-gradient-to-br from-orange-200 via-orange-400  to-white text-gray-900 font-sans">
+
+    <!-- Navbar -->
+    <nav
+        class="flex items-center justify-between px-2 md:px-6 py-4 border-b sticky top-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
         <div class="flex items-center gap-3">
             <img src="{% static 'resources/logos/logo.png' %}"
-                class="w-14 h-14 rounded-full ring-1 ring-white/10 shadow-md" alt="OneCart Logo" />
+                class="w-14 h-14 rounded-full ring-1 ring-orange-200 shadow-md" alt="OneCart Logo" />
             <div>
-                <div class="text-lg font-bold text-primary">OneCart</div>
-                <div class="text-xs text-gray-500">AI Shopping Assistant</div>
+                <div class="text-lg font-bold text-orange-600">OneCart</div>
+                <div class="text-xs text-gray-500">AI <i class="hidden md:inline">Shopping</i> Assistant</div>
             </div>
         </div>
 
-        <div class="flex items-center gap-4">
-            <a href="cart.html" class="text-sm text-gray-700 hover:text-primary">Cart</a>
-            <button id="modeToggle" class="ml-3 bg-primary text-white px-3 py-2 rounded-full text-sm">Exit AI</button>
+        <div class="flex justify-between gap-x-4 items-center mb-3 lg:hidden">
+            <button id="toggleSaved"
+                class="px-2 py-2 bg-orange-600 text-white rounded-full shadow-md text-sm flex items-center gap-2">
+                📁History 
+            </button>
+            <button id="toggleQuick"
+                class="px-2 py-2 bg-orange-600 text-white rounded-full shadow-md text-sm flex items-center gap-2">
+                ⚡ Quick  Actions 
+            </button>
+        </div>
+
+        <div class="items-center gap-4 hidden md:flex">
+            <a href="cart.html" class="text-sm text-gray-700 hover:text-orange-600 transition">Cart</a>
+            <button id="modeToggle"
+                class="ml-3 bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-full text-sm shadow-sm transition">Exit
+                AI</button>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <!-- Main -->
+    <main class="max-w-7xl mx-auto p-2 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-2 md:gap-6 relative">
 
-        <!-- Left: Saved Prompts / History -->
-        <aside class="hidden lg:block col-span-1 bg-gray-50 border rounded-xl p-4 h-[75vh] overflow-y-auto">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="font-semibold text-gray-800">Saved & Recent</h3>
-                <button id="newSession" class="text-sm text-primary hover:underline">New</button>
-            </div>
 
-            <div class="space-y-3" id="savedPrompts">
-                <!-- Sample saved prompt -->
-                <button class="w-full text-left p-3 bg-white rounded-lg border hover:shadow-sm"
-                    data-prompt="Find best wireless headphones under $150">🎧 Best headphones under $150</button>
-                <button class="w-full text-left p-3 bg-white rounded-lg border hover:shadow-sm"
-                    data-prompt="Laptop for programming under $800, lightweight">💻 Lightweight laptop for
-                    programming</button>
-                <button class="w-full text-left p-3 bg-white rounded-lg border hover:shadow-sm"
-                    data-prompt="Fast shipping phone, Kenya available">📱 Fast shipping phones to Kenya</button>
-            </div>
+        <!-- Overlay for mobile slide panels -->
+        <div id="overlay"
+            class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300"></div>
 
-            <div class="mt-6">
-                <h4 class="text-sm text-gray-600 mb-2">Tip</h4>
-                <p class="text-xs text-gray-500">Use short, specific prompts. Eg: "Compare noise-cancelling headphones
-                    under $200"</p>
+        <!-- Left Sidebar (Saved & Recent) -->
+        <aside id="savedPanel"
+            class="fixed top-0 left-0 w-72 h-full bg-gradient-to-b from-gray-50 to-orange-50 border-r border-orange-100 shadow-lg z-50 transform -translate-x-full transition-transform duration-300 lg:static lg:translate-x-0 lg:col-span-1 lg:rounded-xl lg:p-4 lg:h-[78vh] lg:overflow-y-auto">
+            <div class="p-4 lg:p-0">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-semibold text-gray-800">Saved & Recent</h3>
+                    <button id="newSession" class="text-sm text-orange-600 hover:underline">New</button>
+                </div>
+
+                <div class="space-y-3" id="savedPrompts">
+                    <button
+                        class="w-full text-left p-3 bg-white/90 rounded-lg border border-orange-100 hover:bg-orange-100 transition"
+                        data-prompt="Find best wireless headphones under $150">🎧 Best headphones under $150</button>
+                    <button
+                        class="w-full text-left p-3 bg-white/90 rounded-lg border border-orange-100 hover:bg-orange-100 transition"
+                        data-prompt="Laptop for programming under $800, lightweight">💻 Lightweight laptop for
+                        programming</button>
+                    <button
+                        class="w-full text-left p-3 bg-white/90 rounded-lg border border-orange-100 hover:bg-orange-100 transition"
+                        data-prompt="Fast shipping phone, Kenya available">📱 Fast shipping phones to Kenya</button>
+                </div>
+
+                <div class="mt-6 bg-orange-50 border border-orange-100 p-3 rounded-lg">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">💡 Tip</h4>
+                    <p class="text-xs text-gray-600">Use short, specific prompts. Eg: "Compare noise-cancelling
+                        headphones under
+                        $200"</p>
+                </div>
             </div>
         </aside>
 
-        <!-- Center: Chat + Product Cards -->
-        <section class="col-span-1 lg:col-span-2 bg-white border rounded-xl p-4 h-[75vh] flex flex-col">
-
-            <!-- Conversation area -->
+        <!-- Center Chat -->
+        <section
+            class="col-span-1 lg:col-span-2 bg-white/90 border border-orange-100 rounded-xl p-4 h-[78vh] flex flex-col shadow-sm backdrop-blur-sm z-10">
             <div id="chat" class="flex-1 overflow-y-auto chat-scroll space-y-4 p-3">
-                <!-- System intro -->
                 <div class="max-w-xl">
-                    <div class="bg-accent px-4 py-3 rounded-xl text-sm text-gray-800">Hi — I&apos;m <strong>OneCart
-                            AI</strong>. Tell me what you want to buy or type a saved prompt.</div>
+                    <div
+                        class="bg-orange-50 border border-orange-100 px-4 py-3 rounded-xl text-sm text-gray-800 shadow-sm">
+                        Hi — I&apos;m <strong>OneCart AI</strong>. Tell me what you want to buy or type a saved prompt.
+                    </div>
                 </div>
-
-                <!-- Dynamic chat messages will appear here -->
             </div>
 
-            <!-- Composer -->
             <div class="mt-3 pt-3 border-t flex items-center gap-3">
-                <button id="voiceBtn" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200" title="Voice input">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path d="M9 2a1 1 0 012 0v6a1 1 0 11-2 0V2z" />
-                        <path fill-rule="evenodd" d="M5 8a5 5 0 0010 0h-1a4 4 0 11-8 0H5z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-
                 <input id="promptInput" type="text" placeholder="Try: 'Find best budget earbuds under $50'"
-                    class="flex-1 border border-gray-200 rounded-full px-4 py-2 outline-none"
+                    class="flex-1 border border-orange-200 rounded-full px-4 py-2 outline-none bg-white/80 focus:ring-2 focus:ring-orange-400"
                     aria-label="Shopping prompt">
-
-                <button id="sendBtn" class="bg-primary text-white px-4 py-2 rounded-full">Ask</button>
+                <button id="sendBtn"
+                    class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-full shadow-md transition">Ask</button>
             </div>
         </section>
 
-        <!-- Right: Quick Actions & Context -->
-        <aside class="col-span-1 bg-white border rounded-xl p-4 h-[75vh] overflow-y-auto">
-            <div class="mb-4">
-                <h3 class="font-semibold text-gray-800">Quick Actions</h3>
-                <div class="mt-3 flex flex-col gap-2">
-                    <button class="w-full text-left px-3 py-2 border rounded-lg hover:bg-orange-50"
+        <!-- Right Sidebar (Quick Actions) -->
+        <aside id="quickPanel"
+            class="fixed top-0 right-0 w-72 h-full bg-gradient-to-b from-white to-orange-50 border-l border-orange-100 shadow-lg z-50 transform translate-x-full transition-transform duration-300 lg:static lg:translate-x-0 lg:col-span-1 lg:rounded-xl lg:p-4 lg:h-[78vh] lg:overflow-y-auto">
+            <div class="p-4 lg:p-0">
+                <h3 class="font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                <div class="flex flex-col gap-2">
+                    <button
+                        class="w-full text-left px-3 py-2 border border-orange-100 rounded-lg hover:bg-orange-100 transition"
                         data-action="compare">Compare top picks</button>
-                    <button class="w-full text-left px-3 py-2 border rounded-lg hover:bg-orange-50"
+                    <button
+                        class="w-full text-left px-3 py-2 border border-orange-100 rounded-lg hover:bg-orange-100 transition"
                         data-action="cheapest">Show cheapest</button>
-                    <button class="w-full text-left px-3 py-2 border rounded-lg hover:bg-orange-50"
+                    <button
+                        class="w-full text-left px-3 py-2 border border-orange-100 rounded-lg hover:bg-orange-100 transition"
                         data-action="fastship">Fastest shipping</button>
                 </div>
-            </div>
 
-            <div class="mt-6">
-                <h4 class="font-semibold text-gray-800 mb-2">Filters Applied</h4>
-                <div id="appliedFilters" class="text-sm text-gray-600">None</div>
-            </div>
+                <div class="mt-6 bg-orange-50 border border-orange-100 p-3 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-2">Filters Applied</h4>
+                    <div id="appliedFilters" class="text-sm text-gray-600">None</div>
+                </div>
 
-            <div class="mt-6">
-                <h4 class="font-semibold text-gray-800 mb-2">Current Session</h4>
-                <div id="sessionMeta" class="text-sm text-gray-600">No actions yet</div>
+                <div class="mt-6 bg-orange-50 border border-orange-100 p-3 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-2">Current Session</h4>
+                    <div id="sessionMeta" class="text-sm text-gray-600">No actions yet</div>
+                </div>
             </div>
         </aside>
-
     </main>
+
+    <script>
+        const savedPanel = document.getElementById('savedPanel');
+        const quickPanel = document.getElementById('quickPanel');
+        const toggleSaved = document.getElementById('toggleSaved');
+        const toggleQuick = document.getElementById('toggleQuick');
+        const overlay = document.getElementById('overlay');
+
+        function openPanel(panel) {
+            if (panel === 'saved') {
+                savedPanel.classList.remove('-translate-x-full');
+                quickPanel.classList.add('translate-x-full');
+            } else if (panel === 'quick') {
+                quickPanel.classList.remove('translate-x-full');
+                savedPanel.classList.add('-translate-x-full');
+            }
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        }
+
+        function closePanels() {
+            savedPanel.classList.add('-translate-x-full');
+            quickPanel.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+            overlay.classList.remove('opacity-100');
+        }
+
+        toggleSaved.addEventListener('click', () => openPanel('saved'));
+        toggleQuick.addEventListener('click', () => openPanel('quick'));
+        overlay.addEventListener('click', closePanels);
+    </script>
 
     <template id="aiMessageTpl">
         <div class="max-w-xl">
