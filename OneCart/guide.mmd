@@ -1,0 +1,46 @@
+
+
+
+flowchart TD
+    %% User Actions
+    A[User Opens Site] --> B[Homepage]
+    B --> C[User Enters Search Query]
+    C --> D[Backend Aggregator]
+    
+    %% Backend - Fetch & Normalize
+    D -->|API Requests| D1[Fetch Products from Marketplaces]
+    D -->|Normalize Data| D2[Normalize Fields: title, price, rating, marketplace_id, image_url]
+    D2 --> E[Frontend Displays Results]
+    
+    %% User Adds to Cart
+    E --> F[User Adds Items to Cart]
+    F -->|Create CartItem Records| DB1[(CartItem)]
+    F -->|Display Unified Cart Total| E1[Cart: Items, Marketplace, Total]
+    
+    %% Checkout Process
+    F --> G[User Clicks Checkout]
+    G --> H[Backend Checkout Orchestrator]
+    
+    %% Backend Handling
+    H -->|Fetch CartItems| DB1
+    H -->|Group by Marketplace| H1[Marketplace Order Groups]
+    H --> I[Process Single Payment] --> DB2[(Payment Record)]
+    H1 --> J[Place Orders via Marketplace APIs] --> DB3[(OrderItem)]
+    
+    %% Unified Order for User
+    J --> K[Create Unified Order Record] --> DB4[(Order)]
+    DB3 --> DB4
+    K --> L[User Order Confirmation]
+    
+    %% Tracking & Updates
+    L --> M[Backend Order Tracking]
+    M -->|Update Status from Marketplaces| DB3
+    M -->|Update Unified Order Status| DB4
+    
+    %% Database Legend
+    subgraph Database
+        DB1[(CartItem)]
+        DB2[(Payment)]
+        DB3[(OrderItem)]
+        DB4[(Order)]
+    end
