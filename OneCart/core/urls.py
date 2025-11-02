@@ -15,6 +15,8 @@ urlpatterns =[
    path("onecart-cart/",views.OneCartcartPage.as_view()), 
    path("oneCart-checkout/",views.OneCartcheckout.as_view()),
 
+   path("pertners/", views.OnecartStores.as_view()), 
+
    path("about/",views.LndingPage.as_view()),
 
 ] 

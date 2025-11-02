@@ -1,0 +1,154 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top Marketplaces & Online Stores in Kenya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Poppins', 'sans-serif'] },
+          colors: {
+            primary: '#2563eb',
+            accent: '#f3f4f6',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-accent min-h-screen font-sans text-gray-800">
+  <!-- Header -->
+    <!-- Navbar -->
+    <nav
+        class="sticky top-0 z-50 bg-[aliceblue] glass border-b border-zinc-800 shadow-lg transition-all duration-300 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-3">
+            <!-- Left -->
+            <div class="flex items-center gap-2">
+                <img src="{% static 'resources/logos/logo.png' %}"
+                    class="w-10 h-10 rounded-full ring-2 ring-amber-400/30 shadow-sm hover:scale-105 transition"
+                    alt="OneCart Logo" />
+                <span
+                    class="text-xl font-semibold tracking-tight bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent hidden sm:inline">
+                    OneCart
+                </span>
+            </div>
+
+            <!-- Center Nav Links -->
+            <div class=" gap-8 font-medium text-gray-300 flex flex-row items-center gap-x-8 ">
+                <a href="/pertners/" class="text-orange-500 hover:text-orange-400 transition text-2xl ">OneCar Pertners </a>
+            </div>
+
+       
+    </nav>
+
+
+  <!-- Cards Container -->
+  <main class="max-w-7xl mx-auto px-6 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+    <!-- Template for each card -->
+    <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col justify-between">
+      <div>
+        <img src="https://ke.jumia.is/cms/2025/BF25/Live/Go-Live/Homepageslider_PN660x330.jpg" alt="Jumia" class="w-full h-40 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold text-gray-900">Jumia Kenya</h2>
+        <p class="text-sm text-gray-600 mt-2">Kenya’s leading e-commerce platform offering electronics, fashion, appliances, and more at competitive prices.</p>
+        <ul class="mt-3 text-sm text-gray-700 list-disc pl-4">
+          <li>Fast nationwide delivery</li>
+          <li>Frequent flash sales</li>
+          <li>Mobile app support</li>
+        </ul>
+      </div>
+      <a href="https://www.jumia.co.ke" target="_blank" class="mt-5 bg-primary text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition">Visit Store</a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col justify-between">
+      <div>
+        <img src="https://insiderkenya.com/wp-content/uploads/2023/05/Carrefour.webp" alt="Carrefour" class="w-full h-40 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold text-gray-900">Carrefour Kenya</h2>
+        <p class="text-sm text-gray-600 mt-2">Top supermarket offering groceries, electronics, and fresh foods both online and in-store across major cities.</p>
+        <ul class="mt-3 text-sm text-gray-700 list-disc pl-4">
+          <li>Reliable delivery</li>
+          <li>Fresh produce</li>
+          <li>Easy-to-use app</li>
+        </ul>
+      </div>
+      <a href="https://www.carrefour.ke" target="_blank" class="mt-5 bg-primary text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition">Visit Store</a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col justify-between">
+      <div>
+        <img src="https://d16zmt6hgq1jhj.cloudfront.net/slider_images/Web/f87oStQadB43JKVUlK79akCHG1jdpoMCPq8vECa7.jpg" alt="Naivas" class="w-full h-40 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold text-gray-900">Naivas Supermarket</h2>
+        <p class="text-sm text-gray-600 mt-2">Kenya’s favorite homegrown supermarket with online ordering for groceries, household items, and electronics.</p>
+        <ul class="mt-3 text-sm text-gray-700 list-disc pl-4">
+          <li>Trusted brand</li>
+          <li>Local delivery</li>
+          <li>Affordable pricing</li>
+        </ul>
+      </div>
+      <a href="https://naivas.online" target="_blank" class="mt-5 bg-primary text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition">Visit Store</a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col justify-between">
+      <div>
+        <img src="https://greenspoon.co.ke/wp-content/uploads/2024/09/App-Banner-opt-large.jpg" alt="Greenspoon" class="w-full h-40 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold text-gray-900">Greenspoon</h2>
+        <p class="text-sm text-gray-600 mt-2">A premium online grocery store specializing in organic, sustainable and locally sourced food.</p>
+        <ul class="mt-3 text-sm text-gray-700 list-disc pl-4">
+          <li>Fresh farm produce</li>
+          <li>Fast delivery</li>
+          <li>Eco-friendly packaging</li>
+        </ul>
+      </div>
+      <a href="https://greenspoon.co.ke" target="_blank" class="mt-5 bg-primary text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition">Visit Store</a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col justify-between">
+      <div>
+        <img src="https://img.kilimall.com/c/h5/icon_164_x3.png" alt="Kilimall" class="w-full h-40 object-contain bg-gray-50 rounded-lg mb-4">
+        <h2 class="text-xl font-semibold text-gray-900">Kilimall</h2>
+        <p class="text-sm text-gray-600 mt-2">A popular online marketplace with affordable electronics, fashion and household goods in Kenya.</p>
+        <ul class="mt-3 text-sm text-gray-700 list-disc pl-4">
+          <li>Competitive pricing</li>
+          <li>Online deals</li>
+          <li>Mobile app shopping</li>
+        </ul>
+      </div>
+      <a href="https://www.kilimall.co.ke" target="_blank" class="mt-5 bg-primary text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition">Visit Store</a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col justify-between">
+      <div>
+        <img src="https://shopit.co.ke/images/detailed/124/vention-auto-clamping-car-phone-mount-with-duckbill-clip-black-square-fashion-type-34294688415910.jpg" alt="Shopit" class="w-full h-40 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold text-gray-900">Shopit Kenya</h2>
+        <p class="text-sm text-gray-600 mt-2">A trusted online retailer for electronics, IT equipment, and office supplies serving Kenya for over a decade.</p>
+        <ul class="mt-3 text-sm text-gray-700 list-disc pl-4">
+          <li>Electronics experts</li>
+          <li>Competitive prices</li>
+          <li>Fast Nairobi delivery</li>
+        </ul>
+      </div>
+      <a href="https://shopit.co.ke" target="_blank" class="mt-5 bg-primary text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition">Visit Store</a>
+    </div>
+
+  </main>
+
+
+  <!-- Optional smooth scroll/animation JS -->
+  <script>
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        console.log(`Navigating to ${link.href}`);
+      });
+    });
+  </script>
+</body>
+</html>

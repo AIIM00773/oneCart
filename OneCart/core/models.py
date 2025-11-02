@@ -5,6 +5,89 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 import uuid
 
+
+#geberal and none spacific models
+
+
+
+
+
+class GeneralMenuContent(models.Model):
+    MENU_GROUP_CHOICES = [
+        ('HEADER', 'Header Menu'),
+        ('SIDEBAR', 'Sidebar Menu'),
+        ('FOOTER', 'Footer Menu'),
+    ]
+
+    PAGE_CHOICES = [
+        ('HOME', 'Home Page'),
+        ('CART', 'Cart Page'),
+        ('PROFILE', 'Profile Page'),
+        ('ORDERS', 'Orders Page'),
+        ('SETTINGS', 'Settings Page'),
+        ('SUPPORT', 'Support Page'),
+        ('AI_ASSIST', 'AI Assistant Page'),
+        ('OTHER', 'Other / General'),
+    ]
+
+    labelText = models.CharField(
+        max_length=200, 
+        unique=True, 
+        help_text="Display text for the menu item (e.g., Home, Cart, Support)"
+    )
+
+
+    labelIcon = models.CharField(
+        max_length=50, 
+        help_text="Font Awesome icon class (e.g., fa-solid fa-home)"
+    )
+
+    routeToLink = models.URLField(
+        unique=True, 
+        help_text="Destination link for this menu item"
+    )
+
+    menuPage = models.CharField(
+        max_length=50,
+        choices=PAGE_CHOICES,
+        default='OTHER',
+        help_text="Specifies the logical page this menu item links to"
+    )
+
+    menuGroup = models.CharField(
+        max_length=50,
+        choices=MENU_GROUP_CHOICES,
+        default='HEADER',
+        help_text="Defines which part of the site this menu appears in"
+    )
+
+    position = models.PositiveIntegerField(
+        default=0,
+        help_text="Order of appearance within the menu group"
+    )
+
+
+    is_active = models.BooleanField(
+        default=True,
+        help_text="If unchecked, this menu item will be hidden from users"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.labelText} ({self.menuGroup})"
+
+
+
+
+
+
+
+
+
+
+
 # -----------------------
 # User Model
 # -----------------------

@@ -14,108 +14,108 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-<style>
-    *::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-        background: transparent;
-    }
-
-    * {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    body {
-        background: radial-gradient(circle at top left, #1b1b1b, #0f0f0f 70%);
-        color: #e5e5e5;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .fade-in {
-        animation: fadeIn 0.6s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
+    <style>
+        *::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            background: transparent;
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-    }
 
-    .float {
-        transition: all 0.3s ease;
-    }
+        body {
+            background: radial-gradient(circle at top left, #1b1b1b, #0f0f0f 70%);
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+        }
 
-    .float:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 8px 24px rgba(255, 193, 7, 0.18);
-    }
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
 
-    .glass {
-        background: rgba(25, 25, 25, 0.8);
-        backdrop-filter: blur(14px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-    nav.glass {
-        background: rgba(30, 30, 30, 0.7);
-        backdrop-filter: blur(18px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    footer.glass {
-        background: rgba(25, 25, 25, 0.6);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
+        .float {
+            transition: all 0.3s ease;
+        }
 
-    /* Adjust bright sections */
-    main {
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(123, 132, 6, 0.05);
-    }
+        .float:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(255, 193, 7, 0.18);
+        }
 
-    /* Product cards */
-    .float {
-        background: linear-gradient(to bottom right, rgba(30, 30, 30, 0.9), rgba(40, 40, 40, 0.95));
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    }
+        .glass {
+            background: rgba(25, 25, 25, 0.8);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    .float:hover {
-        background: linear-gradient(to bottom right, rgba(35, 35, 35, 0.9), rgba(45, 45, 45, 0.95));
-        box-shadow: 0 8px 30px rgba(255, 193, 7, 0.18);
-    }
+        nav.glass {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
 
-    /* Accent buttons and highlights */
-    .bg-gradient-to-r.from-amber-500.to-orange-600 {
-        background: linear-gradient(to right, #f8b54c, #f47c2a);
-    }
+        footer.glass {
+            background: rgba(25, 25, 25, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    .bg-gradient-to-r.from-orange-600.to-amber-500 {
-        background: linear-gradient(to right, #f47c2a, #f8b54c);
-    }
+        /* Adjust bright sections */
+        main {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(123, 132, 6, 0.05);
+        }
 
-    .text-amber-400 {
-        color: #f5c56b !important;
-    }
+        /* Product cards */
+        .float {
+            background: linear-gradient(to bottom right, rgba(30, 30, 30, 0.9), rgba(40, 40, 40, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
 
-    /* Input & select refinement */
-    input::placeholder {
-        color: #888;
-    }
+        .float:hover {
+            background: linear-gradient(to bottom right, rgba(35, 35, 35, 0.9), rgba(45, 45, 45, 0.95));
+            box-shadow: 0 8px 30px rgba(255, 193, 7, 0.18);
+        }
 
-    select {
-        background: rgba(40, 40, 40, 0.8) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    }
-</style>
+        /* Accent buttons and highlights */
+        .bg-gradient-to-r.from-amber-500.to-orange-600 {
+            background: linear-gradient(to right, #f8b54c, #f47c2a);
+        }
+
+        .bg-gradient-to-r.from-orange-600.to-amber-500 {
+            background: linear-gradient(to right, #f47c2a, #f8b54c);
+        }
+
+        .text-amber-400 {
+            color: #f5c56b !important;
+        }
+
+        /* Input & select refinement */
+        input::placeholder {
+            color: #888;
+        }
+
+        select {
+            background: rgba(40, 40, 40, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+    </style>
 
 
 </head>
@@ -146,8 +146,20 @@
             <!-- Right Controls -->
             <div class="flex items-center gap-2">
                 <button id="filterToggle"
-                    class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
+                    class="md:hidden bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
                     <i class="fa fa-filter mr-1"></i> Filters
+                </button>
+
+                <button id="" 
+                    onclick="window.location.href='/pertners/'; "
+                    class="hidden md:inline   bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
+                    <i class="fa fa-list mr-1"></i> Stores
+                </button>
+
+
+                <button id="filterToggle"
+                    class="hidden md:inline bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
+                    <i class="fa fa-shopping-cart mr-1"></i> Cart
                 </button>
 
                 <button id="menuToggle"
@@ -170,11 +182,11 @@
 
     <!-- Filters + Products Section -->
     <section
-        class="flex flex-col md:flex-row px-[1px]  md:px-2 py-[1px] md:pt-6 bg-[aliceblue]  gap-1  min-h-[91vh] max-h-[91vh] overflow-y-auto  max-w-8xl mx-auto fade-in">
+        class="flex flex-col md:flex-row px-[1px]  md:px-2 md:pl-0 py-[1px] md:pt-2  bg-[aliceblue]  gap-1  min-h-[91vh] max-h-[91vh] overflow-y-auto  max-w-8xl mx-auto fade-in">
 
         <!-- Sidebar Filters -->
         <aside id="filterSidebar"
-            class="fixed md:static top-0 left-0 h-full md:h-auto  w-2/3  md:w-[200px]    bg-zinc-900 p-6 mt-[65px] md:mt-0 rounded-l-0  md:rounded-xl md:rounded-b-0  shadow-2xl md:shadow-sm border border-zinc-800 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 overflow-y-auto">
+            class="fixed md:static top-0 left-0 h-full md:h-auto  w-2/3  md:w-[260px]    bg-zinc-900 p-6 mt-[65px] md:mt-0 rounded-0 shadow-2xl md:shadow-sm border border-zinc-800 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 overflow-y-auto">
             <div class="flex items-center justify-between md:hidden mb-4">
                 <h3 class="text-lg font-semibold text-gray-100">Filters</h3>
                 <button id="closeFilter" class="text-gray-400 text-2xl leading-none">&times;</button>
@@ -205,7 +217,7 @@
 
         <!-- MENU SIDEBAR -->
         <aside id="menuSidebar"
-            class="fixed top-0 right-0 h-full w-2/3 md:w-[180px]  bg-zinc-900 p-6 shadow-2xl border-l border-zinc-800 transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto rounded-l-2xl">
+            class="fixed top-0 right-0 h-full w-2/3 md:w-1/4  bg-zinc-900 p-6 shadow-2xl border-l border-zinc-800 transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto ">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-lg font-semibold text-gray-100">Menu</h3>
                 <button id="closeMenu" class="text-gray-400 text-2xl leading-none">&times;</button>
@@ -214,8 +226,13 @@
             <nav class="space-y-4 text-gray-300 font-medium">
                 <a href="/onecart-ai/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
                         class="fa fa-robot mr-2 text-amber-400"></i> OneCart AI</a>
+
                 <a href="/home/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
                         class="fa fa-house mr-2 text-amber-400"></i> Home</a>
+
+                <a href="/pertners/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
+                        class="fa fa-house mr-2 text-amber-400"></i> stores and Businesses </a>
+
                 <a href="/onecart-cart/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
                         class="fa fa-shopping-cart mr-2 text-amber-400"></i> My Cart</a>
                 <a href="/orders/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
@@ -235,103 +252,109 @@
         <div id="menuOverlay" class="fixed inset-0 bg-black/40 hidden z-40"></div>
 
         <!-- Products Grid -->
-        <main class="flex-1  px-2 py-2 md:rounded-lg  bg-gradient-to-br from-amber-400 via-amber-300 to-orange-50 max-h-[93vh]   ">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-2  gap-3">
+        <!-- Main Content -->
+        <main
+            class="flex-1 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 p-4 md:p-6  fade-in md:border-[0.1px] md:border-orange-500  ">
+            <!-- Search and sort -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 mb-2  md:mb-3">
                 <div
-                    class="flex items-center w-full md:w-1/2 bg-zinc-800 rounded-full overflow-hidden border border-zinc-700 shadow-md">
+                    class="flex items-center w-full md:w-1/2 bg-white/20 backdrop-blur-sm rounded-full overflow-hidden border border-gray-300/40 shadow">
                     <input type="text" placeholder="Search products..."
-                        class="w-full px-4 py-2 outline-none bg-transparent text-gray-200 placeholder-gray-500" />
-                    <button
-                        class="bg-gradient-to-r from-amber-500 to-orange-600 hover:brightness-110 text-white px-4 py-4 md:py-3">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                        class="w-full px-4 py-2 bg-transparent text-gray-700 placeholder-gray-500 outline-none" />
+                    <button class="btn-amber px-4 py-4 md:py-2 rounded-none bg-orange-400 "><i
+                            class="fa fa-search"></i></button>
                 </div>
-
                 <select
-                    class="border border-zinc-700 text-sm  bg-zinc-800 rounded-full px-3 py-1  text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-500 transition hidden md:inline">
+                    class=" hidden md:inline text-gray-800 bg-white/80 border border-gray-300  px-5 text-sm rounded-full px-3 py-2 focus:ring-2 focus:ring-amber-400">
                     <option>Sort by: Popularity</option>
-                    <option>Newest Arrivals</option>
+                    <option>Newest</option>
                 </select>
             </div>
 
-            <!-- Product Cards -->
-            <div
-                class="grid grid-cols-2 bg-[aliceblue]  sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-x-2  md:gap-x-4 fade-in max-h-[76vh] md:max-h-[75vh] py-3 px-2  overflow-y-auto">
+            <!-- Products Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 overflow-y-auto max-h-[72vh] pb-4">
+                <!-- Example Card -->
+                <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample1.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Wireless Earbuds</h3>
+                    <p class="text-sm text-gray-400 mb-1">Jumia Kenya</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 2,499</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
+                </div>
+
+                <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
+                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
+                </div>
+
+                  <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample1.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Wireless Earbuds</h3>
+                    <p class="text-sm text-gray-400 mb-1">Jumia Kenya</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 2,499</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
+                </div>
+
+                <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
+                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
+                </div>
+                
+                   <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample1.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Wireless Earbuds</h3>
+                    <p class="text-sm text-gray-400 mb-1">Jumia Kenya</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 2,499</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
+                </div>
+
+                <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
+                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
+                </div>
                 
                 
-                <div
-                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-xl mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
-                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
-                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
-                    <button
-                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
-                        Add to Cart
-                    </button>
+                 <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample1.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Wireless Earbuds</h3>
+                    <p class="text-sm text-gray-400 mb-1">Jumia Kenya</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 2,499</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
                 </div>
- 
-                <div
-                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-xl mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
-                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
-                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
-                    <button
-                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
-                        Add to Cart
-                    </button>
+
+                <div class="product-card float p-4 shadow-sm cursor-pointer">
+                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
+                        class="w-full h-44 object-cover mb-3" />
+                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
+                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
+                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
+                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
                 </div>
                 
-                <div
-                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-xl mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
-                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
-                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
-                    <button
-                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
-                        Add to Cart
-                    </button>
-                </div>
-
-
-                <div
-                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-xl mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
-                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
-                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
-                    <button
-                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
-                        Add to Cart
-                    </button>
-                </div>
-
-                <div
-                    class="float bg-zinc-900 p-4 rounded-2xl border border-zinc-800 shadow-md hover:shadow-xl transition duration-300 cursor-pointer">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="w-full h-44 object-cover rounded-xl mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Product Name</h3>
-                    <p class="text-sm text-gray-400 mb-1">Product Marketplace</p>
-                    <p class="text-amber-400 font-bold mb-3">Product Price</p>
-                    <button
-                        class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white py-2 rounded-full font-medium transition shadow-md hover:shadow-lg">
-                        Add to Cart
-                    </button>
-                </div>
-
-
+                
             </div>
         </main>
     </section>
 
     <!-- Footer -->
-    <footer class="glass border-t border-zinc-800 py-5 text-center text-gray-400 text-sm mt-0  backdrop-blur-xl">
+    <footer
+        class="glass border-t border-zinc-800 py-5 text-center text-gray-400 text-sm mt-0  backdrop-blur-xl md:hidden ">
         <p>© 2025 <span class="text-amber-400 font-semibold">OneCart</span>. All rights reserved.</p>
     </footer>
 
