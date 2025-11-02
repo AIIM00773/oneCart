@@ -150,8 +150,7 @@
                     <i class="fa fa-filter mr-1"></i> Filters
                 </button>
 
-                <button id="" 
-                    onclick="window.location.href='/pertners/'; "
+                <button id="" onclick="window.location.href='/pertners/'; "
                     class="hidden md:inline   bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-2 rounded-full hover:brightness-110 transition font-medium text-sm shadow-md">
                     <i class="fa fa-list mr-1"></i> Stores
                 </button>
@@ -205,10 +204,8 @@
 
             <div class="mb-6">
                 <h4 class="font-medium text-amber-400 mb-2">Marketplaces</h4>
-                <ul class="space-y-2 text-gray-300 text-sm">
-                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">eBay</label></li>
-                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">Jumia</label></li>
-                    <li><label><input type="checkbox" class="mr-2 accent-amber-500">Amazon</label></li>
+                <ul class="space-y-4   text-gray-300 text-sm" id="StoreFiltersList">
+
                 </ul>
             </div>
         </aside>
@@ -223,24 +220,11 @@
                 <button id="closeMenu" class="text-gray-400 text-2xl leading-none">&times;</button>
             </div>
 
-            <nav class="space-y-4 text-gray-300 font-medium">
-                <a href="/onecart-ai/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
-                        class="fa fa-robot mr-2 text-amber-400"></i> OneCart AI</a>
+            <nav class="space-y-4 text-gray-300 font-medium" id="ListingsMenu">
+                <span id="MenUListSpan">
 
-                <a href="/home/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
-                        class="fa fa-house mr-2 text-amber-400"></i> Home</a>
+                </span>
 
-                <a href="/pertners/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
-                        class="fa fa-house mr-2 text-amber-400"></i> stores and Businesses </a>
-
-                <a href="/onecart-cart/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
-                        class="fa fa-shopping-cart mr-2 text-amber-400"></i> My Cart</a>
-                <a href="/orders/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
-                        class="fa fa-box mr-2 text-amber-400"></i> Orders</a>
-                <a href="/settings/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
-                        class="fa fa-cog mr-2 text-amber-400"></i> Settings</a>
-                <a href="/support/" class="block p-3 rounded-lg hover:bg-zinc-800 transition"><i
-                        class="fa fa-headset mr-2 text-amber-400"></i> Support</a>
                 <hr class="my-4 border-zinc-700">
                 <button
                     class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-medium transition shadow-md hover:shadow-lg">
@@ -283,71 +267,6 @@
                     <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
                 </div>
 
-                <div class="product-card float p-4 shadow-sm cursor-pointer">
-                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
-                        class="w-full h-44 object-cover mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
-                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
-                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
-                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
-                </div>
-
-                  <div class="product-card float p-4 shadow-sm cursor-pointer">
-                    <img src="{% static 'resources/products/sample1.jpg' %}" alt="Product"
-                        class="w-full h-44 object-cover mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Wireless Earbuds</h3>
-                    <p class="text-sm text-gray-400 mb-1">Jumia Kenya</p>
-                    <p class="text-amber-400 font-bold mb-3">KSh 2,499</p>
-                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
-                </div>
-
-                <div class="product-card float p-4 shadow-sm cursor-pointer">
-                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
-                        class="w-full h-44 object-cover mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
-                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
-                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
-                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
-                </div>
-                
-                   <div class="product-card float p-4 shadow-sm cursor-pointer">
-                    <img src="{% static 'resources/products/sample1.jpg' %}" alt="Product"
-                        class="w-full h-44 object-cover mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Wireless Earbuds</h3>
-                    <p class="text-sm text-gray-400 mb-1">Jumia Kenya</p>
-                    <p class="text-amber-400 font-bold mb-3">KSh 2,499</p>
-                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
-                </div>
-
-                <div class="product-card float p-4 shadow-sm cursor-pointer">
-                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
-                        class="w-full h-44 object-cover mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
-                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
-                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
-                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
-                </div>
-                
-                
-                 <div class="product-card float p-4 shadow-sm cursor-pointer">
-                    <img src="{% static 'resources/products/sample1.jpg' %}" alt="Product"
-                        class="w-full h-44 object-cover mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Wireless Earbuds</h3>
-                    <p class="text-sm text-gray-400 mb-1">Jumia Kenya</p>
-                    <p class="text-amber-400 font-bold mb-3">KSh 2,499</p>
-                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
-                </div>
-
-                <div class="product-card float p-4 shadow-sm cursor-pointer">
-                    <img src="{% static 'resources/products/sample2.jpg' %}" alt="Product"
-                        class="w-full h-44 object-cover mb-3" />
-                    <h3 class="font-semibold text-gray-100 truncate">Smart Watch</h3>
-                    <p class="text-sm text-gray-400 mb-1">Carrefour</p>
-                    <p class="text-amber-400 font-bold mb-3">KSh 4,999</p>
-                    <button class="btn-amber w-full py-2 rounded-full text-sm font-medium">Add to Cart</button>
-                </div>
-                
-                
             </div>
         </main>
     </section>
@@ -359,6 +278,133 @@
     </footer>
 
     <script src="{% static 'main/onecartnormal.js' %}"></script>
+
+
+
+
+
+    <script>
+        async function FetchStore() {
+            try {
+                const response = await fetch("/queryMarkets/validated/", { method: "GET" });
+
+                if (!response.ok) {
+                    console.error("Fetch failed with status:", response.status);
+                    return;
+                }
+
+                const responsedata = await response.json();
+                const StoreFiltersList = document.getElementById("StoreFiltersList");
+
+                // Clear existing
+                StoreFiltersList.innerHTML = "";
+
+                // Helper function to pause between items
+                StoreFiltersList.innerHTML = `
+                    <li>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" class="mr-2 accent-amber-500" value=0>
+                            <span>All Markets</span>
+                        </label>
+                    </li>
+                    `;
+
+
+                const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+                for (const data of responsedata) {
+                    const listItem = document.createElement("li");
+                    listItem.className =
+                        "opacity-0 translate-y-2 transition-all duration-500 ease-out";
+
+                    listItem.innerHTML = `
+        <label class="flex items-center space-x-2 cursor-pointer">
+          <input type="checkbox" class="mr-2 accent-amber-500" value="${data.id}">
+          <span>${data.name}</span>
+        </label>
+      `;
+
+                    StoreFiltersList.appendChild(listItem);
+
+                    // Small delay between each append (e.g., 150ms)
+                    await delay(150);
+
+                    // Trigger fade-in
+                    requestAnimationFrame(() => {
+                        listItem.classList.remove("opacity-0", "translate-y-2");
+                        listItem.classList.add("opacity-100", "translate-y-0");
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching stores:", error);
+            }
+        }
+
+        FetchStore();
+    </script>
+
+
+
+
+
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<script>
+async function FetchMenuElements() {
+  try {
+    const menuItemsResponse = await fetch("/queryMenuItems/validated/", { method: "GET" });
+
+    if (!menuItemsResponse.ok) {
+      console.error("Fetch failed with status:", menuItemsResponse.status);
+      return;
+    }
+
+    const menuItemsData = await menuItemsResponse.json();
+    console.log(menuItemsData);
+
+    const MenuItemsList = document.getElementById("MenUListSpan");
+
+    // Clear existing menu items
+    MenuItemsList.innerHTML = "";
+
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+    for (const menuItemData of menuItemsData) {
+      const menuItem = document.createElement("div");
+      menuItem.className =
+        "opacity-0 translate-y-2 transition-all duration-500 ease-out";
+
+      menuItem.innerHTML = `
+        <a href="${menuItemData.routeToLink}" 
+           class="block p-3 rounded-lg hover:bg-zinc-800 transition">
+          <i class="${menuItemData.labelIcon} mr-2 text-amber-400"></i>
+          ${menuItemData.labelText}
+        </a>
+      `;
+
+      MenuItemsList.appendChild(menuItem);
+
+      // Delay before next item appears
+      await delay(150);
+
+      // Smooth fade-in
+      requestAnimationFrame(() => {
+        menuItem.classList.remove("opacity-0", "translate-y-2");
+        menuItem.classList.add("opacity-100", "translate-y-0");
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching menu items:", error);
+  }
+}
+
+FetchMenuElements();
+</script>
+
+
+
+
 </body>
 
 </html>

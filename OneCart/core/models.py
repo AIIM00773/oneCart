@@ -14,6 +14,7 @@ import uuid
 
 class GeneralMenuContent(models.Model):
     MENU_GROUP_CHOICES = [
+        ('GENERAL','General menu'),
         ('HEADER', 'Header Menu'),
         ('SIDEBAR', 'Sidebar Menu'),
         ('FOOTER', 'Footer Menu'),
@@ -42,7 +43,7 @@ class GeneralMenuContent(models.Model):
         help_text="Font Awesome icon class (e.g., fa-solid fa-home)"
     )
 
-    routeToLink = models.URLField(
+    routeToLink = models.CharField(
         unique=True, 
         help_text="Destination link for this menu item"
     )
@@ -81,6 +82,11 @@ class GeneralMenuContent(models.Model):
 
 
 
+
+class ItemsCategory(models.Model):
+    categoryLabel = models.CharField(max_length=100 , unique=True, help_text="Categories of items")
+    def __str__(self):
+        return (self.categoryLabel)
 
 
 

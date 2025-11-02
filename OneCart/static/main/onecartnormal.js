@@ -1,7 +1,5 @@
 
-
-
-
+alert("Hello world ? ")
 
 
 // <!-- SIDEBAR TOGGLE  -->
@@ -63,6 +61,12 @@ overlay.addEventListener('click', () => {
     sidebar.classList.add('-translate-x-full');
     overlay.classList.add('hidden');
 });
+
+
+
+
+
+
 
 
 

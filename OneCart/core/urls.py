@@ -19,4 +19,11 @@ urlpatterns =[
 
    path("about/",views.LndingPage.as_view()),
 
+
+ #-----------------------------------------------------------------------------
+  path("queryMarkets/validated/", views.ServeStores.as_view()),
+  path("queryMenuItems/validated/",views.ServeMenuItems.as_view()),
+ 
+
 ] 
+
