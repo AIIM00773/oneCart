@@ -7,3 +7,5 @@ modelsTuple = (User, Marketplace, Product, Cart, CartItem,Order,OrderItem, AIPro
 
 for  model in modelsTuple:
     admin.site.register(model)
+
+

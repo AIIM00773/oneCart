@@ -34,6 +34,7 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',                # Must come first
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # 👈 add this right after SecurityMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,6 +124,28 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR / "static"),)
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "OneCart Admin",
+    "site_header": "Admin Parnell",
+    "site_brand": "OneCart Admin ",
+    "welcome_sign": "Welcome to Parnell Admin",
+    "copyright": " OneCart ",
+    "show_ui_builder": True,  # Adds a theme editor in the UI!
+
+    # Add a logo if you have one
+    "site_logo": "resources/logos/logo.png",
+
+    # Colors and layout
+    "theme": "cosmo",  # try others like flatly, darkly, pulse, etc.
+    "dark_mode_theme": "darkly",
+    "custom_css": "admin/css/custom.css",
+
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

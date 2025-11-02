@@ -1,0 +1,19 @@
+.content {
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body i {
+    opacity: 0.85;
+}
+
+.card-body:hover i {
+    opacity: 1;
+    color: #007bff;
+}
